@@ -48,14 +48,28 @@
         <!--Courses-->
         <scene sceneID="NM8-S7-64y">
             <objects>
-                <viewController id="WCu-ym-lTq" sceneMemberID="viewController">
+                <viewController id="WCu-ym-lTq" customClass="CoursesViewController" customModule="FooDisc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6jb-Jz-XAb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DH7-4S-53H">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            </mapView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="eY5-B8-FA4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DH7-4S-53H" firstAttribute="trailing" secondItem="eY5-B8-FA4" secondAttribute="trailing" id="0HS-xU-AhC"/>
+                            <constraint firstItem="DH7-4S-53H" firstAttribute="leading" secondItem="eY5-B8-FA4" secondAttribute="leading" id="Adt-Hh-h26"/>
+                            <constraint firstItem="DH7-4S-53H" firstAttribute="bottom" secondItem="eY5-B8-FA4" secondAttribute="bottom" id="M4n-Gi-Veq"/>
+                            <constraint firstItem="DH7-4S-53H" firstAttribute="top" secondItem="eY5-B8-FA4" secondAttribute="top" id="uWP-K8-4ax"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Courses" id="7El-45-fFd"/>
+                    <connections>
+                        <outlet property="mapView" destination="DH7-4S-53H" id="dNr-kb-vzn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zxP-hD-6Sf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
