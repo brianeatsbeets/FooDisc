@@ -13,12 +13,19 @@ class CoursesViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     //var courses : [Course] = []
     let locationManager = CLLocationManager()
+    var currentLocation = CLLocation()
+    
+    // Zoom the course map once user location is determined
+    var initialLocation = CLLocation() {
+        didSet {
+            zoomToLocation(initialLocation)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initializeLocationServices()
-        zoomToCurrentLocation()
     }
     
     // MARK: Location functions //
@@ -40,11 +47,17 @@ class CoursesViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // Respond to updated user location
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]
-    ) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        // Get initial location and zoom to it
+        if locations.count == 1 {
+            initialLocation = CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
+        }
+        
+        // Set currentLocation
         if let location = locations.last {
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
+            currentLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            print("Updated Location: \(currentLocation.coordinate)")
         }
     }
 
@@ -58,9 +71,12 @@ class CoursesViewController: UIViewController, CLLocationManagerDelegate {
         print("Error getting user location: \(error).")
     }
     
-    // Zoom the map to the user's general location
-    func zoomToCurrentLocation() {
-        
+    // Zoom the map to a given location
+    // TODO: figure out why this is being called every time location is updated. look into the didUpdateLocations locations array
+    func zoomToLocation(_ location: CLLocation) {
+        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        mapView.setRegion(region, animated: false)
+        print("Zoomed location: \(location.coordinate)")
     }
 }
 
