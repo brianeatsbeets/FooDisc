@@ -14,6 +14,7 @@ class CoursesViewController: UIViewController, CLLocationManagerDelegate {
     //var courses : [Course] = []
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
+    var receivedInitialLocation = false
     
     // Zoom the course map once user location is determined
     var initialLocation = CLLocation() {
@@ -49,15 +50,16 @@ class CoursesViewController: UIViewController, CLLocationManagerDelegate {
     // Respond to updated user location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        // Get initial location and zoom to it
-        if locations.count == 1 {
-            initialLocation = CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
-        }
-        
         // Set currentLocation
         if let location = locations.last {
+            
+            // Get initial location and zoom to it
+            if !receivedInitialLocation {
+                receivedInitialLocation = true
+                initialLocation = CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
+            }
+            
             currentLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            print("Updated Location: \(currentLocation.coordinate)")
         }
     }
 
@@ -72,11 +74,9 @@ class CoursesViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // Zoom the map to a given location
-    // TODO: figure out why this is being called every time location is updated. look into the didUpdateLocations locations array
     func zoomToLocation(_ location: CLLocation) {
-        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 20000, longitudinalMeters: 20000)
         mapView.setRegion(region, animated: false)
-        print("Zoomed location: \(location.coordinate)")
     }
 }
 
