@@ -16,6 +16,9 @@
 		E1546FD1279F453C00A00FC4 /* FooDisc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1546FCF279F453C00A00FC4 /* FooDisc.xcdatamodeld */; };
 		E1546FD3279F454000A00FC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1546FD2279F454000A00FC4 /* Assets.xcassets */; };
 		E1546FD6279F454000A00FC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1546FD4279F454000A00FC4 /* LaunchScreen.storyboard */; };
+		E1E8CC7C27A1B60C001E8212 /* CoursesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */; };
+		E1E8CC7F27A1B75D001E8212 /* CoursesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */; };
+		E1E8CC8027A1B75D001E8212 /* CourseListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E8CC7E27A1B75D001E8212 /* CourseListTableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		E1546FD2279F454000A00FC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1546FD5279F454000A00FC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1546FD7279F454000A00FC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMapViewController.swift; sourceTree = "<group>"; };
+		E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListTableViewController.swift; sourceTree = "<group>"; };
+		E1E8CC7E27A1B75D001E8212 /* CourseListTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseListTableViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +54,8 @@
 			children = (
 				E1546FCA279F453C00A00FC4 /* CoursesViewController.swift */,
 				E150459327A0EBC8008EC69B /* AddCourseViewController.swift */,
+				E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */,
+				E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -88,16 +96,25 @@
 		E1546FC5279F453C00A00FC4 /* FooDisc */ = {
 			isa = PBXGroup;
 			children = (
+				E1E8CC8127A1B775001E8212 /* Views */,
 				E150459527A0EBE5008EC69B /* View Controllers */,
 				E150459627A0EC08008EC69B /* Models */,
 				E150459727A0EC20008EC69B /* Utility */,
-				E1546FCC279F453C00A00FC4 /* Main.storyboard */,
 				E1546FD2279F454000A00FC4 /* Assets.xcassets */,
-				E1546FD4279F454000A00FC4 /* LaunchScreen.storyboard */,
 				E1546FD7279F454000A00FC4 /* Info.plist */,
 				E1546FCF279F453C00A00FC4 /* FooDisc.xcdatamodeld */,
 			);
 			path = FooDisc;
+			sourceTree = "<group>";
+		};
+		E1E8CC8127A1B775001E8212 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E1546FCC279F453C00A00FC4 /* Main.storyboard */,
+				E1546FD4279F454000A00FC4 /* LaunchScreen.storyboard */,
+				E1E8CC7E27A1B75D001E8212 /* CourseListTableViewController.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +177,7 @@
 			files = (
 				E1546FD6279F454000A00FC4 /* LaunchScreen.storyboard in Resources */,
 				E1546FD3279F454000A00FC4 /* Assets.xcassets in Resources */,
+				E1E8CC8027A1B75D001E8212 /* CourseListTableViewController.xib in Resources */,
 				E1546FCE279F453C00A00FC4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,7 +191,9 @@
 			files = (
 				E1546FCB279F453C00A00FC4 /* CoursesViewController.swift in Sources */,
 				E150459427A0EBC8008EC69B /* AddCourseViewController.swift in Sources */,
+				E1E8CC7F27A1B75D001E8212 /* CoursesListTableViewController.swift in Sources */,
 				E1546FC7279F453C00A00FC4 /* AppDelegate.swift in Sources */,
+				E1E8CC7C27A1B60C001E8212 /* CoursesMapViewController.swift in Sources */,
 				E150459227A0E487008EC69B /* Course.swift in Sources */,
 				E1546FC9279F453C00A00FC4 /* SceneDelegate.swift in Sources */,
 				E1546FD1279F453C00A00FC4 /* FooDisc.xcdatamodeld in Sources */,

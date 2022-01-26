@@ -8,75 +8,68 @@
 import UIKit
 import MapKit
 
-class CoursesViewController: UIViewController, CLLocationManagerDelegate {
+class CoursesViewController: UIViewController {
 
-    @IBOutlet weak var mapView: MKMapView!
-    //var courses : [Course] = []
-    let locationManager = CLLocationManager()
-    var currentLocation = CLLocation()
-    var receivedInitialLocation = false
+    @IBOutlet var viewSelector: UISegmentedControl!
     
-    // Zoom the course map once user location is determined
-    var initialLocation = CLLocation() {
-        didSet {
-            zoomToLocation(initialLocation)
-        }
-    }
+    // Lazily instantiate child view controllers
+    private lazy var coursesMapViewController: CoursesMapViewController = {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        var viewController = storyboard.instantiateViewController(withIdentifier: "CoursesMapViewController") as! CoursesMapViewController
+        self.add(asChildViewController: viewController)
+        return viewController
+    }()
+    
+    private lazy var coursesListTableViewController: CoursesListTableViewController = {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        var viewController = storyboard.instantiateViewController(withIdentifier: "CoursesListTableViewController") as! CoursesListTableViewController
+        self.add(asChildViewController: viewController)
+        return viewController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initializeLocationServices()
+        initializeSegmentedControl()
+        updateView()
     }
     
-    // MARK: Location functions //
-
-    // Initialize location services
-    func initializeLocationServices() {
-        locationManager.delegate = self
-        
-        //TODO: only request if user hasn't already responded to request
-        //TODO: display non-consequential location permissions alert request prior to real request
-        //TODO: handle denied location permissions
-        locationManager.requestWhenInUseAuthorization()
-        
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest // This is the default value
-        locationManager.distanceFilter = kCLDistanceFilterNone // This is the default value
-        locationManager.startUpdatingLocation()
-        
-        mapView.showsUserLocation = true
+    func initializeSegmentedControl() {
+        viewSelector.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
     }
     
-    // Respond to updated user location
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        // Set currentLocation
-        if let location = locations.last {
-            
-            // Get initial location and zoom to it
-            if !receivedInitialLocation {
-                receivedInitialLocation = true
-                initialLocation = CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
-            }
-            
-            currentLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+    @objc func selectionDidChange(_ sender: UISegmentedControl) {
+        updateView()
+    }
+    
+    func updateView() {
+        if viewSelector.selectedSegmentIndex == 0 {
+            remove(asChildViewController: coursesListTableViewController)
+            add(asChildViewController: coursesMapViewController)
+        } else {
+            remove(asChildViewController: coursesMapViewController)
+            add(asChildViewController: coursesListTableViewController)
         }
     }
-
-    // Respond to changed location authorization permissions
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("User changed location authorization permissions to \(status).")
-    }
-
-    // Respond to inability to get user location
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error getting user location: \(error).")
+    
+    // Add the child view to the superview
+    func add(asChildViewController viewController: UIViewController) {
+        addChild(viewController)
+        view.addSubview(viewController.view)
+        
+        viewController.view.frame = view.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        viewController.didMove(toParent: self)
     }
     
-    // Zoom the map to a given location
-    func zoomToLocation(_ location: CLLocation) {
-        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 20000, longitudinalMeters: 20000)
-        mapView.setRegion(region, animated: true)
+    // Remove the child view to the superview
+    func remove(asChildViewController viewController: UIViewController) {
+        viewController.willMove(toParent: nil)
+        viewController.view.removeFromSuperview()
+        viewController.removeFromParent()
     }
+    
+    
 }
 

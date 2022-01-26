@@ -48,16 +48,16 @@
         <!--Courses-->
         <scene sceneID="NM8-S7-64y">
             <objects>
-                <viewController id="WCu-ym-lTq" customClass="CoursesViewController" customModule="FooDisc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CoursesMapViewController" id="WCu-ym-lTq" customClass="CoursesMapViewController" customModule="FooDisc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6jb-Jz-XAb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DH7-4S-53H">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SV0-gM-WIO">
-                                <rect key="frame" x="278" y="108" width="116" height="40"/>
+                                <rect key="frame" x="278" y="64" width="116" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Jeo-01-zvd"/>
                                     <constraint firstAttribute="width" constant="116" id="uz4-PR-TGV"/>
@@ -88,18 +88,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zxP-hD-6Sf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1892.753623188406" y="461.38392857142856"/>
+            <point key="canvasLocation" x="2658" y="783"/>
         </scene>
         <!--Add Course-->
         <scene sceneID="P4H-o5-LOM">
             <objects>
                 <viewController id="WGk-Kx-dyO" customClass="AddCourseViewController" customModule="FooDisc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="suE-SK-kAu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUr-U2-cYi">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PmY-2I-eUw">
                                         <rect key="frame" x="0.0" y="50" width="414" height="540"/>
@@ -303,7 +303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mm8-hU-VQG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2773.913043478261" y="460.71428571428567"/>
+            <point key="canvasLocation" x="3532" y="461"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rMz-HU-Jxw">
@@ -336,12 +336,69 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="WCu-ym-lTq" kind="relationship" relationship="rootViewController" id="tYP-iv-tb9"/>
+                        <segue destination="xCv-Dc-KTy" kind="relationship" relationship="rootViewController" id="jQy-YO-bk5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCL-dq-exS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="982.60869565217399" y="461.38392857142856"/>
+        </scene>
+        <!--Courses View Controller-->
+        <scene sceneID="DCd-1B-rXR">
+            <objects>
+                <viewController id="xCv-Dc-KTy" customClass="CoursesViewController" customModule="FooDisc" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6bA-v6-3a6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="zx7-t2-MxV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rOm-4C-bjd">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5Wo-JS-WFa">
+                            <rect key="frame" x="161.5" y="5.5" width="91" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Map"/>
+                                <segment title="List"/>
+                            </segments>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="viewSelector" destination="5Wo-JS-WFa" id="ekb-Wh-vRp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cpa-WC-ifu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1796" y="461"/>
+        </scene>
+        <!--Courses List Table View Controller-->
+        <scene sceneID="M3T-4v-bYD">
+            <objects>
+                <tableViewController storyboardIdentifier="CoursesListTableViewController" id="Xv6-Ip-Gvm" customClass="CoursesListTableViewController" customModule="FooDisc" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="avS-lr-TsU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wIL-Bj-KIi">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wIL-Bj-KIi" id="6jK-EW-NPH">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Xv6-Ip-Gvm" id="vGp-QQ-n6M"/>
+                            <outlet property="delegate" destination="Xv6-Ip-Gvm" id="Y5M-Qx-nK7"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="15Z-yN-rnQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2658" y="117"/>
         </scene>
     </scenes>
     <resources>
