@@ -9,28 +9,32 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class Course: NSObject {
+// Course class to hold course data
+// TODO: Is this necessary with the addition of Core Data Entities?
+class Course: Codable {
 
     var name: String
     var city: String
     var state: String
-    var location: CLLocation
+    var latitude: Double
+    var longitude: Double
     var numberOfHoles: Int
     var distanceFromCurrentLocation: Double
-    var currentConditions: CourseCondition
-    //var numberOfTimesPlayed: Int
-    //var averageRating: Double
+    //var currentConditions: CourseCondition
+    var numberOfTimesPlayed: Int
+    var averageRating: Double
     
-    init(name: String, city: String, state: String, location: CLLocation, numberOfHoles: Int) {
+    init(name: String, city: String, state: String, latitude: Double, longitude: Double, numberOfHoles: Int) {
         self.name = name
         self.state = state
         self.city = city
-        self.location = location
+        self.latitude = latitude
+        self.longitude = longitude
         self.numberOfHoles = numberOfHoles
         self.distanceFromCurrentLocation = 0
-        self.currentConditions = .good
-        
-        super.init()
+        //self.currentConditions = .good
+        self.numberOfTimesPlayed = 0
+        self.averageRating = 0
     }
     
 }
@@ -46,8 +50,6 @@ enum CourseCondition {
             return .yellow
         case .good:
             return .green
-        default:
-            return .white
         }
     }
 }

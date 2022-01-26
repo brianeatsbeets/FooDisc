@@ -284,7 +284,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Course" id="4Bk-jX-htI">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="0MF-Nx-YfD">
+                        <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="0MF-Nx-YfD">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="WGk-Kx-dyO" id="EAo-mM-jah"/>
                             </connections>
