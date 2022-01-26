@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E150459227A0E487008EC69B /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150459127A0E487008EC69B /* Course.swift */; };
 		E1546FC7279F453C00A00FC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1546FC6279F453C00A00FC4 /* AppDelegate.swift */; };
 		E1546FC9279F453C00A00FC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1546FC8279F453C00A00FC4 /* SceneDelegate.swift */; };
 		E1546FCB279F453C00A00FC4 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1546FCA279F453C00A00FC4 /* CoursesViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E150459127A0E487008EC69B /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		E1546FC3279F453C00A00FC4 /* FooDisc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FooDisc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1546FC6279F453C00A00FC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1546FC8279F453C00A00FC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				E1546FD4279F454000A00FC4 /* LaunchScreen.storyboard */,
 				E1546FD7279F454000A00FC4 /* Info.plist */,
 				E1546FCF279F453C00A00FC4 /* FooDisc.xcdatamodeld */,
+				E150459127A0E487008EC69B /* Course.swift */,
 			);
 			path = FooDisc;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			files = (
 				E1546FCB279F453C00A00FC4 /* CoursesViewController.swift in Sources */,
 				E1546FC7279F453C00A00FC4 /* AppDelegate.swift in Sources */,
+				E150459227A0E487008EC69B /* Course.swift in Sources */,
 				E1546FC9279F453C00A00FC4 /* SceneDelegate.swift in Sources */,
 				E1546FD1279F453C00A00FC4 /* FooDisc.xcdatamodeld in Sources */,
 			);

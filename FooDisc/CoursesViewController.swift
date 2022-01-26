@@ -76,7 +76,7 @@ class CoursesViewController: UIViewController, CLLocationManagerDelegate {
     // Zoom the map to a given location
     func zoomToLocation(_ location: CLLocation) {
         let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 20000, longitudinalMeters: 20000)
-        mapView.setRegion(region, animated: false)
+        mapView.setRegion(region, animated: true)
     }
 }
 
