@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E150459227A0E487008EC69B /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150459127A0E487008EC69B /* Course.swift */; };
+		E150459427A0EBC8008EC69B /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150459327A0EBC8008EC69B /* AddCourseViewController.swift */; };
 		E1546FC7279F453C00A00FC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1546FC6279F453C00A00FC4 /* AppDelegate.swift */; };
 		E1546FC9279F453C00A00FC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1546FC8279F453C00A00FC4 /* SceneDelegate.swift */; };
 		E1546FCB279F453C00A00FC4 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1546FCA279F453C00A00FC4 /* CoursesViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		E150459127A0E487008EC69B /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		E150459327A0EBC8008EC69B /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
 		E1546FC3279F453C00A00FC4 /* FooDisc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FooDisc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1546FC6279F453C00A00FC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1546FC8279F453C00A00FC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +43,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E150459527A0EBE5008EC69B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E1546FCA279F453C00A00FC4 /* CoursesViewController.swift */,
+				E150459327A0EBC8008EC69B /* AddCourseViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E150459627A0EC08008EC69B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E150459127A0E487008EC69B /* Course.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E150459727A0EC20008EC69B /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E1546FC6279F453C00A00FC4 /* AppDelegate.swift */,
+				E1546FC8279F453C00A00FC4 /* SceneDelegate.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		E1546FBA279F453C00A00FC4 = {
 			isa = PBXGroup;
 			children = (
@@ -60,15 +88,14 @@
 		E1546FC5279F453C00A00FC4 /* FooDisc */ = {
 			isa = PBXGroup;
 			children = (
-				E1546FC6279F453C00A00FC4 /* AppDelegate.swift */,
-				E1546FC8279F453C00A00FC4 /* SceneDelegate.swift */,
-				E1546FCA279F453C00A00FC4 /* CoursesViewController.swift */,
+				E150459527A0EBE5008EC69B /* View Controllers */,
+				E150459627A0EC08008EC69B /* Models */,
+				E150459727A0EC20008EC69B /* Utility */,
 				E1546FCC279F453C00A00FC4 /* Main.storyboard */,
 				E1546FD2279F454000A00FC4 /* Assets.xcassets */,
 				E1546FD4279F454000A00FC4 /* LaunchScreen.storyboard */,
 				E1546FD7279F454000A00FC4 /* Info.plist */,
 				E1546FCF279F453C00A00FC4 /* FooDisc.xcdatamodeld */,
-				E150459127A0E487008EC69B /* Course.swift */,
 			);
 			path = FooDisc;
 			sourceTree = "<group>";
@@ -145,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1546FCB279F453C00A00FC4 /* CoursesViewController.swift in Sources */,
+				E150459427A0EBC8008EC69B /* AddCourseViewController.swift in Sources */,
 				E1546FC7279F453C00A00FC4 /* AppDelegate.swift in Sources */,
 				E150459227A0E487008EC69B /* Course.swift in Sources */,
 				E1546FC9279F453C00A00FC4 /* SceneDelegate.swift in Sources */,

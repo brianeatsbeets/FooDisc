@@ -7,25 +7,28 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 class Course: NSObject {
 
     var name: String
     var city: String
     var state: String
-    var distanceFromCurrentLocation: Double
+    var location: CLLocation
     var numberOfHoles: Int
+    var distanceFromCurrentLocation: Double
     var currentConditions: CourseCondition
     //var numberOfTimesPlayed: Int
     //var averageRating: Double
     
-    init(name: String, city: String, state: String, distanceFromCurrentLocation: Double, numberOfHoles: Int, currentConditions: CourseCondition) {
+    init(name: String, city: String, state: String, location: CLLocation, numberOfHoles: Int) {
         self.name = name
         self.state = state
         self.city = city
-        self.distanceFromCurrentLocation = distanceFromCurrentLocation
+        self.location = location
         self.numberOfHoles = numberOfHoles
-        self.currentConditions = currentConditions
+        self.distanceFromCurrentLocation = 0
+        self.currentConditions = .good
         
         super.init()
     }
