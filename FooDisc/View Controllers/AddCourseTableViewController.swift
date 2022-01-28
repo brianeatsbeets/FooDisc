@@ -8,13 +8,11 @@
 import UIKit
 import MapKit
 
-// TODO: course creation/saving, passing course id back to CoursesViewController and then navigating to CourseDetailViewCOntroller
 class AddCourseTableViewController: UITableViewController {
     
     @IBOutlet var courseNameTextField: UITextField!
     @IBOutlet var cityTextField: UITextField!
     @IBOutlet var stateTextField: UITextField!
-    //@IBOutlet var numberOfHolesTextField: UITextField!
     @IBOutlet var latitudeTextField: UITextField!
     @IBOutlet var longitudeTextField: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
@@ -22,6 +20,7 @@ class AddCourseTableViewController: UITableViewController {
     // Used to bulk-add event listeners
     var textFields: [UITextField] = []
     
+    // Load up form
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,16 +60,14 @@ class AddCourseTableViewController: UITableViewController {
     @IBAction func saveButtonPressed(_ sender: Any) {
         saveNewCourse()
         performSegue(withIdentifier: "unwindToCoursesViewController", sender: self)
-        //navigationController?.popViewController(animated: true)
     }
     
-    // TODO: refresh map/table view controllers
     // Save course in UserDefaults
+    // Force unwrapping because of !.isEmpty validation along with coordinate fields using numerical/decimal keyboards
     func saveNewCourse() {
         let courseName = courseNameTextField.text!
         let city = cityTextField.text!
         let state = stateTextField.text!
-        //let numberOfHoles = Int(numberOfHolesTextField.text!)!
         let latitude = Double(latitudeTextField.text!)!
         let longitude = Double(longitudeTextField.text!)!
         
@@ -79,35 +76,26 @@ class AddCourseTableViewController: UITableViewController {
         let defaults = UserDefaults.standard
         var courses: [Course] = []
         
-        // Read/Get Data
+        // Fetch courses array
         if let data = defaults.data(forKey: "Courses") {
             do {
-                // Create JSON Decoder
                 let decoder = JSONDecoder()
-
-                // Decode Note
                 courses = try decoder.decode([Course].self, from: data)
-
             } catch {
-                print("Unable to Decode Courses (\(error))")
+                print("Failed to decode courses: \(error)")
             }
         }
-            
+        
+        // Add new course to existing courses array
         courses.append(newCourse)
         
+        // Save courses array
         do {
-            // Create JSON Encoder
             let encoder = JSONEncoder()
-
-            // Encode Course
             let data = try encoder.encode(courses)
-
-            // Write/Set Data
             defaults.set(data, forKey: "Courses")
-            print("Successfully saved new course to UserDefaults")
-            
         } catch {
-            print("Unable to Encode Courses (\(error))")
+            print("Failed to encode courses: \(error)")
         }
     }
     
@@ -125,6 +113,7 @@ class AddCourseTableViewController: UITableViewController {
             return
         }
         
+        // Unwrap text field for examination
         guard let currentText = coordinateTextField.text else {
             return
         }
@@ -149,5 +138,4 @@ class AddCourseTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-
 }
