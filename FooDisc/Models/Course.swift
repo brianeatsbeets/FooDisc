@@ -11,25 +11,25 @@ import CoreLocation
 import MapKit
 
 // Course class to hold course data
-// TODO: Update comments
-class Course {
-    var name: String?
-    var city: String?
-    var state: String?
-    //var latitude: Double
-    //var longitude: Double
-    var coordinate: CLLocationCoordinate2D
-    var numberOfHoles: Int?
+// TODO: Update comments, conform for UserDefaults
+class Course: Codable {
+    var name: String
+    var city: String
+    var state: String
+    var latitude: Double
+    var longitude: Double
+    //var coordinate: CLLocationCoordinate2D
+    //var numberOfHoles: Int?
     var currentConditions: CourseCondition
     var layout: [Int:Int]
     
-    init(name: String, city: String, state: String, latitude: Double, longitude: Double, numberOfHoles: Int) {
+    init(name: String, city: String, state: String, latitude: Double, longitude: Double) {
         self.name = name
         self.city = city
         self.state = state
-        //self.latitude = latitude
-        //self.longitude = longitude
-        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.latitude = latitude
+        self.longitude = longitude
+        //self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         currentConditions = .good
         layout = defaultLayout
     }

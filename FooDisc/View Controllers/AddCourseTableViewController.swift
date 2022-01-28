@@ -14,7 +14,7 @@ class AddCourseTableViewController: UITableViewController {
     @IBOutlet var courseNameTextField: UITextField!
     @IBOutlet var cityTextField: UITextField!
     @IBOutlet var stateTextField: UITextField!
-    @IBOutlet var numberOfHolesTextField: UITextField!
+    //@IBOutlet var numberOfHolesTextField: UITextField!
     @IBOutlet var latitudeTextField: UITextField!
     @IBOutlet var longitudeTextField: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
@@ -35,7 +35,7 @@ class AddCourseTableViewController: UITableViewController {
         saveButton.isEnabled = false
 
         // Add listener for textField validation
-        textFields = [courseNameTextField, cityTextField, stateTextField, numberOfHolesTextField, latitudeTextField, longitudeTextField]
+        textFields = [courseNameTextField, cityTextField, stateTextField, latitudeTextField, longitudeTextField]
         for textField in textFields {
           textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         }
@@ -60,7 +60,8 @@ class AddCourseTableViewController: UITableViewController {
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         saveNewCourse()
-        //self.navigationController?.popViewController(animated: true)
+        performSegue(withIdentifier: "unwindToCoursesViewController", sender: self)
+        //navigationController?.popViewController(animated: true)
     }
     
     // TODO: refresh map/table view controllers
@@ -69,19 +70,44 @@ class AddCourseTableViewController: UITableViewController {
         let courseName = courseNameTextField.text!
         let city = cityTextField.text!
         let state = stateTextField.text!
-        let numberOfHoles = Int(numberOfHolesTextField.text!)!
+        //let numberOfHoles = Int(numberOfHolesTextField.text!)!
         let latitude = Double(latitudeTextField.text!)!
         let longitude = Double(longitudeTextField.text!)!
         
-        let newCourse = Course(name: courseName, city: city, state: state, latitude: latitude, longitude: longitude, numberOfHoles: numberOfHoles)
+        let newCourse = Course(name: courseName, city: city, state: state, latitude: latitude, longitude: longitude)
         
         let defaults = UserDefaults.standard
-        if var courses = defaults.object(forKey: "Courses") as? [Course] {
-            courses.append(newCourse)
-            defaults.set(newCourse, forKey: "Courses")
+        var courses: [Course] = []
+        
+        // Read/Get Data
+        if let data = defaults.data(forKey: "Courses") {
+            do {
+                // Create JSON Decoder
+                let decoder = JSONDecoder()
+
+                // Decode Note
+                courses = try decoder.decode([Course].self, from: data)
+
+            } catch {
+                print("Unable to Decode Courses (\(error))")
+            }
+        }
+            
+        courses.append(newCourse)
+        
+        do {
+            // Create JSON Encoder
+            let encoder = JSONEncoder()
+
+            // Encode Course
+            let data = try encoder.encode(courses)
+
+            // Write/Set Data
+            defaults.set(data, forKey: "Courses")
             print("Successfully saved new course to UserDefaults")
-        } else {
-            print("Error saving new course to UserDefaults")
+            
+        } catch {
+            print("Unable to Encode Courses (\(error))")
         }
     }
     
@@ -117,7 +143,7 @@ class AddCourseTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

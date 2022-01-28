@@ -12,13 +12,19 @@ class CoursesViewController: UIViewController {
 
     @IBOutlet var viewSelector: UISegmentedControl!
     
-    var courses : [Course] = []
+    var courses : [Course] = [] {
+        didSet {
+            coursesMapViewController.courses = courses
+            coursesListTableViewController.courses = courses
+            print("courses updated in child view controllers")
+        }
+    }
     
     // Lazily instantiate child view controllers
     private lazy var coursesMapViewController: CoursesMapViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: "CoursesMapViewController") as! CoursesMapViewController
-        viewController.courses = courses
+        //viewController.courses = courses
         self.add(asChildViewController: viewController)
         print("initialized coursesmapviewcontroller")
         return viewController
@@ -27,7 +33,7 @@ class CoursesViewController: UIViewController {
     private lazy var coursesListTableViewController: CoursesListTableViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: "CoursesListTableViewController") as! CoursesListTableViewController
-        viewController.courses = courses
+        //viewController.courses = courses
         self.add(asChildViewController: viewController)
         return viewController
     }()
@@ -46,11 +52,23 @@ class CoursesViewController: UIViewController {
     
     func loadData() {
         let defaults = UserDefaults.standard
-        if let savedCourses = defaults.object(forKey: "Courses") as? [Course] {
-            courses = savedCourses
-            print("Successfully loaded courses from UserDefaults")
+        
+        // Read/Get Data
+        if let data = defaults.data(forKey: "Courses") {
+            print("flag 1")
+            do {
+                // Create JSON Decoder
+                let decoder = JSONDecoder()
+
+                // Decode Note
+                courses = try decoder.decode([Course].self, from: data)
+                print("Successfully decoded courses")
+
+            } catch {
+                print("Unable to Decode Courses (\(error))")
+            }
         } else {
-            print("Error loading courses from UserDefaults")
+            print("flag 2")
         }
     }
     
@@ -86,6 +104,11 @@ class CoursesViewController: UIViewController {
         viewController.removeFromParent()
     }
     
-    
+    // Refresh data after adding new course
+    // TODO: refresh map annotations
+    @IBAction func unwindToCoursesViewController(segue: UIStoryboardSegue) {
+        loadData()
+        coursesListTableViewController.tableView.reloadData()
+    }
 }
 

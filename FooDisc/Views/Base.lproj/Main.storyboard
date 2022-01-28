@@ -374,35 +374,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Number of holes" id="1jA-0u-w1T">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="06e-2e-vnc">
-                                        <rect key="frame" x="20" y="331.5" width="374" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="06e-2e-vnc" id="u9B-tf-ach">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O0V-0s-hcb">
-                                                    <rect key="frame" x="20" y="5" width="334" height="34.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="O0V-0s-hcb" secondAttribute="trailing" constant="20" symbolic="YES" id="Kxe-q8-MQR"/>
-                                                <constraint firstItem="O0V-0s-hcb" firstAttribute="leading" secondItem="u9B-tf-ach" secondAttribute="leading" constant="20" symbolic="YES" id="NU6-Fu-9Ct"/>
-                                                <constraint firstAttribute="bottom" secondItem="O0V-0s-hcb" secondAttribute="bottom" constant="4.5" id="Q5i-jS-eZt"/>
-                                                <constraint firstItem="O0V-0s-hcb" firstAttribute="top" secondItem="u9B-tf-ach" secondAttribute="top" constant="5" id="VPc-Hx-yjR"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Latitude" id="Zbv-RR-Z7y">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="YiE-AI-Juv">
-                                        <rect key="frame" x="20" y="425.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="331.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YiE-AI-Juv" id="BrQ-uX-Mal">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -441,7 +416,7 @@
                             <tableViewSection headerTitle="Longitude" id="owd-2x-Pil">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="suf-jd-9R3">
-                                        <rect key="frame" x="20" y="519" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="425" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="suf-jd-9R3" id="oXH-yY-wWz">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -495,12 +470,13 @@
                         <outlet property="courseNameTextField" destination="MaK-Uh-Zkf" id="qcR-h6-2R8"/>
                         <outlet property="latitudeTextField" destination="VkP-Xc-U6z" id="hYT-Oj-fnc"/>
                         <outlet property="longitudeTextField" destination="Bd0-UJ-9mQ" id="WAn-TT-0wd"/>
-                        <outlet property="numberOfHolesTextField" destination="O0V-0s-hcb" id="Cco-Ny-TWi"/>
                         <outlet property="saveButton" destination="L2Q-gt-dSp" id="MhU-kE-eu5"/>
                         <outlet property="stateTextField" destination="p1B-Xz-qgh" id="RGd-jR-2M9"/>
+                        <segue destination="xUN-y9-wZr" kind="unwind" identifier="unwindToCoursesViewController" unwindAction="unwindToCoursesViewControllerWithSegue:" id="qVE-We-X2R"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1N-Rg-jxH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="xUN-y9-wZr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4269.5652173913049" y="460.71428571428567"/>
         </scene>
@@ -585,7 +561,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wIL-Bj-KIi">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseCell" id="wIL-Bj-KIi">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wIL-Bj-KIi" id="6jK-EW-NPH">
