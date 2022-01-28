@@ -59,11 +59,12 @@ class AddCourseTableViewController: UITableViewController {
     // MARK: Button actions
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
         saveNewCourse()
+        //self.navigationController?.popViewController(animated: true)
     }
     
-    // Save course in geoJSON file
+    // TODO: refresh map/table view controllers
+    // Save course in UserDefaults
     func saveNewCourse() {
         let courseName = courseNameTextField.text!
         let city = cityTextField.text!
@@ -72,17 +73,15 @@ class AddCourseTableViewController: UITableViewController {
         let latitude = Double(latitudeTextField.text!)!
         let longitude = Double(longitudeTextField.text!)!
         
-        let newCourse = Course(name: courseName, city: city, state: state, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), numberOfHoles: numberOfHoles)
+        let newCourse = Course(name: courseName, city: city, state: state, latitude: latitude, longitude: longitude, numberOfHoles: numberOfHoles)
         
-        do {
-            let fileURL = try FileManager.default
-                .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                .appendingPathComponent("courses.geojson")
-
-            try JSONEncoder().encode(newCourse)
-                .write(to: fileURL)
-        } catch {
-            print(error)
+        let defaults = UserDefaults.standard
+        if var courses = defaults.object(forKey: "Courses") as? [Course] {
+            courses.append(newCourse)
+            defaults.set(newCourse, forKey: "Courses")
+            print("Successfully saved new course to UserDefaults")
+        } else {
+            print("Error saving new course to UserDefaults")
         }
     }
     

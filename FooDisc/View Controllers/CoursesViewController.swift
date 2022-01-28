@@ -20,6 +20,7 @@ class CoursesViewController: UIViewController {
         var viewController = storyboard.instantiateViewController(withIdentifier: "CoursesMapViewController") as! CoursesMapViewController
         viewController.courses = courses
         self.add(asChildViewController: viewController)
+        print("initialized coursesmapviewcontroller")
         return viewController
     }()
     
@@ -34,8 +35,8 @@ class CoursesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadData()
         initializeSegmentedControl()
-        readJSONFile()
         updateView()
     }
     
@@ -43,32 +44,18 @@ class CoursesViewController: UIViewController {
         viewSelector.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
     }
     
-    @objc func selectionDidChange(_ sender: UISegmentedControl) {
-        updateView()
+    func loadData() {
+        let defaults = UserDefaults.standard
+        if let savedCourses = defaults.object(forKey: "Courses") as? [Course] {
+            courses = savedCourses
+            print("Successfully loaded courses from UserDefaults")
+        } else {
+            print("Error loading courses from UserDefaults")
+        }
     }
     
-    func readJSONFile() {
-        do {
-            let fileURL = try FileManager.default
-                .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                .appendingPathComponent("courses.geojson")
-
-            let courseData = try Data(contentsOf: fileURL)
-            
-            // Attempt to decode geoJSON data and create an array of non-nil MKGeoJSONFeature objects
-            let features = try MKGeoJSONDecoder().decode(courseData).compactMap { $0 as? MKGeoJSONFeature }
-
-            // Create an array of viable Place objects from the above array
-            let validCourses = features.compactMap(Course.init)
-            
-            // Append viable Place objects to places array
-            courses.append(contentsOf: validCourses)
-            
-            //let foo = try JSONDecoder().decode(Course.self, from: data)
-            //print(foo)
-        } catch {
-            print(error)
-        }
+    @objc func selectionDidChange(_ sender: UISegmentedControl) {
+        updateView()
     }
     
     func updateView() {
