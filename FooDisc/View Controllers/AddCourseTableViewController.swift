@@ -7,7 +7,7 @@
 
 import UIKit
 
-// TODO: Comment code, implement text validation/save button enabling, and course creation/saving
+// TODO: Comment code, implement text validation/min-number minus sign removal/save button enabling, course creation/saving, passing course id back to CoursesViewController and then navigating to CourseDetailViewCOntroller
 class AddCourseTableViewController: UITableViewController {
     
     @IBOutlet var latitudeTextField: UITextField!
@@ -21,36 +21,34 @@ class AddCourseTableViewController: UITableViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func latitudePolarityButtonPressed(_ sender: Any) {
-        guard let currentText = latitudeTextField.text else {
+    // Determine which polarity button was pressed and apply polarity to respective text field
+    @IBAction func polarityButtonPressed(_ sender: UIButton) {
+        var coordinateTextField: UITextField
+        
+        // Set appropriate text field
+        switch sender.tag {
+        case 1000:
+            coordinateTextField = latitudeTextField
+        case 2000:
+            coordinateTextField = longitudeTextField
+        default:
             return
         }
         
-        if currentText.hasPrefix("-") {
-            let offsetIndex = currentText.index(currentText.startIndex, offsetBy: 1)
-            let substring = currentText[offsetIndex...]  //remove first character
-            latitudeTextField.text = String(substring)
-        }
-        else {
-            latitudeTextField.text = "-" + currentText
-        }
-    }
-    
-    @IBAction func longitudePolarityButtonPressed(_ sender: Any) {
-        guard let currentText = longitudeTextField.text else {
+        guard let currentText = coordinateTextField.text else {
             return
         }
         
-        if currentText.hasPrefix("-") {
+        // If text field starts with -, chop it off. If not, add it
+        if currentText.first == "-" {
             let offsetIndex = currentText.index(currentText.startIndex, offsetBy: 1)
-            let substring = currentText[offsetIndex...]  //remove first character
-            longitudeTextField.text = String(substring)
+            let substring = currentText[offsetIndex...]
+            coordinateTextField.text = String(substring)
         }
         else {
-            longitudeTextField.text = "-" + currentText
+            coordinateTextField.text = "-" + currentText
         }
     }
-    
 
     // MARK: - Table view data source
 

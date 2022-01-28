@@ -413,7 +413,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amN-gK-zTa">
+                                                <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amN-gK-zTa">
                                                     <rect key="frame" x="19" y="6" width="50" height="31.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="2TZ-5W-hw3"/>
@@ -421,7 +421,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="gray" title="+/-"/>
                                                     <connections>
-                                                        <action selector="latitudePolarityButtonPressed:" destination="Mjc-nU-qaK" eventType="touchUpInside" id="uci-I9-LA1"/>
+                                                        <action selector="polarityButtonPressed:" destination="Mjc-nU-qaK" eventType="touchUpInside" id="y0j-e2-mCa"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -452,7 +452,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vY7-6D-L8b">
+                                                <button opaque="NO" tag="2000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vY7-6D-L8b">
                                                     <rect key="frame" x="20" y="6" width="50" height="31.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="0ks-IP-MJY"/>
@@ -460,7 +460,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="gray" title="+/-"/>
                                                     <connections>
-                                                        <action selector="longitudePolarityButtonPressed:" destination="Mjc-nU-qaK" eventType="touchUpInside" id="Wep-zW-RA5"/>
+                                                        <action selector="polarityButtonPressed:" destination="Mjc-nU-qaK" eventType="touchUpInside" id="df0-ig-3Bw"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
