@@ -20,6 +20,7 @@
 		E1E8CC7C27A1B60C001E8212 /* CoursesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */; };
 		E1E8CC7F27A1B75D001E8212 /* CoursesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */; };
 		E1E8CC8027A1B75D001E8212 /* CourseListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E8CC7E27A1B75D001E8212 /* CourseListTableViewController.xib */; };
+		E1FF8EF627A42D9000C0E810 /* DisabledCursorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FF8EF527A42D9000C0E810 /* DisabledCursorTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMapViewController.swift; sourceTree = "<group>"; };
 		E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListTableViewController.swift; sourceTree = "<group>"; };
 		E1E8CC7E27A1B75D001E8212 /* CourseListTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseListTableViewController.xib; sourceTree = "<group>"; };
+		E1FF8EF527A42D9000C0E810 /* DisabledCursorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DisabledCursorTextField.swift; path = FooDisc/Utility/DisabledCursorTextField.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		E150459727A0EC20008EC69B /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				E1FF8EF527A42D9000C0E810 /* DisabledCursorTextField.swift */,
 				E1546FC6279F453C00A00FC4 /* AppDelegate.swift */,
 				E1546FC8279F453C00A00FC4 /* SceneDelegate.swift */,
 			);
@@ -197,6 +200,7 @@
 				E1E8CC7F27A1B75D001E8212 /* CoursesListTableViewController.swift in Sources */,
 				E1546FC7279F453C00A00FC4 /* AppDelegate.swift in Sources */,
 				E1E8CC7C27A1B60C001E8212 /* CoursesMapViewController.swift in Sources */,
+				E1FF8EF627A42D9000C0E810 /* DisabledCursorTextField.swift in Sources */,
 				E150459227A0E487008EC69B /* Course.swift in Sources */,
 				E1546FC9279F453C00A00FC4 /* SceneDelegate.swift in Sources */,
 				E1546FD1279F453C00A00FC4 /* FooDisc.xcdatamodeld in Sources */,

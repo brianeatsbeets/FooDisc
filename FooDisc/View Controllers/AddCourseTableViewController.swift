@@ -10,12 +10,51 @@ import UIKit
 // TODO: Comment code, implement text validation/min-number minus sign removal/save button enabling, course creation/saving, passing course id back to CoursesViewController and then navigating to CourseDetailViewCOntroller
 class AddCourseTableViewController: UITableViewController {
     
+    @IBOutlet var courseNameTextField: UITextField!
+    @IBOutlet var cityTextField: UITextField!
+    @IBOutlet var stateTextField: UITextField!
+    @IBOutlet var numberOfHolesTextField: UITextField!
     @IBOutlet var latitudeTextField: UITextField!
     @IBOutlet var longitudeTextField: UITextField!
+    @IBOutlet var saveButton: UIBarButtonItem!
+    
+    var textFields: [UITextField] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initializeForm()
     }
+    
+    // MARK: Form initialization functions
+    
+    func initializeForm() {
+        // Disable save button until all fields are filled in
+        saveButton.isEnabled = false
+
+        // Add listener for textField validation
+        textFields = [courseNameTextField, cityTextField, stateTextField, numberOfHolesTextField, latitudeTextField, longitudeTextField]
+        for textField in textFields {
+          textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        }
+    }
+    
+    // Check if all textFields have text, and if so, enable the save button
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        for textField in textFields {
+            if !textField.hasText {
+                if saveButton.isEnabled {
+                    saveButton.isEnabled = false
+                }
+                break
+            }
+            if textField == textFields.last {
+                saveButton.isEnabled = true
+            }
+        }
+    }
+    
+    // MARK: Button actions
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

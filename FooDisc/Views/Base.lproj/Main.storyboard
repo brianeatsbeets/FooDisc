@@ -408,7 +408,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VkP-Xc-U6z">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VkP-Xc-U6z" customClass="DisabledCursorTextField" customModule="FooDisc" customModuleProvider="target">
                                                     <rect key="frame" x="77" y="5" width="277" height="34.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -447,7 +447,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bd0-UJ-9mQ">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bd0-UJ-9mQ" customClass="DisabledCursorTextField" customModule="FooDisc" customModuleProvider="target">
                                                     <rect key="frame" x="78" y="5" width="276" height="34.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -491,8 +491,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cityTextField" destination="fx2-f4-5ZT" id="mAR-7b-0TB"/>
+                        <outlet property="courseNameTextField" destination="MaK-Uh-Zkf" id="qcR-h6-2R8"/>
                         <outlet property="latitudeTextField" destination="VkP-Xc-U6z" id="hYT-Oj-fnc"/>
                         <outlet property="longitudeTextField" destination="Bd0-UJ-9mQ" id="WAn-TT-0wd"/>
+                        <outlet property="numberOfHolesTextField" destination="O0V-0s-hcb" id="Cco-Ny-TWi"/>
+                        <outlet property="saveButton" destination="L2Q-gt-dSp" id="MhU-kE-eu5"/>
+                        <outlet property="stateTextField" destination="p1B-Xz-qgh" id="RGd-jR-2M9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1N-Rg-jxH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
