@@ -11,7 +11,8 @@ import MapKit
 class CoursesMapViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    //var courses : [Course] = []
+    
+    var courses : [Course] = []
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     var receivedInitialLocation = false

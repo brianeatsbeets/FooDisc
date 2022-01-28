@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import MapKit
 
-// TODO: Comment code, implement text validation/min-number minus sign removal/save button enabling, course creation/saving, passing course id back to CoursesViewController and then navigating to CourseDetailViewCOntroller
+// TODO: course creation/saving, passing course id back to CoursesViewController and then navigating to CourseDetailViewCOntroller
 class AddCourseTableViewController: UITableViewController {
     
     @IBOutlet var courseNameTextField: UITextField!
@@ -18,6 +19,7 @@ class AddCourseTableViewController: UITableViewController {
     @IBOutlet var longitudeTextField: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
     
+    // Used to bulk-add event listeners
     var textFields: [UITextField] = []
     
     override func viewDidLoad() {
@@ -58,6 +60,30 @@ class AddCourseTableViewController: UITableViewController {
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+        saveNewCourse()
+    }
+    
+    // Save course in geoJSON file
+    func saveNewCourse() {
+        let courseName = courseNameTextField.text!
+        let city = cityTextField.text!
+        let state = stateTextField.text!
+        let numberOfHoles = Int(numberOfHolesTextField.text!)!
+        let latitude = Double(latitudeTextField.text!)!
+        let longitude = Double(longitudeTextField.text!)!
+        
+        let newCourse = Course(name: courseName, city: city, state: state, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), numberOfHoles: numberOfHoles)
+        
+        do {
+            let fileURL = try FileManager.default
+                .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                .appendingPathComponent("courses.geojson")
+
+            try JSONEncoder().encode(newCourse)
+                .write(to: fileURL)
+        } catch {
+            print(error)
+        }
     }
     
     // Determine which polarity button was pressed and apply polarity to respective text field
