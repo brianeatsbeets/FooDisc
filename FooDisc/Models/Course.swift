@@ -10,20 +10,21 @@ import UIKit
 import CoreLocation
 import MapKit
 
-// Course class to hold course data
-// TODO: Update comments, conform for UserDefaults
-class Course: Codable {
+// Course struct to hold course data
+struct Course: Codable {
+    
+    var id: String
     var name: String
     var city: String
     var state: String
     var latitude: Double
     var longitude: Double
     //var coordinate: CLLocationCoordinate2D
-    //var numberOfHoles: Int?
     var currentConditions: CourseCondition
     var layout: [Int:Int]
     
     init(name: String, city: String, state: String, latitude: Double, longitude: Double) {
+        id = UUID().uuidString
         self.name = name
         self.city = city
         self.state = state

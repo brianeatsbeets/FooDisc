@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import MapKit
 
 class AddCourseTableViewController: UITableViewController {
     

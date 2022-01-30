@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class CoursesMapViewController: UIViewController, CLLocationManagerDelegate {
+class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -27,6 +27,7 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.delegate = self
         initializeLocationServices()
     }
     
