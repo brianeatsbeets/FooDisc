@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class AddCourseTableViewController: UITableViewController {
     
@@ -70,7 +71,7 @@ class AddCourseTableViewController: UITableViewController {
         let latitude = Double(latitudeTextField.text!)!
         let longitude = Double(longitudeTextField.text!)!
         
-        let newCourse = Course(name: courseName, city: city, state: state, latitude: latitude, longitude: longitude)
+        let newCourse = Course(name: courseName, city: city, state: state, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
         
         let defaults = UserDefaults.standard
         var courses: [Course] = []
