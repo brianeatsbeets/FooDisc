@@ -70,10 +70,8 @@ class CoursesViewController: UIViewController {
     }
     
     // Refresh data after adding new course
-    // TODO: refresh map annotations
     @IBAction func unwindToCoursesViewController(segue: UIStoryboardSegue) {
         loadData()
-        coursesListTableViewController.tableView.reloadData()
     }
     
     // MARK: Child view controller management

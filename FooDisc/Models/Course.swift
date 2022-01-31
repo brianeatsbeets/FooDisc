@@ -11,25 +11,26 @@ import MapKit
 private let defaultLayout = [1: 300, 2:300, 3:300, 4:300, 5:300, 6: 300, 7:300, 8:300, 9:300, 10:300, 11: 300, 12:300, 13:300, 14:300, 15:300, 16: 300, 17:300, 18:300]
 
 // Course class to hold course data
+// TODO: deal with encoding/decoding errors
 class Course: NSObject, Codable, MKAnnotation {
     
     var id: String
     var name: String
+    var title: String? { // Required for annotation
+        return name
+    }
     var city: String
     var state: String
-    //var latitude: Double
-    //var longitude: Double
     var coordinate: CLLocationCoordinate2D
     var currentConditions: CourseCondition
     var layout: [Int:Int]
     
+    // Standard init
     init(name: String, city: String, state: String, coordinate: CLLocationCoordinate2D) {
         id = UUID().uuidString
         self.name = name
         self.city = city
         self.state = state
-        //self.latitude = latitude
-        //self.longitude = longitude
         self.coordinate = coordinate
         currentConditions = .good
         layout = defaultLayout
@@ -42,7 +43,6 @@ class Course: NSObject, Codable, MKAnnotation {
     
     // Decoding initializer for a Course object and its properties
     required init(from decoder: Decoder) throws {
-        print("Decoding course!")
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -61,7 +61,6 @@ class Course: NSObject, Codable, MKAnnotation {
     
     // Encode a Course object and its properties
     func encode(to encoder: Encoder) throws {
-        print("Encoding course!")
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         

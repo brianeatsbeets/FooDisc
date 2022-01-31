@@ -10,9 +10,16 @@ import MapKit
 
 class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet var mapView: MKMapView!
     
-    var courses : [Course] = []
+    // Reload annotations when new data is present
+    var courses : [Course] = [] {
+        didSet {
+            mapView.removeAnnotations(mapView.annotations)
+            mapView.addAnnotations(courses)
+        }
+    }
+    
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     var receivedInitialLocation = false
@@ -29,9 +36,10 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         
         mapView.delegate = self
         initializeLocationServices()
+        mapView.addAnnotations(courses)
     }
     
-    // MARK: Location functions //
+    // MARK: Location functions
 
     // Initialize location services
     func initializeLocationServices() {
@@ -71,6 +79,7 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
 
     // Respond to inability to get user location
+    // TODO: alert user and describe potential loss of functionality
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error getting user location: \(error).")
     }
@@ -79,6 +88,30 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     func zoomToLocation(_ location: CLLocation) {
         let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 20000, longitudinalMeters: 20000)
         mapView.setRegion(region, animated: true)
+    }
+    
+    // MARK: Annotation functions
+    
+    // Create a visible annotation for a course
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+
+        guard let annotation = annotation as? Course else {
+            return nil
+        }
+        
+        let identifier = "course"
+        var view: MKMarkerAnnotationView
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        
+        return view
     }
 }
 

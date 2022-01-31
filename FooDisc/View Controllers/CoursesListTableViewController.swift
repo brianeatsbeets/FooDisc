@@ -9,7 +9,12 @@ import UIKit
 
 class CoursesListTableViewController: UITableViewController {
     
-    var courses : [Course] = []
+    // Reload table when new data is present
+    var courses : [Course] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
