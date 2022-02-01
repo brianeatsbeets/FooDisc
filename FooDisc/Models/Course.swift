@@ -24,6 +24,7 @@ class Course: NSObject, Codable, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var currentConditions: CourseCondition
     var layout: [Int:Int]
+    var distanceFromUser: Double
     
     // Standard init
     init(name: String, city: String, state: String, coordinate: CLLocationCoordinate2D) {
@@ -34,13 +35,14 @@ class Course: NSObject, Codable, MKAnnotation {
         self.coordinate = coordinate
         currentConditions = .good
         layout = defaultLayout
+        distanceFromUser = 0
     }
     
     // MARK: Codable conforming elements
     
     // Specify keys for encoding/decoding
     enum CodingKeys: String, CodingKey {
-        case id, name, city, state, coordinate, currentConditions, layout, latitude, longitude
+        case id, name, city, state, coordinate, currentConditions, layout, latitude, longitude, distanceFromUser
     }
     
     // Decoding initializer for a Course object and its properties
@@ -54,6 +56,7 @@ class Course: NSObject, Codable, MKAnnotation {
         state = try values.decodeIfPresent(String.self, forKey: .state) ?? "Error"
         currentConditions = try values.decode(CourseCondition.self, forKey: .currentConditions)
         layout = try values.decode([Int:Int].self, forKey: .layout)
+        distanceFromUser = try values.decodeIfPresent(Double.self, forKey: .distanceFromUser) ?? 0.0
         
         let latitude = try values.decode(CLLocationDegrees.self, forKey: .latitude)
         let longitude = try values.decode(CLLocationDegrees.self, forKey: .longitude)
@@ -72,6 +75,7 @@ class Course: NSObject, Codable, MKAnnotation {
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(currentConditions, forKey: .currentConditions)
         try container.encodeIfPresent(layout, forKey: .layout)
+        try container.encodeIfPresent(distanceFromUser, forKey: .layout)
         
         try container.encode(coordinate.latitude, forKey: .latitude)
         try container.encode(coordinate.longitude, forKey: .longitude)

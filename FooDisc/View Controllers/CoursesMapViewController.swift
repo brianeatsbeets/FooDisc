@@ -8,37 +8,20 @@
 import UIKit
 import MapKit
 
-// TODO: allow father zooming out of map before annotations get combined
-    // Put in MKAnnotationView subclass
-    //override func prepareForDisplay() {
-    //    super.prepareForDisplay()
-    //    displayPriority = .defaultHigh
-    //    markerTintColor = UIColor.bicycleColor
-    //    glyphImage = #imageLiteral(resourceName: "bicycle")
-    //}
-// TODO: create customized annotation view with additional course information
 class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet var mapView: MKMapView!
     
-    // Reload annotations when new data is present
     var courses : [Course] = [] {
         didSet {
-            mapView.removeAnnotations(mapView.annotations)
-            mapView.addAnnotations(courses)
+            // Reload annotations when new course data is present
+            updateUserToCourseDistances()
         }
     }
     
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     var receivedInitialLocation = false
-    
-    // Zoom the course map once user location is determined
-    var initialLocation = CLLocation() {
-        didSet {
-            zoomToLocation(initialLocation)
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +31,14 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         
         // Register CourseView class as the default annotation view reuse identifier
         mapView.register(CourseView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        //mapView.register(CourseClusterView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
         mapView.addAnnotations(courses)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Update course distances when user navigates to this view in case user location has changed
+        updateUserToCourseDistances()
     }
     
     // MARK: Location functions
@@ -60,29 +49,31 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         
         //TODO: only request if user hasn't already responded to request
         //TODO: display non-consequential location permissions alert request prior to real request
-        //TODO: handle denied location permissions
+        //TODO: handle denied location permissions and communicate potential loss of functionality
         locationManager.requestWhenInUseAuthorization()
         
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest // This is the default value
-        locationManager.distanceFilter = kCLDistanceFilterNone // This is the default value
         locationManager.startUpdatingLocation()
-        
         mapView.showsUserLocation = true
     }
     
     // Respond to updated user location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        // Set currentLocation
+        // Get most recent location
         if let location = locations.last {
             
-            // Get initial location and zoom to it
+            // Set currentLocation
+            currentLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            
+            // Check if this is the first location we've received
             if !receivedInitialLocation {
                 receivedInitialLocation = true
-                initialLocation = CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
+                
+                // If so, perform a one-time zoom to the user's local area and refresh annotations
+                let initialLocation = currentLocation
+                zoomToLocation(initialLocation)
+                updateUserToCourseDistances()
             }
-            
-            currentLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }
     }
 
@@ -103,11 +94,29 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         mapView.setRegion(region, animated: true)
     }
     
+    // Update course distances based on user's current location
+    func updateUserToCourseDistances() {
+        for course in courses {
+            
+            // Calculate the distance from the user to a course in miles
+            let courseLocation = CLLocation(latitude: course.coordinate.latitude, longitude: course.coordinate.longitude)
+            let distanceInMiles = currentLocation.distance(from: courseLocation) / 1609
+            
+            course.distanceFromUser = round(distanceInMiles * 10) / 10.0 // Round to tenths place
+        }
+        
+        // Refresh the annotations to display the updated distances
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotations(courses)
+    }
+    
     // MARK: Annotation functions
+    // Need to verify - is this mapView implementation (moreso the whole dequeue process) actually needed,
+    // or is it replaced by the whole 'willSet' shenanigans in the CourseView?
     
 //    // Create a visible annotation for a course
 //    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        
+//
 //        // Make sure we're dealing with a Course object
 //        guard let annotation = annotation as? Course else {
 //            return nil
@@ -126,7 +135,7 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
 //            view.canShowCallout = true
 //            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
 //        }
-//        
+//
 //        return view
 //    }
 }
