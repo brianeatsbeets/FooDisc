@@ -36,6 +36,8 @@ class Course: NSObject, Codable, MKAnnotation {
         layout = defaultLayout
     }
     
+    // MARK: Codable conforming elements
+    
     // Specify keys for encoding/decoding
     enum CodingKeys: String, CodingKey {
         case id, name, city, state, coordinate, currentConditions, layout, latitude, longitude

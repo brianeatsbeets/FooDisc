@@ -8,6 +8,15 @@
 import UIKit
 import MapKit
 
+// TODO: allow father zooming out of map before annotations get combined
+    // Put in MKAnnotationView subclass
+    //override func prepareForDisplay() {
+    //    super.prepareForDisplay()
+    //    displayPriority = .defaultHigh
+    //    markerTintColor = UIColor.bicycleColor
+    //    glyphImage = #imageLiteral(resourceName: "bicycle")
+    //}
+// TODO: create customized annotation view with additional course information
 class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet var mapView: MKMapView!
@@ -36,6 +45,10 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         
         mapView.delegate = self
         initializeLocationServices()
+        
+        // Register CourseView class as the default annotation view reuse identifier
+        mapView.register(CourseView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        //mapView.register(CourseClusterView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
         mapView.addAnnotations(courses)
     }
     
@@ -92,26 +105,29 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     // MARK: Annotation functions
     
-    // Create a visible annotation for a course
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-
-        guard let annotation = annotation as? Course else {
-            return nil
-        }
-        
-        let identifier = "course"
-        var view: MKMarkerAnnotationView
-        
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
-            dequeuedView.annotation = annotation
-            view = dequeuedView
-        } else {
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.canShowCallout = true
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        }
-        
-        return view
-    }
+//    // Create a visible annotation for a course
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        
+//        // Make sure we're dealing with a Course object
+//        guard let annotation = annotation as? Course else {
+//            return nil
+//        }
+//        
+//        let identifier = "course"
+//        var view: MKAnnotationView
+//        
+//        // Check for a reusable dequeued view
+//        // If one is available, use it; if not, create one
+//        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
+//            dequeuedView.annotation = annotation
+//            view = dequeuedView
+//        } else {
+//            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            view.canShowCallout = true
+//            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+//        }
+//        
+//        return view
+//    }
 }
 
