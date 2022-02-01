@@ -13,18 +13,29 @@ class CourseView: MKAnnotationView {
     
     override var annotation: MKAnnotation? {
         willSet {
-            guard let courseAnnotation = newValue as? Course else { return }
+            // Only want to customize annotation for Course annotations
+            guard let course = newValue as? Course else { return }
             
-            print("New custom annotation view here")
+            print("New course annotation view here")
             //clusteringIdentifier = "course"
             
             canShowCallout = true
-            //rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             
-            //        // Create a custom button for annotation view right callout accessory
-            //        let mapsButton = UIButton(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 48, height: 48)))
-            //        mapsButton.setBackgroundImage(#imageLiteral(resourceName: "Map"), for: .normal)
-            //        rightCalloutAccessoryView = mapsButton
+            let courseCalloutView = Bundle.main.loadNibNamed("CourseCalloutView", owner: self, options: nil)?.first as! CourseCalloutView
+            courseCalloutView.locationLabel.text = course.city + ", " + course.state
+            courseCalloutView.conditionsLabel.text = String(describing: course.currentConditions)
+            courseCalloutView.conditionsLabelView.backgroundColor = course.currentConditions.color
+//            switch course.currentConditions {
+//            case .caution:
+//                courseCalloutView.conditionsLabel.text = "Caution"
+//                courseCalloutView.conditionsLabel.backgroundColor = course.currentConditions.color
+//            case .fair:
+//                return "Fair Conditions"
+//            case .good:
+//                return "Good Conditions"
+//            }
+            
+            detailCalloutAccessoryView = courseCalloutView
             
             // Use a custom image in place of the default annotation marker
             image = UIImage(named: "courseIcon.png")

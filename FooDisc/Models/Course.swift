@@ -79,7 +79,7 @@ class Course: NSObject, Codable, MKAnnotation {
 }
 
 // Enum to describe the current conditions of the Course
-enum CourseCondition: Codable {
+enum CourseCondition: Codable, CustomStringConvertible {
     case caution, fair, good
     
     var color: UIColor {
@@ -90,6 +90,17 @@ enum CourseCondition: Codable {
             return .yellow
         case .good:
             return .green
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .caution:
+            return "Caution"
+        case .fair:
+            return "Fair Conditions"
+        case .good:
+            return "Good Conditions"
         }
     }
 }
