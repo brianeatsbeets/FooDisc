@@ -7,6 +7,7 @@
 
 import UIKit
 
+// TODO: limit view width and have long titles wrap
 class CourseCalloutView: UIView {
     
     @IBOutlet var locationLabel: UILabel!

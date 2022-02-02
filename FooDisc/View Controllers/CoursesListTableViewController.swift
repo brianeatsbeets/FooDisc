@@ -18,6 +18,8 @@ class CoursesListTableViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(UINib(nibName: "CoursesListTableViewCell", bundle: nil), forCellReuseIdentifier: "CoursesListTableViewCell")
     }
 
     // MARK: - Table view data source
@@ -34,13 +36,13 @@ class CoursesListTableViewController: UITableViewController {
 
     // Cell for row at
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CoursesListTableViewCell", for: indexPath) as! CoursesListTableViewCell
         let course = courses[indexPath.row]
         
-        var content = cell.defaultContentConfiguration()
-        content.text = course.name
-        content.secondaryText = "\(course.city), \(course.state)"
-        cell.contentConfiguration = content
+        cell.nameLabel.text = course.name
+        cell.locationLabel.text = course.city + ", " + course.state + " - " + String(course.distanceFromUser) + "mi"
+        cell.conditionsLabel.text = String(describing: course.currentConditions)
+        cell.conditionsLabelView.backgroundColor = course.currentConditions.color
 
         return cell
     }
