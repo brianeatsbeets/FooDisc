@@ -60,8 +60,7 @@ class CoursesListTableViewController: UITableViewController {
     // Did select row at
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "CourseDetailTableViewController") as? CourseDetailTableViewController else { return }
-        viewController.course = courses[indexPath.row]
-        viewController.title = courses[indexPath.row].title
+        viewController.courseID = courses[indexPath.row].id
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

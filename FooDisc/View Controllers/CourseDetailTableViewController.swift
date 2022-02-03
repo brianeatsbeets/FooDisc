@@ -8,6 +8,9 @@
 import UIKit
 import MapKit
 
+// TODO: distanceToUser isn't working because distance isn't being written to UserDefaults
+    // TODO: either continue passing the courses array to all view controllers or read from and write to UserDefaults in all view controllers
+// TODO: display a separate highlight background color for button presses
 class CourseDetailTableViewController: UITableViewController {
     
     @IBOutlet var courseTitleLabel: UILabel!
@@ -17,7 +20,9 @@ class CourseDetailTableViewController: UITableViewController {
     @IBOutlet var courseConditionsView: UIView!
     @IBOutlet var courseConditionsLabel: UILabel!
     
-    var course = Course()
+    var courseID = ""
+    var courses: [Course] = []
+    var selectedCourse = Course()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,25 +30,90 @@ class CourseDetailTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "LayoutTableViewCell", bundle: nil), forCellReuseIdentifier: "LayoutCell")
         courseConditionsView.layer.cornerRadius = 5
         
+        fetchCourseData()
         initializeUI()
     }
     
     func initializeUI() {
-        courseTitleLabel.text = course.title
-        locationLabel.text = course.city + ", " + course.state
+        self.title = selectedCourse.title
+        
+        courseTitleLabel.text = selectedCourse.title
+        locationLabel.text = selectedCourse.city + ", " + selectedCourse.state
         
         // Validate that we have a distance from user for the course
-        if let distance = course.distanceFromUser {
+        if let distance = selectedCourse.distanceFromUser {
             distanceFromUserLabel.text = String(distance) + "mi"
         } else {
             distanceFromUserLabel.text = ""
-            print("Distance from user for course \(String(describing: course.title)) is nil")
+            print("Distance from user for course \(String(describing: selectedCourse.title)) is nil")
         }
         
-        courseConditionsView.backgroundColor = course.currentConditions.color
-        courseConditionsLabel.text = course.currentConditions.description
+        updateCourseConditionsUI()
     }
-
+    
+    func updateCourseConditionsUI() {
+        courseConditionsView.backgroundColor = selectedCourse.currentConditions.color
+        courseConditionsLabel.text = selectedCourse.currentConditions.description
+    }
+    
+    func fetchCourseData() {
+        let defaults = UserDefaults.standard
+        
+        // Fetch courses array
+        if let data = defaults.data(forKey: "Courses") {
+            do {
+                let decoder = JSONDecoder()
+                courses = try decoder.decode([Course].self, from: data)
+            } catch {
+                print("Failed to decode courses: \(error)")
+            }
+        }
+        
+        // Filter out selected course
+        if let course = courses.filter({ $0.id == courseID }).first {
+            selectedCourse = course
+        } else {
+            // If selected course was not found, alert the user and pop the view controller
+            let alert = UIAlertController(title: "Course not found", message: "Data for the course you selected was not found. Please select a different course.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func updateCourseConditionsButtonPressed(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Current conditions", message: "Please select the current conditions for this course.", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Good", style: .default, handler: { [self] action in
+            selectedCourse.currentConditions = .good
+            saveChanges()
+        }))
+        alert.addAction(UIAlertAction(title: "Fair", style: .default, handler: { [self] action in
+            selectedCourse.currentConditions = .fair
+            saveChanges()
+        }))
+        alert.addAction(UIAlertAction(title: "Caution", style: .default, handler: { [self] action in
+            selectedCourse.currentConditions = .caution
+            saveChanges()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func saveChanges() {
+        // Save courses array
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(courses)
+            UserDefaults.standard.set(data, forKey: "Courses")
+        } catch {
+            print("Failed to encode courses: \(error)")
+        }
+        
+        updateCourseConditionsUI()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,7 +133,7 @@ class CourseDetailTableViewController: UITableViewController {
             layoutCell.parTotalLabel.text = "Par " + "54"
             layoutCell.totalCourseDistanceLabel.text = "5400" + "ft"
             
-            let layout = course.layout
+            let layout = selectedCourse.layout
             
             for index in layout.holes {
                 let holeNumberLabel = layoutCell.viewWithTag(index) as! UILabel
