@@ -42,7 +42,15 @@ class CoursesListTableViewController: UITableViewController {
         let course = courses[indexPath.row]
         
         cell.nameLabel.text = course.title
-        cell.locationLabel.text = course.city + ", " + course.state + " - " + String(course.distanceFromUser) + "mi"
+        
+        // Validate that we have a distance from user for the course
+        if let distance = course.distanceFromUser {
+            cell.locationLabel.text = course.city + ", " + course.state + " - " + String(distance) + "mi"
+        } else {
+            cell.locationLabel.text = course.city + ", " + course.state
+            print("Distance from user for course \(String(describing: course.title)) is nil")
+        }
+        
         cell.conditionsLabel.text = String(describing: course.currentConditions)
         cell.conditionsLabelView.backgroundColor = course.currentConditions.color
 

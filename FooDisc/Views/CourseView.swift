@@ -19,7 +19,15 @@ class CourseView: MKAnnotationView {
             canShowCallout = true
             
             let courseCalloutView = Bundle.main.loadNibNamed("CourseCalloutView", owner: self, options: nil)?.first as! CourseCalloutView
-            courseCalloutView.locationLabel.text = course.city + ", " + course.state + " - " + String(course.distanceFromUser) + "mi"
+            
+            // Validate that we have a distance from user for the course
+            if let distance = course.distanceFromUser {
+                courseCalloutView.locationLabel.text = course.city + ", " + course.state + " - " + String(distance) + "mi"
+            } else {
+                courseCalloutView.locationLabel.text = course.city + ", " + course.state
+                print("Distance from user for course \(String(describing: course.title)) is nil")
+            }
+            
             courseCalloutView.conditionsLabel.text = String(describing: course.currentConditions)
             courseCalloutView.conditionsLabelView.backgroundColor = course.currentConditions.color
             

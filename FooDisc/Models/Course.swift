@@ -10,7 +10,7 @@ import MapKit
 
 private let defaultLayout = [1: 300, 2:300, 3:300, 4:300, 5:300, 6: 300, 7:300, 8:300, 9:300, 10:300, 11: 300, 12:300, 13:300, 14:300, 15:300, 16: 300, 17:300, 18:300]
 
-// TODO: deal with encoding/decoding errors
+// TODO: deal with potential encoding/decoding errors
 // Course class to hold course data
 class Course: NSObject, Codable, MKAnnotation {
     
@@ -21,7 +21,7 @@ class Course: NSObject, Codable, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var currentConditions: CourseCondition
     var layout: [Int:Int]
-    var distanceFromUser: Double
+    var distanceFromUser: Double?
     
     // Standard init
     init(title: String, city: String, state: String, coordinate: CLLocationCoordinate2D) {

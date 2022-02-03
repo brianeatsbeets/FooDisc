@@ -58,6 +58,7 @@ class AddCourseTableViewController: UITableViewController {
     
     // MARK: Button actions
     
+    // Save new course and unwind to CoursesViewController
     @IBAction func saveButtonPressed(_ sender: Any) {
         saveNewCourse()
         performSegue(withIdentifier: "unwindToCoursesViewController", sender: self)
