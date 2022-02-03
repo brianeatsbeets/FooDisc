@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-private let defaultLayout = [1: 300, 2:300, 3:300, 4:300, 5:300, 6: 300, 7:300, 8:300, 9:300, 10:300, 11: 300, 12:300, 13:300, 14:300, 15:300, 16: 300, 17:300, 18:300]
+//private let defaultLayout = [1: 300, 2:300, 3:300, 4:300, 5:300, 6: 300, 7:300, 8:300, 9:300, 10:300, 11: 300, 12:300, 13:300, 14:300, 15:300, 16: 300, 17:300, 18:300]
 
 // TODO: deal with potential encoding/decoding errors
 // Course class to hold course data
@@ -20,7 +20,7 @@ class Course: NSObject, Codable, MKAnnotation {
     var state: String
     var coordinate: CLLocationCoordinate2D
     var currentConditions: CourseCondition
-    var layout: [Int:Int]
+    var layout = Layout()
     var distanceFromUser: Double?
     
     // Standard init
@@ -31,7 +31,7 @@ class Course: NSObject, Codable, MKAnnotation {
         self.state = state
         self.coordinate = coordinate
         currentConditions = .good
-        layout = defaultLayout
+        //layout = defaultLayout
         distanceFromUser = 0
     }
     
@@ -54,7 +54,7 @@ class Course: NSObject, Codable, MKAnnotation {
         city = try values.decodeIfPresent(String.self, forKey: .city) ?? "Error"
         state = try values.decodeIfPresent(String.self, forKey: .state) ?? "Error"
         currentConditions = try values.decode(CourseCondition.self, forKey: .currentConditions)
-        layout = defaultLayout
+        //layout = defaultLayout
         distanceFromUser = 0
         
         let latitude = try values.decode(CLLocationDegrees.self, forKey: .latitude)

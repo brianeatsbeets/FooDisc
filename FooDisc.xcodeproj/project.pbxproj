@@ -21,9 +21,12 @@
 		E15923F327AAACC1003AEFFA /* CoursesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15923F127AAACC1003AEFFA /* CoursesListTableViewCell.swift */; };
 		E15923F427AAACC1003AEFFA /* CoursesListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E15923F227AAACC1003AEFFA /* CoursesListTableViewCell.xib */; };
 		E17B337027A2F1E4000EA493 /* AddCourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17B336F27A2F1E4000EA493 /* AddCourseTableViewController.swift */; };
+		E1C3115A27AC250100C24EF9 /* CourseDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C3115927AC250100C24EF9 /* CourseDetailTableViewController.swift */; };
+		E1C3115C27AC361600C24EF9 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C3115B27AC361600C24EF9 /* Layout.swift */; };
+		E1C3115F27AC419C00C24EF9 /* LayoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C3115D27AC419C00C24EF9 /* LayoutTableViewCell.swift */; };
+		E1C3116027AC419C00C24EF9 /* LayoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C3115E27AC419C00C24EF9 /* LayoutTableViewCell.xib */; };
 		E1E8CC7C27A1B60C001E8212 /* CoursesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */; };
 		E1E8CC7F27A1B75D001E8212 /* CoursesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */; };
-		E1E8CC8027A1B75D001E8212 /* CourseListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E8CC7E27A1B75D001E8212 /* CourseListTableViewController.xib */; };
 		E1FF8EF627A42D9000C0E810 /* DisabledCursorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FF8EF527A42D9000C0E810 /* DisabledCursorTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,9 +47,12 @@
 		E15923F127AAACC1003AEFFA /* CoursesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListTableViewCell.swift; sourceTree = "<group>"; };
 		E15923F227AAACC1003AEFFA /* CoursesListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoursesListTableViewCell.xib; sourceTree = "<group>"; };
 		E17B336F27A2F1E4000EA493 /* AddCourseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseTableViewController.swift; sourceTree = "<group>"; };
+		E1C3115927AC250100C24EF9 /* CourseDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CourseDetailTableViewController.swift; path = "FooDisc/View Controllers/CourseDetailTableViewController.swift"; sourceTree = SOURCE_ROOT; };
+		E1C3115B27AC361600C24EF9 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		E1C3115D27AC419C00C24EF9 /* LayoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutTableViewCell.swift; sourceTree = "<group>"; };
+		E1C3115E27AC419C00C24EF9 /* LayoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayoutTableViewCell.xib; sourceTree = "<group>"; };
 		E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMapViewController.swift; sourceTree = "<group>"; };
 		E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListTableViewController.swift; sourceTree = "<group>"; };
-		E1E8CC7E27A1B75D001E8212 /* CourseListTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseListTableViewController.xib; sourceTree = "<group>"; };
 		E1FF8EF527A42D9000C0E810 /* DisabledCursorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DisabledCursorTextField.swift; path = FooDisc/Utility/DisabledCursorTextField.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -68,6 +74,7 @@
 				E17B336F27A2F1E4000EA493 /* AddCourseTableViewController.swift */,
 				E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */,
 				E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */,
+				E1C3115927AC250100C24EF9 /* CourseDetailTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -76,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				E150459127A0E487008EC69B /* Course.swift */,
+				E1C3115B27AC361600C24EF9 /* Layout.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -125,12 +133,13 @@
 			children = (
 				E1546FCC279F453C00A00FC4 /* Main.storyboard */,
 				E1546FD4279F454000A00FC4 /* LaunchScreen.storyboard */,
-				E1E8CC7E27A1B75D001E8212 /* CourseListTableViewController.xib */,
 				E15923E927A8A922003AEFFA /* CourseView.swift */,
 				E15923EF27A9938A003AEFFA /* CourseCalloutView.swift */,
 				E15923ED27A9915D003AEFFA /* CourseCalloutView.xib */,
 				E15923F127AAACC1003AEFFA /* CoursesListTableViewCell.swift */,
 				E15923F227AAACC1003AEFFA /* CoursesListTableViewCell.xib */,
+				E1C3115D27AC419C00C24EF9 /* LayoutTableViewCell.swift */,
+				E1C3115E27AC419C00C24EF9 /* LayoutTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,10 +203,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E15923EE27A9915D003AEFFA /* CourseCalloutView.xib in Resources */,
+				E1C3116027AC419C00C24EF9 /* LayoutTableViewCell.xib in Resources */,
 				E1546FD6279F454000A00FC4 /* LaunchScreen.storyboard in Resources */,
 				E15923F427AAACC1003AEFFA /* CoursesListTableViewCell.xib in Resources */,
 				E1546FD3279F454000A00FC4 /* Assets.xcassets in Resources */,
-				E1E8CC8027A1B75D001E8212 /* CourseListTableViewController.xib in Resources */,
 				E1546FCE279F453C00A00FC4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,12 +222,15 @@
 				E1546FCB279F453C00A00FC4 /* CoursesViewController.swift in Sources */,
 				E1E8CC7F27A1B75D001E8212 /* CoursesListTableViewController.swift in Sources */,
 				E1546FC7279F453C00A00FC4 /* AppDelegate.swift in Sources */,
+				E1C3115A27AC250100C24EF9 /* CourseDetailTableViewController.swift in Sources */,
+				E1C3115F27AC419C00C24EF9 /* LayoutTableViewCell.swift in Sources */,
 				E1E8CC7C27A1B60C001E8212 /* CoursesMapViewController.swift in Sources */,
 				E1FF8EF627A42D9000C0E810 /* DisabledCursorTextField.swift in Sources */,
 				E150459227A0E487008EC69B /* Course.swift in Sources */,
 				E1546FC9279F453C00A00FC4 /* SceneDelegate.swift in Sources */,
 				E15923EA27A8A922003AEFFA /* CourseView.swift in Sources */,
 				E1546FD1279F453C00A00FC4 /* FooDisc.xcdatamodeld in Sources */,
+				E1C3115C27AC361600C24EF9 /* Layout.swift in Sources */,
 				E17B337027A2F1E4000EA493 /* AddCourseTableViewController.swift in Sources */,
 				E15923F027A9938A003AEFFA /* CourseCalloutView.swift in Sources */,
 			);
