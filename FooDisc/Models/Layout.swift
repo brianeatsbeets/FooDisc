@@ -8,7 +8,7 @@
 import Foundation
 
 struct Layout {
-    let holes = [1...18]
+    let holes = Array(1...18)
     let holeDistance = [Int](repeating: 300, count: 18)
     let holePar = [Int](repeating: 3, count: 18)
 }

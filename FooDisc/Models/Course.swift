@@ -35,6 +35,11 @@ class Course: NSObject, Codable, MKAnnotation {
         distanceFromUser = 0
     }
     
+    // Initialize empty course
+    convenience override init() {
+        self.init(title: "", city: "", state: "", coordinate: CLLocationCoordinate2D())
+    }
+    
     // MARK: Codable conforming elements
     
     // TODO: add layout when layouts are configurable

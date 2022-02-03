@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Custom cell to present the course layout
 class LayoutTableViewCell: UITableViewCell {
     
     @IBOutlet var numberOfHolesLabel: UILabel!
@@ -19,11 +20,4 @@ class LayoutTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-    
 }
