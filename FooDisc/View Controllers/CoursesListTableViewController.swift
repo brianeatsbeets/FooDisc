@@ -7,6 +7,8 @@
 
 import UIKit
 
+// TODO: sort by distance
+// TODO: (if time) filter courses
 class CoursesListTableViewController: UITableViewController {
     
     // Reload table when new data is present
@@ -39,7 +41,7 @@ class CoursesListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CoursesListTableViewCell", for: indexPath) as! CoursesListTableViewCell
         let course = courses[indexPath.row]
         
-        cell.nameLabel.text = course.name
+        cell.nameLabel.text = course.title
         cell.locationLabel.text = course.city + ", " + course.state + " - " + String(course.distanceFromUser) + "mi"
         cell.conditionsLabel.text = String(describing: course.currentConditions)
         cell.conditionsLabelView.backgroundColor = course.currentConditions.color
