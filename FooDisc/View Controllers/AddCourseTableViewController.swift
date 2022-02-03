@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 
+// TODO: add feedback/confirmation message after successfully adding a course
 class AddCourseTableViewController: UITableViewController {
     
     @IBOutlet var courseNameTextField: UITextField!

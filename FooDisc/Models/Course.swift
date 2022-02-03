@@ -37,11 +37,13 @@ class Course: NSObject, Codable, MKAnnotation {
     
     // MARK: Codable conforming elements
     
+    // TODO: add layout when layouts are configurable
     // Specify keys for encoding/decoding
     enum CodingKeys: String, CodingKey {
-        case id, title, city, state, coordinate, currentConditions, layout, latitude, longitude, distanceFromUser
+        case id, title, city, state, coordinate, currentConditions, latitude, longitude
     }
     
+    // TODO: read up on decodeIfPresent vs. decode
     // Decoding initializer for a Course object and its properties
     required init(from decoder: Decoder) throws {
         
@@ -52,8 +54,8 @@ class Course: NSObject, Codable, MKAnnotation {
         city = try values.decodeIfPresent(String.self, forKey: .city) ?? "Error"
         state = try values.decodeIfPresent(String.self, forKey: .state) ?? "Error"
         currentConditions = try values.decode(CourseCondition.self, forKey: .currentConditions)
-        layout = try values.decode([Int:Int].self, forKey: .layout)
-        distanceFromUser = try values.decodeIfPresent(Double.self, forKey: .distanceFromUser) ?? 0.0
+        layout = defaultLayout
+        distanceFromUser = 0
         
         let latitude = try values.decode(CLLocationDegrees.self, forKey: .latitude)
         let longitude = try values.decode(CLLocationDegrees.self, forKey: .longitude)
@@ -61,6 +63,7 @@ class Course: NSObject, Codable, MKAnnotation {
         coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
+    // TODO: read up on encodeIfPresent vs. encode
     // Encode a Course object and its properties
     func encode(to encoder: Encoder) throws {
         
@@ -71,8 +74,6 @@ class Course: NSObject, Codable, MKAnnotation {
         try container.encodeIfPresent(city, forKey: .city)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(currentConditions, forKey: .currentConditions)
-        try container.encodeIfPresent(layout, forKey: .layout)
-        try container.encodeIfPresent(distanceFromUser, forKey: .layout)
         
         try container.encode(coordinate.latitude, forKey: .latitude)
         try container.encode(coordinate.longitude, forKey: .longitude)
