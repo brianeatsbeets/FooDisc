@@ -15,6 +15,7 @@ class CoursesListTableViewController: UITableViewController {
     var courses : [Course] = [] {
         didSet {
             tableView.reloadData()
+            print("Reloading Courses List TableView data")
         }
     }
         
@@ -60,7 +61,7 @@ class CoursesListTableViewController: UITableViewController {
     // Did select row at
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "CourseDetailTableViewController") as? CourseDetailTableViewController else { return }
-        viewController.courseID = courses[indexPath.row].id
+        viewController.selectedCourse = courses[indexPath.row]
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

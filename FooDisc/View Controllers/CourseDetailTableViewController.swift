@@ -8,8 +8,7 @@
 import UIKit
 import MapKit
 
-// TODO: distanceToUser isn't working because distance isn't being written to UserDefaults
-    // TODO: either continue passing the courses array to all view controllers or read from and write to UserDefaults in all view controllers
+// TODO: distanceToUser isn't working because course is now being pulled from UserDefaults instead of being directly passed by the previous view controller - think about going back to the old method to see if that fills the gaps
 // TODO: display a separate highlight background color for button presses
 class CourseDetailTableViewController: UITableViewController {
     
@@ -20,7 +19,6 @@ class CourseDetailTableViewController: UITableViewController {
     @IBOutlet var courseConditionsView: UIView!
     @IBOutlet var courseConditionsLabel: UILabel!
     
-    var courseID = ""
     var courses: [Course] = []
     var selectedCourse = Course()
     
@@ -30,7 +28,7 @@ class CourseDetailTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "LayoutTableViewCell", bundle: nil), forCellReuseIdentifier: "LayoutCell")
         courseConditionsView.layer.cornerRadius = 5
         
-        fetchCourseData()
+        //fetchSelectedCourse()
         initializeUI()
     }
     
@@ -56,29 +54,19 @@ class CourseDetailTableViewController: UITableViewController {
         courseConditionsLabel.text = selectedCourse.currentConditions.description
     }
     
-    func fetchCourseData() {
-        let defaults = UserDefaults.standard
-        
-        // Fetch courses array
-        if let data = defaults.data(forKey: "Courses") {
-            do {
-                let decoder = JSONDecoder()
-                courses = try decoder.decode([Course].self, from: data)
-            } catch {
-                print("Failed to decode courses: \(error)")
-            }
-        }
-        
-        // Filter out selected course
-        if let course = courses.filter({ $0.id == courseID }).first {
-            selectedCourse = course
-        } else {
-            // If selected course was not found, alert the user and pop the view controller
-            let alert = UIAlertController(title: "Course not found", message: "Data for the course you selected was not found. Please select a different course.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
+//    func fetchSelectedCourse() {
+//        courses = fetchCourseData()
+//
+//        // Filter out selected course
+//        if let course = courses.filter({ $0.id == courseID }).first {
+//            selectedCourse = course
+//        } else {
+//            // If selected course was not found, alert the user and pop the view controller
+//            let alert = UIAlertController(title: "Course not found", message: "Data for the course you selected was not found. Please select a different course.", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
+//            self.present(alert, animated: true, completion: nil)
+//        }
+//    }
     
     @IBAction func updateCourseConditionsButtonPressed(_ sender: Any) {
         
@@ -102,15 +90,7 @@ class CourseDetailTableViewController: UITableViewController {
     }
     
     func saveChanges() {
-        // Save courses array
-        do {
-            let encoder = JSONEncoder()
-            let data = try encoder.encode(courses)
-            UserDefaults.standard.set(data, forKey: "Courses")
-        } catch {
-            print("Failed to encode courses: \(error)")
-        }
-        
+        saveCourseData(courses: courses)
         updateCourseConditionsUI()
     }
     

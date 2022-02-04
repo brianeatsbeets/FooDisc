@@ -39,24 +39,13 @@ class CoursesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadData()
+        courses = fetchCourseData()
         initializeSegmentedControl()
         updateView()
     }
     
-    // Load course data from User Defaults
-    func loadData() {
-        let defaults = UserDefaults.standard
-        
-        // Fetch courses array
-        if let data = defaults.data(forKey: "Courses") {
-            do {
-                let decoder = JSONDecoder()
-                courses = try decoder.decode([Course].self, from: data)
-            } catch {
-                print("Failed to decode courses: \(error)")
-            }
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
     }
     
     // Set up segmented control for user interaction
@@ -71,7 +60,7 @@ class CoursesViewController: UIViewController {
     
     // Refresh data after adding new course
     @IBAction func unwindToCoursesViewController(segue: UIStoryboardSegue) {
-        loadData()
+        courses = fetchCourseData()
     }
     
     // MARK: Child view controller management

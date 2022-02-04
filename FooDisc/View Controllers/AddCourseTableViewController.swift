@@ -75,30 +75,15 @@ class AddCourseTableViewController: UITableViewController {
         
         let newCourse = Course(title: courseName, city: city, state: state, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
         
-        let defaults = UserDefaults.standard
         var courses: [Course] = []
         
-        // Fetch courses array
-        if let data = defaults.data(forKey: "Courses") {
-            do {
-                let decoder = JSONDecoder()
-                courses = try decoder.decode([Course].self, from: data)
-            } catch {
-                print("Failed to decode courses: \(error)")
-            }
-        }
+        courses = fetchCourseData()
         
         // Add new course to existing courses array
         courses.append(newCourse)
         
         // Save courses array
-        do {
-            let encoder = JSONEncoder()
-            let data = try encoder.encode(courses)
-            defaults.set(data, forKey: "Courses")
-        } catch {
-            print("Failed to encode courses: \(error)")
-        }
+        saveCourseData(courses: courses)
     }
     
     // Determine which polarity button was pressed and apply polarity to respective text field
