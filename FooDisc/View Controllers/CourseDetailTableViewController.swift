@@ -10,6 +10,7 @@ import MapKit
 
 // TODO: connect CoursesMapViewController to here and hook up delegate chain to update course conditions
 // TODO: have map show the course location and disable interactiability
+// TODO: add functionality to Get Directions and Create Scorecard buttons
 // TODO: display a separate highlight background color for button presses
 class CourseDetailTableViewController: UITableViewController {
     

@@ -23,6 +23,9 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     var currentLocation = CLLocation()
     var receivedInitialLocation = false
     
+    // Force unwrapping because this will immediately be assigned a value when CoursesListTableViewController is instantiated
+    var containerViewController: CoursesViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -110,6 +113,28 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
     
     // MARK: Annotation functions
+    
+    // Create a tap gesture recognizer on the annotation view callout when selected
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let tapGesture = UITapGestureRecognizer(target:self,  action:#selector(calloutTapped(sender:)))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    // Remove the tap gesture recognizer from the annotation view callout when deselected
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        view.removeGestureRecognizer(view.gestureRecognizers!.first!)
+    }
+
+    // Send the user to the CourseDetailTableViewController with the specified courseID
+    @objc func calloutTapped(sender:UITapGestureRecognizer) {
+        let view = sender.view as! MKAnnotationView
+        guard let course = view.annotation as? Course else { return }
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "CourseDetailTableViewController") as? CourseDetailTableViewController else { return }
+        viewController.delegate = containerViewController
+        viewController.courseID = course.id
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     // Need to verify - is this mapView implementation (moreso the whole dequeue process) actually needed,
     // or is it replaced by the whole 'willSet' shenanigans in the CourseView?
     

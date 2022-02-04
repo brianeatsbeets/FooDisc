@@ -27,6 +27,7 @@ class CoursesViewController: UIViewController, CoursesDelegate {
     lazy var coursesMapViewController: CoursesMapViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: "CoursesMapViewController") as! CoursesMapViewController
+        viewController.containerViewController = self
         self.add(asChildViewController: viewController)
         return viewController
     }()
