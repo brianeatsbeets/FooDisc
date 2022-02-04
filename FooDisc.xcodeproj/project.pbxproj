@@ -73,9 +73,9 @@
 			isa = PBXGroup;
 			children = (
 				E1546FCA279F453C00A00FC4 /* CoursesViewController.swift */,
-				E17B336F27A2F1E4000EA493 /* AddCourseTableViewController.swift */,
 				E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */,
 				E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */,
+				E17B336F27A2F1E4000EA493 /* AddCourseTableViewController.swift */,
 				E1C3115927AC250100C24EF9 /* CourseDetailTableViewController.swift */,
 			);
 			path = "View Controllers";

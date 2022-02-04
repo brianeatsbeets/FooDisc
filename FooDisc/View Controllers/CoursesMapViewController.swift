@@ -8,10 +8,6 @@
 import UIKit
 import MapKit
 
-// TODO: review if tableview needs to request more updated for course distances or if map view's updates are enough
-    // TODO: table view needs to update course distances on viewWillAppear, when courses array is updated, and when the initial location is received
-    // TODO: see if calls to update annotations/tableview cells to parent view so both subviews get updates simultaneously
-
 class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet var mapView: MKMapView!
@@ -35,7 +31,6 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         
         // Register CourseView class as the default annotation view reuse identifier
         mapView.register(CourseView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        mapView.addAnnotations(courses) // TODO: is this needed? needs testing
     }
     
     override func viewWillAppear(_ animated: Bool) {

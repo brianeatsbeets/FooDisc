@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-// TODO: distanceToUser isn't working because course is now being pulled from UserDefaults instead of being directly passed by the previous view controller - think about going back to the old method to see if that fills the gaps
+// TODO: have map show the course location and disable interactiability
 // TODO: display a separate highlight background color for button presses
 class CourseDetailTableViewController: UITableViewController {
     
@@ -19,8 +19,11 @@ class CourseDetailTableViewController: UITableViewController {
     @IBOutlet var courseConditionsView: UIView!
     @IBOutlet var courseConditionsLabel: UILabel!
     
-    var courses: [Course] = []
-    var selectedCourse = Course()
+    var courses = fetchCourseData()
+    var courseID = ""
+    var selectedCourse = Course(title: "Air Ball", city: "Whiff City", state: "Bogeyland", coordinate: CLLocationCoordinate2D())
+    
+    weak var delegate: CoursesDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +31,7 @@ class CourseDetailTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "LayoutTableViewCell", bundle: nil), forCellReuseIdentifier: "LayoutCell")
         courseConditionsView.layer.cornerRadius = 5
         
-        //fetchSelectedCourse()
+        fetchSelectedCourse()
         initializeUI()
     }
     
@@ -54,19 +57,18 @@ class CourseDetailTableViewController: UITableViewController {
         courseConditionsLabel.text = selectedCourse.currentConditions.description
     }
     
-//    func fetchSelectedCourse() {
-//        courses = fetchCourseData()
-//
-//        // Filter out selected course
-//        if let course = courses.filter({ $0.id == courseID }).first {
-//            selectedCourse = course
-//        } else {
-//            // If selected course was not found, alert the user and pop the view controller
-//            let alert = UIAlertController(title: "Course not found", message: "Data for the course you selected was not found. Please select a different course.", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
-//            self.present(alert, animated: true, completion: nil)
-//        }
-//    }
+    func fetchSelectedCourse() {
+
+        // Filter out selected course
+        if let course = courses.filter({ $0.id == courseID }).first {
+            selectedCourse = course
+        } else {
+            // If selected course was not found, alert the user and pop the view controller
+            let alert = UIAlertController(title: "Course not found", message: "Data for the course you selected was not found. Please select a different course.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
     @IBAction func updateCourseConditionsButtonPressed(_ sender: Any) {
         
@@ -91,6 +93,7 @@ class CourseDetailTableViewController: UITableViewController {
     
     func saveChanges() {
         saveCourseData(courses: courses)
+        delegate?.updateCoursesArray(courses: courses)
         updateCourseConditionsUI()
     }
     
@@ -106,6 +109,7 @@ class CourseDetailTableViewController: UITableViewController {
     
     // Use the LayoutTableViewCell if in section 3
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.section == 3 {
             let layoutCell = tableView.dequeueReusableCell(withIdentifier: "LayoutCell", for: indexPath) as! LayoutTableViewCell
             

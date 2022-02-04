@@ -7,7 +7,11 @@
 
 import UIKit
 
-class CoursesViewController: UIViewController {
+protocol CoursesDelegate: AnyObject {
+    func updateCoursesArray(courses: [Course])
+}
+
+class CoursesViewController: UIViewController, CoursesDelegate {
 
     @IBOutlet var viewSelector: UISegmentedControl!
     
@@ -35,6 +39,11 @@ class CoursesViewController: UIViewController {
         return viewController
     }()
     
+    // Delegate method to update courses from other view controllers
+    func updateCoursesArray(courses: [Course]) {
+        self.courses = courses
+    }
+    
     // Load up data and views to display
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +51,6 @@ class CoursesViewController: UIViewController {
         courses = fetchCourseData()
         initializeSegmentedControl()
         updateView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
     }
     
     // Set up segmented control for user interaction
