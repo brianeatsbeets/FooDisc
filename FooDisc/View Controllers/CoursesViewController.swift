@@ -14,7 +14,6 @@ protocol CoursesDelegate: AnyObject {
 class CoursesViewController: UIViewController, CoursesDelegate {
 
     @IBOutlet var viewSelector: UISegmentedControl!
-    
     var courses : [Course] = [] {
         
         // Update map and table view course arrays when the main course array is updated
@@ -35,6 +34,7 @@ class CoursesViewController: UIViewController, CoursesDelegate {
     lazy var coursesListTableViewController: CoursesListTableViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: "CoursesListTableViewController") as! CoursesListTableViewController
+        viewController.containerViewController = self
         self.add(asChildViewController: viewController)
         return viewController
     }()

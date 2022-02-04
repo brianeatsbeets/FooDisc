@@ -17,6 +17,9 @@ class CoursesListTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    
+    // Force unwrapping because this will immediately be assigned a value when CoursesListTableViewController is instantiated
+    var containerViewController: CoursesViewController!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +63,7 @@ class CoursesListTableViewController: UITableViewController {
     // Did select row at
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "CourseDetailTableViewController") as? CourseDetailTableViewController else { return }
+        viewController.delegate = containerViewController
         viewController.courseID = courses[indexPath.row].id
         navigationController?.pushViewController(viewController, animated: true)
     }

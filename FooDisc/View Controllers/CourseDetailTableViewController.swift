@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 
+// TODO: connect CoursesMapViewController to here and hook up delegate chain to update course conditions
 // TODO: have map show the course location and disable interactiability
 // TODO: display a separate highlight background color for button presses
 class CourseDetailTableViewController: UITableViewController {
@@ -52,11 +53,6 @@ class CourseDetailTableViewController: UITableViewController {
         updateCourseConditionsUI()
     }
     
-    func updateCourseConditionsUI() {
-        courseConditionsView.backgroundColor = selectedCourse.currentConditions.color
-        courseConditionsLabel.text = selectedCourse.currentConditions.description
-    }
-    
     func fetchSelectedCourse() {
 
         // Filter out selected course
@@ -95,6 +91,11 @@ class CourseDetailTableViewController: UITableViewController {
         saveCourseData(courses: courses)
         delegate?.updateCoursesArray(courses: courses)
         updateCourseConditionsUI()
+    }
+    
+    func updateCourseConditionsUI() {
+        courseConditionsView.backgroundColor = selectedCourse.currentConditions.color
+        courseConditionsLabel.text = selectedCourse.currentConditions.description
     }
     
     // MARK: - Table view data source
