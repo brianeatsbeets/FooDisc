@@ -138,7 +138,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zbd-2I-67b">
+                                                <mapView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbd-2I-67b">
                                                     <rect key="frame" x="0.0" y="40" width="414" height="128"/>
                                                 </mapView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFa-AO-Bpz">
@@ -268,6 +268,7 @@
                         <outlet property="courseTitleLabel" destination="tKk-yh-LbM" id="pbd-R2-jcp"/>
                         <outlet property="distanceFromUserLabel" destination="p53-6Z-Fq8" id="sgO-RP-07O"/>
                         <outlet property="locationLabel" destination="Ftd-bY-skx" id="w5l-cL-B9w"/>
+                        <outlet property="mapView" destination="zbd-2I-67b" id="K4y-pB-EmH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BR1-Jt-V9p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -9,8 +9,8 @@ import UIKit
 import CoreLocation
 
 // TODO: add feedback/confirmation message after successfully adding a course
-// TODO: debug why initial tap into text field has delayed focus
 // TODO: change state textfield to UIPicker
+// TODO: debug why initial tap into text field has delayed focus
 // TODO: resolve "Can't find keyplane that supports type 8 for keyboard iPhone-PortraitChoco-DecimalPad; using 27100_PortraitChoco_iPhone-Simple-Pad_Default" error when using latitude/longitude text fields
 class AddCourseTableViewController: UITableViewController {
     

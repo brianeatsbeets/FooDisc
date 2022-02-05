@@ -8,10 +8,9 @@
 import UIKit
 import MapKit
 
-// TODO: have map show the course location and disable interactiability
 // TODO: add functionality to Get Directions and Create Scorecard buttons
     // TODO: display a separate highlight background color for button presses
-class CourseDetailTableViewController: UITableViewController {
+class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate {
     
     // MARK: Variable declarations
     
@@ -21,6 +20,7 @@ class CourseDetailTableViewController: UITableViewController {
     @IBOutlet var courseDetailMapView: MKMapView!
     @IBOutlet var courseConditionsView: UIView!
     @IBOutlet var courseConditionsLabel: UILabel!
+    @IBOutlet var mapView: MKMapView!
     
     var courses: [Course] = []
     var courseID = ""
@@ -36,6 +36,11 @@ class CourseDetailTableViewController: UITableViewController {
     // Set up table view, grab selected course, and configure UI elements
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapView.delegate = self
+        
+        // Register CourseView class as the default annotation view reuse identifier
+        mapView.register(CourseView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
         tableView.register(UINib(nibName: "LayoutTableViewCell", bundle: nil), forCellReuseIdentifier: "LayoutCell")
         courseConditionsView.layer.cornerRadius = 5
@@ -60,6 +65,20 @@ class CourseDetailTableViewController: UITableViewController {
         }
         
         updateCourseConditionsUI()
+        initializeMapView()
+    }
+    
+    // Initialize the mapView accordign to the selected course
+    func initializeMapView() {
+        // Zoom map to course region
+        let region = MKCoordinateRegion(center: selectedCourse.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
+        mapView.setRegion(region, animated: false)
+        
+        // Add selected course annotation
+        mapView.addAnnotation(selectedCourse)
+        
+        // Disable user interaction
+        mapView.isUserInteractionEnabled = false
     }
     
     // Using the provided courseID, parse the courses array and grab the selected course

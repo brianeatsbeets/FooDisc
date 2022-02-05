@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-// TODO: (low priority) add custom support for delayed clustering (https://stackoverflow.com/questions/46827353/mkmap-ios11-clusters-doesnt-split-up-after-max-zoom-how-to-set-it-up)
+// TODO: add custom support for delayed clustering (https://stackoverflow.com/questions/46827353/mkmap-ios11-clusters-doesnt-split-up-after-max-zoom-how-to-set-it-up)
 // This class/annotation view displays a customizedCourseCalloutView
 class CourseView: MKAnnotationView {
     
