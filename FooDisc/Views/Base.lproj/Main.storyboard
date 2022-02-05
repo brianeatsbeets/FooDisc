@@ -575,26 +575,18 @@
                                 <rect key="frame" x="30" y="44" width="354" height="246.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="bvd-CP-Z37">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="bMq-Ql-InI">
-                                                <rect key="frame" x="0.0" y="0.0" width="249.5" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qb2-EZ-q8l">
-                                                <rect key="frame" x="267.5" y="0.0" width="86.5" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Exit"/>
-                                                <connections>
-                                                    <action selector="exitButtonPressed:" destination="jgh-g4-J5V" eventType="touchUpInside" id="7cR-if-jsC"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5LD-a9-uep" userLabel="Course Info Stack View">
-                                        <rect key="frame" x="0.0" y="47" width="354" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="46" width="354" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Course Layout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ug4-Hp-bbg">
                                                 <rect key="frame" x="0.0" y="0.0" width="171.5" height="20.5"/>
@@ -623,10 +615,10 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8dS-t7-Pyx" userLabel="Layout View">
-                                        <rect key="frame" x="0.0" y="83.5" width="354" height="163"/>
+                                        <rect key="frame" x="0.0" y="82.5" width="354" height="164"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="MfK-Ap-0aw" userLabel="Layout Stack View">
-                                                <rect key="frame" x="8" y="8" width="338" height="147"/>
+                                                <rect key="frame" x="8" y="8.5" width="338" height="147"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Rh2-HV-YD7" userLabel="Horizontal Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="338" height="67"/>
@@ -1287,6 +1279,16 @@
                                 <buttonConfiguration key="configuration" style="plain" title="&gt; Next Hole"/>
                                 <connections>
                                     <action selector="nextHoleButtonPressed:" destination="jgh-g4-J5V" eventType="touchUpInside" id="jD3-yj-YI5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qb2-EZ-q8l">
+                                <rect key="frame" x="137" y="421" width="140" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Finish Round"/>
+                                <connections>
+                                    <action selector="exitButtonPressed:" destination="jgh-g4-J5V" eventType="touchUpInside" id="7cR-if-jsC"/>
+                                    <action selector="finishRoundButtonPressed:" destination="jgh-g4-J5V" eventType="touchUpInside" id="aPW-L6-h9k"/>
                                 </connections>
                             </button>
                         </subviews>

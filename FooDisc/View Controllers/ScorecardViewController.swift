@@ -8,7 +8,10 @@
 import UIKit
 import MapKit
 
+// TODO: disable finish button until scorecard is filled out (or warn user before finishing early and auto-fill in "-" for other scores and parse that when calculating total score)
+// TODO: look into using initializers on these view controllers that are passed values like selectedCourse instead of loading up dummy data
 // TODO: fix y in Course Layout clipping
+// This class/view controller displays and allows a user to complete a scorecard
 class ScorecardViewController: UIViewController {
     
     // MARK: Variable declarations
@@ -26,16 +29,26 @@ class ScorecardViewController: UIViewController {
     @IBOutlet var saveScoreForHoleButton: UIButton!
     
     var currentHoleNumber = 1
+    var scorecards: [Scorecard] = []
     
     // Set dummy course data to show in the event an invalid courseID is passed
-    var selectedCourse = Course(title: "Air Ball", city: "Whiff City", state: "Bogeyland", coordinate: CLLocationCoordinate2D())
+    var selectedCourse = Course(title: "Air Ball", city: "Whiff City", state: "Bogeyland", coordinate: CLLocationCoordinate2D()) {
+        didSet {
+            // Set actual scorecard for selectedCourse
+            scorecard = Scorecard(course: selectedCourse)
+        }
+    }
+    
+    // Set dummy course data until actual course data arrives
+    var scorecard = Scorecard(course: Course(title: "Air Ball", city: "Whiff City", state: "Bogeyland", coordinate: CLLocationCoordinate2D()))
 
     // MARK: Class functions
     
     // Load up the UI
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        scorecards = fetchScorecardData()
         initializeUI()
     }
     
@@ -91,6 +104,9 @@ class ScorecardViewController: UIViewController {
         scoreForHoleLabel.text = currentHoleScoreTextField.text!
         currentHoleScoreTextField.text = ""
         
+        // Set scorecard score for current hole
+        scorecard.scorePerHole[currentHoleNumber] = Int(currentHoleScoreTextField.text!)
+        
         if currentHoleNumber < 18 {
             currentHoleNumber += 1
             currentHoleLabel.text = "Hole \(currentHoleNumber)"
@@ -111,6 +127,13 @@ class ScorecardViewController: UIViewController {
             currentHoleNumber += 1
             currentHoleLabel.text = "Hole \(currentHoleNumber)"
         }
+    }
+    
+    // Save scorecard data and dismiss the scorecard view controller
+    @IBAction func finishRoundButtonPressed(_ sender: Any) {
+        scorecards.append(scorecard)
+        saveScorecardData(scorecards: scorecards)
+        dismiss(animated: true, completion: nil)
     }
     
 }
