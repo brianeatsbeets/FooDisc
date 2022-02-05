@@ -8,9 +8,10 @@
 import UIKit
 import CoreLocation
 
-// TODO: change dismissal method from unwind segue to delegate data passing and popping view controller
-// TODO: pass courses array to this view controller via dependency injection instead of grabbing from userdefaults
 // TODO: add feedback/confirmation message after successfully adding a course
+// TODO: debug why initial tap into text field has delayed focus
+// TODO: change state textfield to UIPicker
+// TODO: resolve "Can't find keyplane that supports type 8 for keyboard iPhone-PortraitChoco-DecimalPad; using 27100_PortraitChoco_iPhone-Simple-Pad_Default" error when using latitude/longitude text fields
 class AddCourseTableViewController: UITableViewController {
     
     // MARK: Variable declarations
@@ -21,6 +22,11 @@ class AddCourseTableViewController: UITableViewController {
     @IBOutlet var latitudeTextField: UITextField!
     @IBOutlet var longitudeTextField: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
+    
+    var courses: [Course] = []
+    
+    // Set up a CoursesDelegate instance so we can talk to CoursesViewController
+    weak var delegate: CoursesDelegate?
     
     // Used to bulk-add event listeners
     var textFields: [UITextField] = []
@@ -68,10 +74,10 @@ class AddCourseTableViewController: UITableViewController {
     // Save new course and unwind to CoursesViewController
     @IBAction func saveButtonPressed(_ sender: Any) {
         saveNewCourse()
-        performSegue(withIdentifier: "unwindToCoursesViewController", sender: self)
+        navigationController?.popViewController(animated: true)
     }
     
-    // Save course in UserDefaults
+    // Save course to UserDefaults and CoursesViewController courses array
     // Force unwrapping because of !.isEmpty validation along with coordinate fields using numerical/decimal keyboards
     func saveNewCourse() {
         let courseName = courseNameTextField.text!
@@ -82,16 +88,14 @@ class AddCourseTableViewController: UITableViewController {
         
         let newCourse = Course(title: courseName, city: city, state: state, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
         
-        var courses: [Course] = []
-        
-        // Grab existing courses
-        courses = fetchCourseData()
-        
         // Add new course to existing courses array
         courses.append(newCourse)
         
-        // Save courses array
+        // Save to UserDefaults
         saveCourseData(courses: courses)
+        
+        // Save to delegate courses array
+        delegate?.updateCoursesArray(courses: courses)
     }
     
     // Determine which polarity button was pressed and apply polarity to respective text field

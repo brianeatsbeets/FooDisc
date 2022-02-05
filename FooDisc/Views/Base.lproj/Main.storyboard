@@ -277,7 +277,7 @@
         <!--Add Course-->
         <scene sceneID="Q5C-5R-hVk">
             <objects>
-                <tableViewController id="Mjc-nU-qaK" customClass="AddCourseTableViewController" customModule="FooDisc" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddCourseTableViewController" id="Mjc-nU-qaK" customClass="AddCourseTableViewController" customModule="FooDisc" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="eBO-BM-tH9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -461,11 +461,9 @@
                         <outlet property="longitudeTextField" destination="Bd0-UJ-9mQ" id="WAn-TT-0wd"/>
                         <outlet property="saveButton" destination="L2Q-gt-dSp" id="MhU-kE-eu5"/>
                         <outlet property="stateTextField" destination="p1B-Xz-qgh" id="RGd-jR-2M9"/>
-                        <segue destination="xUN-y9-wZr" kind="unwind" identifier="unwindToCoursesViewController" unwindAction="unwindToCoursesViewControllerWithSegue:" id="qVE-We-X2R"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1N-Rg-jxH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="xUN-y9-wZr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1796" y="1191"/>
         </scene>
@@ -528,7 +526,7 @@
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Add Course" id="UfE-nt-mZN">
                             <connections>
-                                <segue destination="Mjc-nU-qaK" kind="show" id="BdA-Pl-YBd"/>
+                                <action selector="addCourseButtonPressed:" destination="xCv-Dc-KTy" id="QGz-u8-0Eu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

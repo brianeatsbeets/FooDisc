@@ -91,6 +91,7 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
 
     // Respond to inability to get user location
+    // Note: this gets called on initial launch before user has set location permissions - should locationManager.startUpdatingLocation() be in a closure of locationManager.requestWhenInUseAuthorization() or something?
     // TODO: alert user and describe potential loss of functionality
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error getting user location: \(error).")

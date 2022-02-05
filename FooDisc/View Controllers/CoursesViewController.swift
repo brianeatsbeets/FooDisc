@@ -18,6 +18,7 @@ class CoursesViewController: UIViewController, CoursesDelegate {
     // MARK: Variable declarations
     
     @IBOutlet var viewSelector: UISegmentedControl!
+    
     var courses : [Course] = [] {
         
         // Update map and table view course arrays when the main course array is updated
@@ -71,10 +72,18 @@ class CoursesViewController: UIViewController, CoursesDelegate {
         updateView()
     }
     
-    // Refresh data after adding new course
-    @IBAction func unwindToCoursesViewController(segue: UIStoryboardSegue) {
-        courses = fetchCourseData()
+    // Create a new AddCourseTableViewController and pass it the courses array along with the selected course ID
+    @IBAction func addCourseButtonPressed(_ sender: Any) {
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "AddCourseTableViewController") as? AddCourseTableViewController else { return }
+        viewController.delegate = self
+        viewController.courses = courses
+        navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    // Refresh data after adding new course
+//    @IBAction func unwindToCoursesViewController(segue: UIStoryboardSegue) {
+//        courses = fetchCourseData()
+//    }
     
     // MARK: Child view controller management
     
