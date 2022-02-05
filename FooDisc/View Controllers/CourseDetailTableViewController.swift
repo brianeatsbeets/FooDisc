@@ -7,7 +7,6 @@
 
 import UIKit
 import MapKit
-import Contacts
 
 // TODO: add functionality to Create Scorecard button
 // TODO: display a separate highlight background color for button presses
