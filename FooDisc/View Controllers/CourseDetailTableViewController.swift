@@ -110,6 +110,13 @@ class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate 
         mapItem.openInMaps(launchOptions: launchOptions)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "presentScorecardViewController" {
+            guard let viewController = segue.destination as? ScorecardViewController else { return }
+            viewController.selectedCourse = selectedCourse
+        }
+    }
+    
     // MARK: Course conditions functions
     
     // Display an alert allowing the user to choose a course condition and update the course with the selection
@@ -167,9 +174,9 @@ class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate 
         if indexPath.section == 3 {
             let layoutCell = tableView.dequeueReusableCell(withIdentifier: "LayoutCell", for: indexPath) as! LayoutTableViewCell
             
-            layoutCell.numberOfHolesLabel.text = "18" + " holes"
-            layoutCell.parTotalLabel.text = "Par " + "54"
-            layoutCell.totalCourseDistanceLabel.text = "5400" + "ft"
+            layoutCell.numberOfHolesLabel.text = "\(selectedCourse.layout.holes.count) holes"
+            layoutCell.parTotalLabel.text = "Par \(selectedCourse.layout.holePar.reduce(0, +))"
+            layoutCell.totalCourseDistanceLabel.text = "\(selectedCourse.layout.holeDistance.reduce(0, +))ft"
             
             let layout = selectedCourse.layout
             
