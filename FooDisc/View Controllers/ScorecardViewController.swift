@@ -13,9 +13,9 @@ class ScorecardViewController: UIViewController {
     
     // MARK: Variable declarations
     @IBOutlet var courseNameLabel: UILabel!
-    @IBOutlet var totalCourseDistanceLabel: UILabel!
     @IBOutlet var numberOfHolesLabel: UILabel!
     @IBOutlet var parTotalLabel: UILabel!
+    @IBOutlet var totalCourseDistanceLabel: UILabel!
     @IBOutlet var holeNumberLabel: [UILabel]!
     @IBOutlet var holeDistanceLabel: [UILabel]!
     @IBOutlet var holeParLabel: [UILabel]!
