@@ -7,9 +7,10 @@
 
 import UIKit
 import MapKit
+import Contacts
 
-// TODO: add functionality to Get Directions and Create Scorecard buttons
-    // TODO: display a separate highlight background color for button presses
+// TODO: add functionality to Create Scorecard button
+// TODO: display a separate highlight background color for button presses
 class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate {
     
     // MARK: Variable declarations
@@ -49,6 +50,20 @@ class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate 
         initializeUI()
     }
     
+    // Using the provided courseID, parse the courses array and grab the selected course
+    func fetchSelectedCourse() {
+
+        // Filter out selected course
+        if let course = courses.filter({ $0.id == courseID }).first {
+            selectedCourse = course
+        } else {
+            // If selected course was not found, alert the user and pop the view controller
+            let alert = UIAlertController(title: "Course not found", message: "Data for the course you selected was not found. Please select a different course.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     // Fill the UI elements with selected course data
     func initializeUI() {
         self.title = selectedCourse.title
@@ -68,7 +83,7 @@ class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate 
         initializeMapView()
     }
     
-    // Initialize the mapView accordign to the selected course
+    // Initialize the mapView according to the selected course
     func initializeMapView() {
         // Zoom map to course region
         let region = MKCoordinateRegion(center: selectedCourse.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
@@ -81,18 +96,19 @@ class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate 
         mapView.isUserInteractionEnabled = false
     }
     
-    // Using the provided courseID, parse the courses array and grab the selected course
-    func fetchSelectedCourse() {
-
-        // Filter out selected course
-        if let course = courses.filter({ $0.id == courseID }).first {
-            selectedCourse = course
-        } else {
-            // If selected course was not found, alert the user and pop the view controller
-            let alert = UIAlertController(title: "Course not found", message: "Data for the course you selected was not found. Please select a different course.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
-            self.present(alert, animated: true, completion: nil)
-        }
+    // Open driving directions to course in Apple Maps
+    @IBAction func getDirectionsButtonTapped(_ sender: Any) {
+        
+        // Create an MKPlacemark, then create an MKMapItem with it
+        let placemark = MKPlacemark(coordinate: selectedCourse.coordinate, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = selectedCourse.title
+        
+        // Set Apple Maps launch options to driving directions
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        
+        // Open map item in Apple Maps
+        mapItem.openInMaps(launchOptions: launchOptions)
     }
     
     // MARK: Course conditions functions

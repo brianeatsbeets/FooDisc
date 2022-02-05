@@ -164,6 +164,9 @@
                                                             <color key="strokeColor" systemColor="systemBlueColor"/>
                                                         </backgroundConfiguration>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="getDirectionsButtonTapped:" destination="nnM-11-91b" eventType="touchUpInside" id="rMs-9p-wmA"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
