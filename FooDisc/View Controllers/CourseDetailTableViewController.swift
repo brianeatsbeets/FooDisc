@@ -8,10 +8,11 @@
 import UIKit
 import MapKit
 
-// TODO: connect CoursesMapViewController to here and hook up delegate chain to update course conditions
+// TODO: rework how distanceToUser gets set in CoursesMapViewController to fix 0.0 distance here
+    // TODO: maybe save current user location in UserDefaults on CoursesMapViewController viewWillDisappear?
 // TODO: have map show the course location and disable interactiability
 // TODO: add functionality to Get Directions and Create Scorecard buttons
-// TODO: display a separate highlight background color for button presses
+    // TODO: display a separate highlight background color for button presses
 class CourseDetailTableViewController: UITableViewController {
     
     @IBOutlet var courseTitleLabel: UILabel!
@@ -21,7 +22,8 @@ class CourseDetailTableViewController: UITableViewController {
     @IBOutlet var courseConditionsView: UIView!
     @IBOutlet var courseConditionsLabel: UILabel!
     
-    var courses = fetchCourseData()
+    //var courses = fetchCourseData()
+    var courses: [Course] = []
     var courseID = ""
     var selectedCourse = Course(title: "Air Ball", city: "Whiff City", state: "Bogeyland", coordinate: CLLocationCoordinate2D())
     

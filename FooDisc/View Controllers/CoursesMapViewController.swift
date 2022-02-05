@@ -132,6 +132,7 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "CourseDetailTableViewController") as? CourseDetailTableViewController else { return }
         viewController.delegate = containerViewController
         viewController.courseID = course.id
+        viewController.courses = courses
         navigationController?.pushViewController(viewController, animated: true)
     }
     

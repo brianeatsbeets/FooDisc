@@ -65,6 +65,7 @@ class CoursesListTableViewController: UITableViewController {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "CourseDetailTableViewController") as? CourseDetailTableViewController else { return }
         viewController.delegate = containerViewController
         viewController.courseID = courses[indexPath.row].id
+        viewController.courses = courses
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
