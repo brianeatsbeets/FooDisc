@@ -7,7 +7,7 @@
 
 import UIKit
 
-// Custom cell to present the course layout
+// This class/table view cell provides a custom cell for course layout information to be displayed in CoursesDetailTableViewController
 class LayoutTableViewCell: UITableViewCell {
     
     @IBOutlet var numberOfHolesLabel: UILabel!

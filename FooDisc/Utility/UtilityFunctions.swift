@@ -7,11 +7,11 @@
 
 import Foundation
 
+// Retrieve course data from UserDefaults
 func fetchCourseData() -> [Course] {
     let defaults = UserDefaults.standard
     var courses: [Course] = []
 
-    // Fetch courses array
     if let data = defaults.data(forKey: "Courses") {
         do {
             let decoder = JSONDecoder()
@@ -24,6 +24,7 @@ func fetchCourseData() -> [Course] {
     return courses
 }
 
+// Save course data to UserDefaults
 func saveCourseData(courses: [Course]) {
     let defaults = UserDefaults.standard
     

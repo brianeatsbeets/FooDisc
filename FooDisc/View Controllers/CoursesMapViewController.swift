@@ -8,8 +8,11 @@
 import UIKit
 import MapKit
 
+// This class/view controller provides a map that hosts Course annotations
 class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
+    // MARK: Variable declarations
+    
     @IBOutlet var mapView: MKMapView!
     
     var courses : [Course] = [] {
@@ -26,6 +29,9 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     // Force unwrapping because this will immediately be assigned a value when CoursesListTableViewController is instantiated
     var containerViewController: CoursesViewController!
     
+    // MARK: Class functions
+    
+    // Initialize location services and map components
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,10 +42,10 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         mapView.register(CourseView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
     }
     
+    // Update course distances when user navigates to this view in case user location has changed
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Update course distances when user navigates to this view in case user location has changed
         updateUserToCourseDistances()
     }
     
@@ -125,7 +131,7 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         view.removeGestureRecognizer(view.gestureRecognizers!.first!)
     }
 
-    // Send the user to the CourseDetailTableViewController with the specified courseID
+    // When an annotation view callout is tapped, create a new CourseDetailTableViewController and pass it the courses array along with the selected course ID
     @objc func calloutTapped(sender:UITapGestureRecognizer) {
         let view = sender.view as! MKAnnotationView
         guard let course = view.annotation as? Course else { return }

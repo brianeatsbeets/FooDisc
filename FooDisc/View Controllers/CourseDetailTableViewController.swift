@@ -8,12 +8,12 @@
 import UIKit
 import MapKit
 
-// TODO: rework how distanceToUser gets set in CoursesMapViewController to fix 0.0 distance here
-    // TODO: maybe save current user location in UserDefaults on CoursesMapViewController viewWillDisappear?
 // TODO: have map show the course location and disable interactiability
 // TODO: add functionality to Get Directions and Create Scorecard buttons
     // TODO: display a separate highlight background color for button presses
 class CourseDetailTableViewController: UITableViewController {
+    
+    // MARK: Variable declarations
     
     @IBOutlet var courseTitleLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
@@ -22,13 +22,18 @@ class CourseDetailTableViewController: UITableViewController {
     @IBOutlet var courseConditionsView: UIView!
     @IBOutlet var courseConditionsLabel: UILabel!
     
-    //var courses = fetchCourseData()
     var courses: [Course] = []
     var courseID = ""
+    
+    // Set dummy course data to show in the event an invalid courseID is passed
     var selectedCourse = Course(title: "Air Ball", city: "Whiff City", state: "Bogeyland", coordinate: CLLocationCoordinate2D())
     
+    // Set up a CoursesDelegate instance so we can talk to CoursesViewController
     weak var delegate: CoursesDelegate?
     
+    // MARK: Class functions
+    
+    // Set up table view, grab selected course, and configure UI elements
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +44,7 @@ class CourseDetailTableViewController: UITableViewController {
         initializeUI()
     }
     
+    // Fill the UI elements with selected course data
     func initializeUI() {
         self.title = selectedCourse.title
         
@@ -56,6 +62,7 @@ class CourseDetailTableViewController: UITableViewController {
         updateCourseConditionsUI()
     }
     
+    // Using the provided courseID, parse the courses array and grab the selected course
     func fetchSelectedCourse() {
 
         // Filter out selected course
@@ -69,6 +76,9 @@ class CourseDetailTableViewController: UITableViewController {
         }
     }
     
+    // MARK: Course conditions functions
+    
+    // Display an alert allowing the user to choose a course condition and update the course with the selection
     @IBAction func updateCourseConditionsButtonPressed(_ sender: Any) {
         
         let alert = UIAlertController(title: "Current conditions", message: "Please select the current conditions for this course.", preferredStyle: .actionSheet)
@@ -90,30 +100,36 @@ class CourseDetailTableViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    // Save the updated course condition to UserDefaults and the courses array in CoursesViewController, and then update the courseConditions UI
     func saveChanges() {
         saveCourseData(courses: courses)
         delegate?.updateCoursesArray(courses: courses)
         updateCourseConditionsUI()
     }
     
+    // Set the appropriate background color and text for the selected course conditions
     func updateCourseConditionsUI() {
         courseConditionsView.backgroundColor = selectedCourse.currentConditions.color
         courseConditionsLabel.text = selectedCourse.currentConditions.description
     }
     
     // MARK: - Table view data source
-
+    
+    // Number of sections
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
-
+    
+    // Number of rows in section
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    // Use the LayoutTableViewCell if in section 3
+    // Cell for row at
+    // Determine which TableViewCell to use and configure it
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // If in section 3, use the LayoutTableViewCell nib and set up UI elements for LayoutTableViewCell
         if indexPath.section == 3 {
             let layoutCell = tableView.dequeueReusableCell(withIdentifier: "LayoutCell", for: indexPath) as! LayoutTableViewCell
             
@@ -136,8 +152,8 @@ class CourseDetailTableViewController: UITableViewController {
             
             return layoutCell
         } else {
+            // If not, use the cell configured in Interface Builder
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
     }
-
 }

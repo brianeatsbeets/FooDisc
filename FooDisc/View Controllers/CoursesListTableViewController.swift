@@ -9,18 +9,24 @@ import UIKit
 
 // TODO: sort by distance
 // TODO: (if time) filter courses
+// This class/view controller provides a table view that lists Course objects
 class CoursesListTableViewController: UITableViewController {
     
-    // Reload table when new data is present
+    // MARK: Variable declarations
+    
     var courses : [Course] = [] {
         didSet {
+            // Reload table when new data is present
             tableView.reloadData()
         }
     }
     
     // Force unwrapping because this will immediately be assigned a value when CoursesListTableViewController is instantiated
     var containerViewController: CoursesViewController!
-        
+    
+    // MARK: Class functions
+    
+    // Configure the table view
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +46,7 @@ class CoursesListTableViewController: UITableViewController {
     }
 
     // Cell for row at
+    // Set up the cell components
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CoursesListTableViewCell", for: indexPath) as! CoursesListTableViewCell
         let course = courses[indexPath.row]
@@ -61,6 +68,7 @@ class CoursesListTableViewController: UITableViewController {
     }
     
     // Did select row at
+    // When a row is selected, create a new CourseDetailTableViewController and pass it the courses array along with the selected course ID
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewController = storyboard?.instantiateViewController(withIdentifier: "CourseDetailTableViewController") as? CourseDetailTableViewController else { return }
         viewController.delegate = containerViewController

@@ -8,9 +8,8 @@
 import Foundation
 import MapKit
 
-// TODO: allow creation of custom layouts (18-hole, then others if time)
 // TODO: deal with potential encoding/decoding errors
-// Course class to hold course data
+// This class/annotation provides a custom object to contain course information
 class Course: NSObject, Codable, MKAnnotation {
     
     var id: String
@@ -30,13 +29,7 @@ class Course: NSObject, Codable, MKAnnotation {
         self.state = state
         self.coordinate = coordinate
         currentConditions = .good
-        //layout = defaultLayout
         distanceFromUser = 0
-    }
-    
-    // Initialize empty course
-    convenience override init() {
-        self.init(title: "", city: "", state: "", coordinate: CLLocationCoordinate2D())
     }
     
     // MARK: Codable conforming elements
@@ -44,7 +37,7 @@ class Course: NSObject, Codable, MKAnnotation {
     // TODO: add layout when layouts are configurable
     // Specify keys for encoding/decoding
     enum CodingKeys: String, CodingKey {
-        case id, title, city, state, coordinate, currentConditions, latitude, longitude
+        case id, title, city, state, coordinate, currentConditions, latitude, longitude, layout
     }
     
     // TODO: read up on decodeIfPresent vs. decode
@@ -58,7 +51,7 @@ class Course: NSObject, Codable, MKAnnotation {
         city = try values.decodeIfPresent(String.self, forKey: .city) ?? "Error"
         state = try values.decodeIfPresent(String.self, forKey: .state) ?? "Error"
         currentConditions = try values.decode(CourseCondition.self, forKey: .currentConditions)
-        //layout = defaultLayout
+        layout = try values.decode(Layout.self, forKey: .layout)
         distanceFromUser = 0
         
         let latitude = try values.decode(CLLocationDegrees.self, forKey: .latitude)
@@ -78,6 +71,7 @@ class Course: NSObject, Codable, MKAnnotation {
         try container.encodeIfPresent(city, forKey: .city)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(currentConditions, forKey: .currentConditions)
+        try container.encodeIfPresent(layout, forKey: .layout)
         
         try container.encode(coordinate.latitude, forKey: .latitude)
         try container.encode(coordinate.longitude, forKey: .longitude)

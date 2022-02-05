@@ -7,6 +7,7 @@
 
 import UIKit
 
+// This class/table view cell provides a custom cell for course information to be displayed in CoursesListTableViewController
 class CoursesListTableViewCell: UITableViewCell {
 
     @IBOutlet var nameLabel: UILabel!
@@ -14,6 +15,7 @@ class CoursesListTableViewCell: UITableViewCell {
     @IBOutlet var conditionsLabelView: UIView!
     @IBOutlet var conditionsLabel: UILabel!
     
+    // Configure UI elements on initialization
     override func awakeFromNib() {
         super.awakeFromNib()
         

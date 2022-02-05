@@ -8,8 +8,12 @@
 import UIKit
 import CoreLocation
 
+// TODO: change dismissal method from unwind segue to delegate data passing and popping view controller
+// TODO: pass courses array to this view controller via dependency injection instead of grabbing from userdefaults
 // TODO: add feedback/confirmation message after successfully adding a course
 class AddCourseTableViewController: UITableViewController {
+    
+    // MARK: Variable declarations
     
     @IBOutlet var courseNameTextField: UITextField!
     @IBOutlet var cityTextField: UITextField!
@@ -21,6 +25,8 @@ class AddCourseTableViewController: UITableViewController {
     // Used to bulk-add event listeners
     var textFields: [UITextField] = []
     
+    // MARK: Class functions
+    
     // Load up form
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +36,7 @@ class AddCourseTableViewController: UITableViewController {
     
     // MARK: Form initialization functions
     
+    // Configure form elements
     func initializeForm() {
         // Disable save button until all fields are filled in
         saveButton.isEnabled = false
@@ -77,6 +84,7 @@ class AddCourseTableViewController: UITableViewController {
         
         var courses: [Course] = []
         
+        // Grab existing courses
         courses = fetchCourseData()
         
         // Add new course to existing courses array

@@ -7,12 +7,16 @@
 
 import UIKit
 
+// Protocol to allow other view controllers to update the courses array managed in the CoursesViewController class
 protocol CoursesDelegate: AnyObject {
     func updateCoursesArray(courses: [Course])
 }
 
+// This class/view controller serves as the container view controller for CoursesMapViewController and CoursesListTableViewController
 class CoursesViewController: UIViewController, CoursesDelegate {
 
+    // MARK: Variable declarations
+    
     @IBOutlet var viewSelector: UISegmentedControl!
     var courses : [Course] = [] {
         
@@ -31,7 +35,6 @@ class CoursesViewController: UIViewController, CoursesDelegate {
         self.add(asChildViewController: viewController)
         return viewController
     }()
-    
     lazy var coursesListTableViewController: CoursesListTableViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: "CoursesListTableViewController") as! CoursesListTableViewController
@@ -40,10 +43,14 @@ class CoursesViewController: UIViewController, CoursesDelegate {
         return viewController
     }()
     
+    // MARK: CoursesDelegate delegate functions
+    
     // Delegate method to update courses from other view controllers
     func updateCoursesArray(courses: [Course]) {
         self.courses = courses
     }
+    
+    // MARK: Class functions
     
     // Load up data and views to display
     override func viewDidLoad() {
