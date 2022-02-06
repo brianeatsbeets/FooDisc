@@ -8,11 +8,10 @@
 import UIKit
 import MapKit
 
-// TODO: finalize UI
+// TODO: be better at autolayout
 // TODO: look into using initializers on these view controllers that are passed values like selectedCourse instead of loading up dummy data
 // TODO: disable finish button until scorecard is filled out (or warn user before finishing early and auto-fill in "-" for other scores and parse that when calculating total score)
 // TODO: track par performance and other stats
-// TODO: fix y in Course Layout clipping
 // This class/view controller displays and allows a user to complete a scorecard for the selected course
 class ScorecardViewController: UIViewController {
     
@@ -39,7 +38,7 @@ class ScorecardViewController: UIViewController {
     var currentHoleNumber = 1 {
         didSet {
             // Adjust label text when this value changes
-            currentHoleLabel.text = "Hole \(currentHoleNumber)"
+            currentHoleLabel.text = String(currentHoleNumber)
         }
     }
     
@@ -47,7 +46,7 @@ class ScorecardViewController: UIViewController {
     var currentHoleScore = 0 {
         didSet {
             // Adjust label text when this value changes
-            currentHoleScoreLabel.text = "Score: \(currentHoleScore)"
+            currentHoleScoreLabel.text = String(currentHoleScore)
         }
     }
     
@@ -101,8 +100,8 @@ class ScorecardViewController: UIViewController {
         
         // Current hole elements
         // Won't need this with initializer
-        currentHoleLabel.text = "Hole \(currentHoleNumber)"
-        currentHoleScoreLabel.text = "Score: \(currentHoleScore)"
+        currentHoleLabel.text = String(currentHoleNumber)
+        currentHoleScoreLabel.text = String(currentHoleScore)
     }
     
     // MARK: UI interaction functions
