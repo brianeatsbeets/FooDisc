@@ -7,8 +7,8 @@
 
 import Foundation
 
-// This class provides a custom object with which to create and store scorecard data
-class Scorecard: Codable {
+// This struct provides a custom object with which to create and store scorecard data
+struct Scorecard: Codable {
     
     let course: Course
     var scorePerHole: [Int]
