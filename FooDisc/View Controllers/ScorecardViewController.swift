@@ -153,14 +153,30 @@ class ScorecardViewController: UIViewController {
     // Save scorecard data and dismiss the scorecard view controller
     @IBAction func finishRoundButtonPressed(_ sender: Any) {
         
-        finalizeScorecard()
+        // Assert whether or not each hole was played and warn user if scorecard is incomplete
+        for score in scorecard.scorePerHole {
+            if score == 0 {
+                scorecard.isScorecardComplete = false
+            }
+        }
         
-        scorecards.append(scorecard)
-        saveScorecardData(scorecards: scorecards)
-        dismiss(animated: true, completion: nil)
+        if !scorecard.isScorecardComplete {
+            let alert = UIAlertController(title: "Incomplete scorecard", message: "You have not entered a score for every hole on the scorecard. Do you still want to close the scorecard?", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
+                finalizeScorecard()
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { [self] action in
+                scorecard.isScorecardComplete = true
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            finalizeScorecard()
+        }
     }
     
-    // Calculate scorecard totals and stats
+    // Calculate scorecard totals and stats and save scorecard
     func finalizeScorecard() {
         
         // Calculate total par score
@@ -177,6 +193,11 @@ class ScorecardViewController: UIViewController {
         for score in scorecard.scorePerHole {
             scorecard.totalScore += score
         }
+        
+        // Save scorecard
+        scorecards.append(scorecard)
+        saveScorecardData(scorecards: scorecards)
+        dismiss(animated: true, completion: nil)
     }
     
 }

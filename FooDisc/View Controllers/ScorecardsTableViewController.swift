@@ -69,15 +69,21 @@ class ScorecardsTableViewController: UITableViewController {
         
         cell.scoreLabel.text = {
             
-            // Configure total par
-            var score = ""
-            if scorecard.totalPar > 0 {
-                score = "+"
+            // Check if scorecard is compelte
+            if scorecard.isScorecardComplete {
+            
+                // Configure total par
+                var score = ""
+                if scorecard.totalPar > 0 {
+                    score = "+"
+                }
+                
+                score += "\(scorecard.totalPar) (\(scorecard.totalScore))"
+                
+                return score
+            } else {
+                return "Incomplete round"
             }
-            
-            score += "\(scorecard.totalPar) (\(scorecard.totalScore))"
-            
-            return score
         }()
 
         return cell
