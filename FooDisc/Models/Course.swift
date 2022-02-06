@@ -40,16 +40,15 @@ class Course: NSObject, Codable, MKAnnotation {
         case id, title, city, state, coordinate, currentConditions, latitude, longitude, layout
     }
     
-    // TODO: read up on decodeIfPresent vs. decode
     // Decoding initializer for a Course object and its properties
     required init(from decoder: Decoder) throws {
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
-        id = try values.decodeIfPresent(String.self, forKey: .id) ?? "Error"
+        id = try values.decode(String.self, forKey: .id)
         title = try values.decodeIfPresent(String.self, forKey: .title) ?? "Error"
-        city = try values.decodeIfPresent(String.self, forKey: .city) ?? "Error"
-        state = try values.decodeIfPresent(String.self, forKey: .state) ?? "Error"
+        city = try values.decode(String.self, forKey: .city)
+        state = try values.decode(String.self, forKey: .state)
         currentConditions = try values.decode(CourseCondition.self, forKey: .currentConditions)
         layout = try values.decode(Layout.self, forKey: .layout)
         distanceFromUser = 0
@@ -60,19 +59,17 @@ class Course: NSObject, Codable, MKAnnotation {
         coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-    // TODO: read up on encodeIfPresent vs. encode
     // Encode a Course object and its properties
     func encode(to encoder: Encoder) throws {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encodeIfPresent(id, forKey: .id)
+        try container.encode(id, forKey: .id)
         try container.encodeIfPresent(title, forKey: .title)
-        try container.encodeIfPresent(city, forKey: .city)
-        try container.encodeIfPresent(state, forKey: .state)
-        try container.encodeIfPresent(currentConditions, forKey: .currentConditions)
-        try container.encodeIfPresent(layout, forKey: .layout)
-        
+        try container.encode(city, forKey: .city)
+        try container.encode(state, forKey: .state)
+        try container.encode(currentConditions, forKey: .currentConditions)
+        try container.encode(layout, forKey: .layout)
         try container.encode(coordinate.latitude, forKey: .latitude)
         try container.encode(coordinate.longitude, forKey: .longitude)
     }
