@@ -9,7 +9,7 @@ import UIKit
 
 // TODO: sort by distance
 // TODO: (if time) filter courses
-// This class/view controller provides a table view that lists Course objects
+// This class/table view controller provides a table view that lists Course objects
 class CoursesListTableViewController: UITableViewController {
     
     // MARK: Variable declarations
@@ -30,7 +30,7 @@ class CoursesListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UINib(nibName: "CoursesListTableViewCell", bundle: nil), forCellReuseIdentifier: "CoursesListTableViewCell")
+        tableView.register(UINib(nibName: "CoursesListTableViewCell", bundle: nil), forCellReuseIdentifier: "CoursesListCell")
     }
 
     // MARK: - Table view data source
@@ -48,7 +48,7 @@ class CoursesListTableViewController: UITableViewController {
     // Cell for row at
     // Set up the cell components
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CoursesListTableViewCell", for: indexPath) as! CoursesListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CoursesListCell", for: indexPath) as! CoursesListTableViewCell
         let course = courses[indexPath.row]
         
         cell.nameLabel.text = course.title

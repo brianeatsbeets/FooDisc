@@ -12,7 +12,7 @@ import MapKit
 // TODO: look into using initializers on these view controllers that are passed values like selectedCourse instead of loading up dummy data
 // TODO: disable finish button until scorecard is filled out (or warn user before finishing early and auto-fill in "-" for other scores and parse that when calculating total score)
 // TODO: fix y in Course Layout clipping
-// This class/view controller displays and allows a user to complete a scorecard
+// This class/view controller displays and allows a user to complete a scorecard for the selected course
 class ScorecardViewController: UIViewController {
     
     // MARK: Variable declarations
@@ -112,7 +112,10 @@ class ScorecardViewController: UIViewController {
             currentHoleScore -= 1
         }
         
-        // Update the layout score for this hole
+        // Update scorecard
+        scorecard.scorePerHole[currentHoleNumber - 1] = currentHoleScore
+        
+        // Update the scorecard UI for this hole
         if layoutCurrentHoleScoreLabel != nil {
             layoutCurrentHoleScoreLabel!.text = String(currentHoleScore)
         }
@@ -121,6 +124,9 @@ class ScorecardViewController: UIViewController {
     // Increase current hole score by 1
     @IBAction func holeScorePlusButtonPressed(_ sender: Any) {
         currentHoleScore += 1
+        
+        // Update scorecard
+        scorecard.scorePerHole[currentHoleNumber - 1] = currentHoleScore
         
         // Update the layout score for this hole
         if layoutCurrentHoleScoreLabel != nil {
@@ -146,9 +152,31 @@ class ScorecardViewController: UIViewController {
     
     // Save scorecard data and dismiss the scorecard view controller
     @IBAction func finishRoundButtonPressed(_ sender: Any) {
+        
+        // Calculate totals and stats
+        finalizeScorecard()
+        
         scorecards.append(scorecard)
         saveScorecardData(scorecards: scorecards)
         dismiss(animated: true, completion: nil)
+    }
+    
+    func finalizeScorecard() {
+        
+        // Calculate total par score
+        var index = 0
+        while index < selectedCourse.layout.holes.count {
+            scorecard.totalPar += selectedCourse.layout.holePar[index] - scorecard.scorePerHole[index]
+            print("Hole par: \(selectedCourse.layout.holePar[index])")
+            print("Hole score: \(scorecard.scorePerHole[index])")
+            print("Total par: \(scorecard.totalPar)")
+            index += 1
+        }
+        
+        // Calculate total score
+        for score in scorecard.scorePerHole {
+            scorecard.totalScore += score
+        }
     }
     
 }

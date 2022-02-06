@@ -10,6 +10,7 @@ import MapKit
 
 // TODO: add functionality to Create Scorecard button
 // TODO: display a separate highlight background color for button presses
+// This class/table view controller provides a table view that lists course details of a selected course
 class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate {
     
     // MARK: Variable declarations
