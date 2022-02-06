@@ -31,13 +31,6 @@ class ScorecardsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    @IBAction func deleteScorecardsButtonPressed(_ sender: Any) {
-        scorecards = []
-        saveScorecardData(scorecards: scorecards)
-        print("Trashed saved scorecards")
-        tableView.reloadData()
-    }
-    
     // MARK: - Table view data source
     
     // Number of sections
