@@ -9,42 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yYi-lc-hPU">
-                                <rect key="frame" x="70" y="376.5" width="274" height="143.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkw-y6-tSi">
-                                        <rect key="frame" x="68.5" y="0.0" width="137.5" height="32.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FooDisc" translatesAutoresizingMaskIntoConstraints="NO" id="0ZP-jS-cU2">
-                                        <rect key="frame" x="0.0" y="40.5" width="274" height="103"/>
-                                    </imageView>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="yYi-lc-hPU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Sm5-fY-ptl"/>
-                            <constraint firstItem="yYi-lc-hPU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="keR-Go-mAK"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="gR8-hJ-Lhj"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="983" y="-216"/>
-        </scene>
         <!--Courses-->
         <scene sceneID="NM8-S7-64y">
             <objects>
@@ -485,7 +449,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="2d6-3q-u3U" kind="relationship" relationship="viewControllers" id="nYn-Cx-eCV"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="XsQ-Ws-Hoh"/>
+                        <segue destination="S0e-VZ-RrB" kind="relationship" relationship="viewControllers" id="XsQ-Ws-Hoh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beE-yv-isS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -496,7 +460,7 @@
         <scene sceneID="Rd0-8E-saD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2d6-3q-u3U" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" id="kYa-aV-62z"/>
+                    <tabBarItem key="tabBarItem" title="Courses" image="mappin.and.ellipse" catalog="system" id="kYa-aV-62z"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="k5p-o9-LxW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -511,7 +475,7 @@
             </objects>
             <point key="canvasLocation" x="982.60869565217399" y="461.38392857142856"/>
         </scene>
-        <!--Courses View Controller-->
+        <!--Courses-->
         <scene sceneID="DCd-1B-rXR">
             <objects>
                 <viewController id="xCv-Dc-KTy" customClass="CoursesViewController" customModule="FooDisc" customModuleProvider="target" sceneMemberID="viewController">
@@ -521,16 +485,17 @@
                         <viewLayoutGuide key="safeArea" id="zx7-t2-MxV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rOm-4C-bjd">
-                        <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5Wo-JS-WFa">
-                            <rect key="frame" x="161.5" y="5.5" width="91" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Map"/>
-                                <segment title="List"/>
-                            </segments>
-                        </segmentedControl>
+                    <navigationItem key="navigationItem" title="Courses" id="rOm-4C-bjd">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="2y6-Pf-4af">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5Wo-JS-WFa">
+                                <rect key="frame" x="161.5" y="5.5" width="91" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Map"/>
+                                    <segment title="List"/>
+                                </segments>
+                            </segmentedControl>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add Course" id="UfE-nt-mZN">
                             <connections>
                                 <action selector="addCourseButtonPressed:" destination="xCv-Dc-KTy" id="QGz-u8-0Eu"/>
@@ -1232,37 +1197,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDe-B7-Mvl">
-                                <rect key="frame" x="75" y="341" width="49" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gfi-1R-Kzg">
-                                <rect key="frame" x="132" y="334" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ea6-K6-BSU">
-                                <rect key="frame" x="251" y="336" width="89" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Save Score for Hole">
-                                            <attributes>
-                                                <font key="NSFont" size="12" name="Helvetica"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="saveScoreForHoleButtonPressed:" destination="jgh-g4-J5V" eventType="touchUpInside" id="wnJ-WN-gEW"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30Z-5K-MGg">
                                 <rect key="frame" x="75" y="382" width="126" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1287,10 +1221,34 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Finish Round"/>
                                 <connections>
-                                    <action selector="exitButtonPressed:" destination="jgh-g4-J5V" eventType="touchUpInside" id="7cR-if-jsC"/>
-                                    <action selector="finishRoundButtonPressed:" destination="jgh-g4-J5V" eventType="touchUpInside" id="aPW-L6-h9k"/>
+                                    <action selector="finishRoundButtonPressed:" destination="jgh-g4-J5V" eventType="touchUpInside" id="e2Z-a3-UHM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqc-46-Ymf">
+                                <rect key="frame" x="234" y="338" width="31" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="-"/>
+                                <connections>
+                                    <action selector="holeScoreMinusButtonPressed:" destination="jgh-g4-J5V" eventType="touchUpInside" id="nRB-Dg-Pxr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPC-eI-usv">
+                                <rect key="frame" x="314" y="338" width="33" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="+"/>
+                                <connections>
+                                    <action selector="holeScorePlusButtonPressed:" destination="jgh-g4-J5V" eventType="touchUpInside" id="8RW-Cw-uEL"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDe-B7-Mvl">
+                                <rect key="frame" x="103" y="343" width="74" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kGB-8Q-hx8"/>
                         <color key="backgroundColor" white="0.90251597157725083" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1305,10 +1263,9 @@
                     <connections>
                         <outlet property="courseNameLabel" destination="bMq-Ql-InI" id="NMA-7V-tlT"/>
                         <outlet property="currentHoleLabel" destination="dur-dX-Omg" id="o5j-Bg-mcS"/>
-                        <outlet property="currentHoleScoreTextField" destination="Gfi-1R-Kzg" id="GH0-TR-WVu"/>
+                        <outlet property="currentHoleScoreLabel" destination="PDe-B7-Mvl" id="iyD-rm-5g9"/>
                         <outlet property="numberOfHolesLabel" destination="YEi-Au-Jkj" id="NNE-Vu-Jwe"/>
                         <outlet property="parTotalLabel" destination="ixg-Pa-9sB" id="YxZ-71-4wc"/>
-                        <outlet property="saveScoreForHoleButton" destination="Ea6-K6-BSU" id="P30-GZ-lrz"/>
                         <outlet property="totalCourseDistanceLabel" destination="Rvw-Te-xpg" id="dDP-s4-KPA"/>
                         <outletCollection property="holeNumberLabel" destination="PHN-D8-V7K" collectionClass="NSMutableArray" id="hy0-OR-jHt"/>
                         <outletCollection property="holeNumberLabel" destination="zsg-cF-vq5" collectionClass="NSMutableArray" id="rOA-ln-Nzz"/>
@@ -1388,9 +1345,48 @@
             </objects>
             <point key="canvasLocation" x="4392.753623188406" y="460.71428571428567"/>
         </scene>
+        <!--Scorecards-->
+        <scene sceneID="I5L-NM-7sS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="S0e-VZ-RrB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Scorecards" image="pencil.and.ellipsis.rectangle" catalog="system" id="gR8-hJ-Lhj"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wBs-Xe-Jic">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8gI-Os-tRb" kind="relationship" relationship="rootViewController" id="6Mz-BJ-mzJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2sB-AO-HQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="983" y="-224"/>
+        </scene>
+        <!--Scorecards-->
+        <scene sceneID="bnS-cO-YfE">
+            <objects>
+                <tableViewController id="8gI-Os-tRb" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="P37-uL-4ic">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="8gI-Os-tRb" id="cwk-SR-7o4"/>
+                            <outlet property="delegate" destination="8gI-Os-tRb" id="rc7-fP-ck1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Scorecards" id="1ov-Dl-of5"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="edK-Lt-sZT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1796" y="-224"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="FooDisc" width="274" height="103"/>
+        <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
+        <image name="pencil.and.ellipsis.rectangle" catalog="system" width="128" height="81"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

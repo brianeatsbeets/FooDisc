@@ -28,6 +28,7 @@
 		E1C3116027AC419C00C24EF9 /* LayoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C3115E27AC419C00C24EF9 /* LayoutTableViewCell.xib */; };
 		E1DE24AB27AEF9FF00E2AB0A /* ScorecardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE24AA27AEF9FF00E2AB0A /* ScorecardViewController.swift */; };
 		E1DE24AD27AF241600E2AB0A /* Scorecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE24AC27AF241600E2AB0A /* Scorecard.swift */; };
+		E1DE24AF27AFFE0F00E2AB0A /* ScorecardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE24AE27AFFE0F00E2AB0A /* ScorecardsTableViewController.swift */; };
 		E1E8CC7C27A1B60C001E8212 /* CoursesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */; };
 		E1E8CC7F27A1B75D001E8212 /* CoursesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */; };
 		E1FF8EF627A42D9000C0E810 /* DisabledCursorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FF8EF527A42D9000C0E810 /* DisabledCursorTextField.swift */; };
@@ -57,6 +58,7 @@
 		E1C3115E27AC419C00C24EF9 /* LayoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayoutTableViewCell.xib; sourceTree = "<group>"; };
 		E1DE24AA27AEF9FF00E2AB0A /* ScorecardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScorecardViewController.swift; path = "FooDisc/View Controllers/ScorecardViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E1DE24AC27AF241600E2AB0A /* Scorecard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scorecard.swift; sourceTree = "<group>"; };
+		E1DE24AE27AFFE0F00E2AB0A /* ScorecardsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorecardsTableViewController.swift; sourceTree = "<group>"; };
 		E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMapViewController.swift; sourceTree = "<group>"; };
 		E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListTableViewController.swift; sourceTree = "<group>"; };
 		E1FF8EF527A42D9000C0E810 /* DisabledCursorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DisabledCursorTextField.swift; path = FooDisc/Utility/DisabledCursorTextField.swift; sourceTree = SOURCE_ROOT; };
@@ -76,6 +78,7 @@
 		E150459527A0EBE5008EC69B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E1DE24AE27AFFE0F00E2AB0A /* ScorecardsTableViewController.swift */,
 				E1546FCA279F453C00A00FC4 /* CoursesViewController.swift */,
 				E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */,
 				E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */,
@@ -230,6 +233,7 @@
 				E1DE24AD27AF241600E2AB0A /* Scorecard.swift in Sources */,
 				E15923F327AAACC1003AEFFA /* CoursesListTableViewCell.swift in Sources */,
 				E1546FCB279F453C00A00FC4 /* CoursesViewController.swift in Sources */,
+				E1DE24AF27AFFE0F00E2AB0A /* ScorecardsTableViewController.swift in Sources */,
 				E1E8CC7F27A1B75D001E8212 /* CoursesListTableViewController.swift in Sources */,
 				E1546FC7279F453C00A00FC4 /* AppDelegate.swift in Sources */,
 				E1C3115A27AC250100C24EF9 /* CourseDetailTableViewController.swift in Sources */,
