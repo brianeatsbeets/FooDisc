@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-// TODO: deal with potential encoding/decoding errors
+// TODO: deal with potential encoding/decoding errors?
 // This class/annotation provides a custom object to contain course information
 class Course: NSObject, Codable, MKAnnotation {
     

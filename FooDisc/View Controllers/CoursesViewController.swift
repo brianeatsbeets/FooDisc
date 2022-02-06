@@ -80,11 +80,6 @@ class CoursesViewController: UIViewController, CoursesDelegate {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    // Refresh data after adding new course
-//    @IBAction func unwindToCoursesViewController(segue: UIStoryboardSegue) {
-//        courses = fetchCourseData()
-//    }
-    
     // MARK: Child view controller management
     
     // Display the appropriate child view controller
