@@ -486,7 +486,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Courses" id="rOm-4C-bjd">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="2y6-Pf-4af">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="2y6-Pf-4af">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5Wo-JS-WFa">
                                 <rect key="frame" x="20" y="5.5" width="91" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1398,7 +1398,7 @@
         <scene sceneID="I5L-NM-7sS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="S0e-VZ-RrB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Scorecards" image="pencil.and.ellipsis.rectangle" catalog="system" id="gR8-hJ-Lhj"/>
+                    <tabBarItem key="tabBarItem" title="Scorecards" image="rectangle.and.pencil.and.ellipsis" catalog="system" id="gR8-hJ-Lhj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wBs-Xe-Jic">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1442,7 +1442,7 @@
     </scenes>
     <resources>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
-        <image name="pencil.and.ellipsis.rectangle" catalog="system" width="128" height="81"/>
+        <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="81"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
