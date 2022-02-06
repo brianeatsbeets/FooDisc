@@ -29,8 +29,8 @@
 		E1DE24AB27AEF9FF00E2AB0A /* ScorecardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE24AA27AEF9FF00E2AB0A /* ScorecardViewController.swift */; };
 		E1DE24AD27AF241600E2AB0A /* Scorecard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE24AC27AF241600E2AB0A /* Scorecard.swift */; };
 		E1DE24B227AFFF3700E2AB0A /* ScorecardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE24B027AFFF3700E2AB0A /* ScorecardsTableViewController.swift */; };
-		E1DE24B727AFFF8E00E2AB0A /* ScorecardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE24B527AFFF8E00E2AB0A /* ScorecardsTableViewCell.swift */; };
-		E1DE24B827AFFF8E00E2AB0A /* ScorecardsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DE24B627AFFF8E00E2AB0A /* ScorecardsTableViewCell.xib */; };
+		E1DE24BF27B0679600E2AB0A /* ScorecardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE24BD27B0679600E2AB0A /* ScorecardsTableViewCell.swift */; };
+		E1DE24C027B0679600E2AB0A /* ScorecardsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DE24BE27B0679600E2AB0A /* ScorecardsTableViewCell.xib */; };
 		E1E8CC7C27A1B60C001E8212 /* CoursesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */; };
 		E1E8CC7F27A1B75D001E8212 /* CoursesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */; };
 		E1FF8EF627A42D9000C0E810 /* DisabledCursorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FF8EF527A42D9000C0E810 /* DisabledCursorTextField.swift */; };
@@ -61,8 +61,8 @@
 		E1DE24AA27AEF9FF00E2AB0A /* ScorecardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScorecardViewController.swift; path = "FooDisc/View Controllers/ScorecardViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E1DE24AC27AF241600E2AB0A /* Scorecard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scorecard.swift; sourceTree = "<group>"; };
 		E1DE24B027AFFF3700E2AB0A /* ScorecardsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScorecardsTableViewController.swift; path = "FooDisc/View Controllers/ScorecardsTableViewController.swift"; sourceTree = SOURCE_ROOT; };
-		E1DE24B527AFFF8E00E2AB0A /* ScorecardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScorecardsTableViewCell.swift; path = "FooDisc/View Controllers/ScorecardsTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
-		E1DE24B627AFFF8E00E2AB0A /* ScorecardsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ScorecardsTableViewCell.xib; path = FooDisc/Views/Xib/ScorecardsTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		E1DE24BD27B0679600E2AB0A /* ScorecardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorecardsTableViewCell.swift; sourceTree = "<group>"; };
+		E1DE24BE27B0679600E2AB0A /* ScorecardsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScorecardsTableViewCell.xib; sourceTree = "<group>"; };
 		E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMapViewController.swift; sourceTree = "<group>"; };
 		E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListTableViewController.swift; sourceTree = "<group>"; };
 		E1FF8EF527A42D9000C0E810 /* DisabledCursorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DisabledCursorTextField.swift; path = FooDisc/Utility/DisabledCursorTextField.swift; sourceTree = SOURCE_ROOT; };
@@ -147,9 +147,9 @@
 		E1DE24B427AFFF4C00E2AB0A /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				E1DE24B627AFFF8E00E2AB0A /* ScorecardsTableViewCell.xib */,
 				E15923ED27A9915D003AEFFA /* CourseCalloutView.xib */,
 				E15923F227AAACC1003AEFFA /* CoursesListTableViewCell.xib */,
+				E1DE24BE27B0679600E2AB0A /* ScorecardsTableViewCell.xib */,
 				E1C3115E27AC419C00C24EF9 /* LayoutTableViewCell.xib */,
 			);
 			path = Xib;
@@ -161,7 +161,7 @@
 				E1DE24B427AFFF4C00E2AB0A /* Xib */,
 				E1546FCC279F453C00A00FC4 /* Main.storyboard */,
 				E1546FD4279F454000A00FC4 /* LaunchScreen.storyboard */,
-				E1DE24B527AFFF8E00E2AB0A /* ScorecardsTableViewCell.swift */,
+				E1DE24BD27B0679600E2AB0A /* ScorecardsTableViewCell.swift */,
 				E15923E927A8A922003AEFFA /* CourseView.swift */,
 				E15923EF27A9938A003AEFFA /* CourseCalloutView.swift */,
 				E15923F127AAACC1003AEFFA /* CoursesListTableViewCell.swift */,
@@ -233,8 +233,8 @@
 				E1546FD6279F454000A00FC4 /* LaunchScreen.storyboard in Resources */,
 				E15923F427AAACC1003AEFFA /* CoursesListTableViewCell.xib in Resources */,
 				E1546FD3279F454000A00FC4 /* Assets.xcassets in Resources */,
+				E1DE24C027B0679600E2AB0A /* ScorecardsTableViewCell.xib in Resources */,
 				E1546FCE279F453C00A00FC4 /* Main.storyboard in Resources */,
-				E1DE24B827AFFF8E00E2AB0A /* ScorecardsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +253,6 @@
 				E1C3115A27AC250100C24EF9 /* CourseDetailTableViewController.swift in Sources */,
 				E1C3115F27AC419C00C24EF9 /* LayoutTableViewCell.swift in Sources */,
 				E1E8CC7C27A1B60C001E8212 /* CoursesMapViewController.swift in Sources */,
-				E1DE24B727AFFF8E00E2AB0A /* ScorecardsTableViewCell.swift in Sources */,
 				E1FF8EF627A42D9000C0E810 /* DisabledCursorTextField.swift in Sources */,
 				E150459227A0E487008EC69B /* Course.swift in Sources */,
 				E1546FC9279F453C00A00FC4 /* SceneDelegate.swift in Sources */,
@@ -262,6 +261,7 @@
 				E15923EA27A8A922003AEFFA /* CourseView.swift in Sources */,
 				E1546FD1279F453C00A00FC4 /* FooDisc.xcdatamodeld in Sources */,
 				E1C3115C27AC361600C24EF9 /* Layout.swift in Sources */,
+				E1DE24BF27B0679600E2AB0A /* ScorecardsTableViewCell.swift in Sources */,
 				E17B337027A2F1E4000EA493 /* AddCourseTableViewController.swift in Sources */,
 				E1B69D1627AD52D200E8D7E6 /* UtilityFunctions.swift in Sources */,
 				E15923F027A9938A003AEFFA /* CourseCalloutView.swift in Sources */,

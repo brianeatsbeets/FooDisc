@@ -11,6 +11,7 @@ import MapKit
 // TODO: finalize UI
 // TODO: look into using initializers on these view controllers that are passed values like selectedCourse instead of loading up dummy data
 // TODO: disable finish button until scorecard is filled out (or warn user before finishing early and auto-fill in "-" for other scores and parse that when calculating total score)
+// TODO: track par performance and other stats
 // TODO: fix y in Course Layout clipping
 // This class/view controller displays and allows a user to complete a scorecard for the selected course
 class ScorecardViewController: UIViewController {
@@ -153,7 +154,6 @@ class ScorecardViewController: UIViewController {
     // Save scorecard data and dismiss the scorecard view controller
     @IBAction func finishRoundButtonPressed(_ sender: Any) {
         
-        // Calculate totals and stats
         finalizeScorecard()
         
         scorecards.append(scorecard)
@@ -161,12 +161,13 @@ class ScorecardViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    // Calculate scorecard totals and stats
     func finalizeScorecard() {
         
         // Calculate total par score
         var index = 0
         while index < selectedCourse.layout.holes.count {
-            scorecard.totalPar += selectedCourse.layout.holePar[index] - scorecard.scorePerHole[index]
+            scorecard.totalPar += scorecard.scorePerHole[index] - selectedCourse.layout.holePar[index]
             print("Hole par: \(selectedCourse.layout.holePar[index])")
             print("Hole score: \(scorecard.scorePerHole[index])")
             print("Total par: \(scorecard.totalPar)")
