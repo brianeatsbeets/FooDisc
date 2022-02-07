@@ -17,7 +17,7 @@ This project came about as a fun way to test and display my skills in exploring 
   - MVC design pattern
   - Delegation
   - Dependency injection
-  - Frequent and informative comments
+  - Frequent and descriptive comments
   - Persistent data via UserDefaults
     - Conforming to Codable protocol
   - Enums
