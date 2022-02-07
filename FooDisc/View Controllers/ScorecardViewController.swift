@@ -183,9 +183,6 @@ class ScorecardViewController: UIViewController {
         var index = 0
         while index < selectedCourse.layout.holes.count {
             scorecard.totalPar += scorecard.scorePerHole[index] - selectedCourse.layout.holePar[index]
-            print("Hole par: \(selectedCourse.layout.holePar[index])")
-            print("Hole score: \(scorecard.scorePerHole[index])")
-            print("Total par: \(scorecard.totalPar)")
             index += 1
         }
         
