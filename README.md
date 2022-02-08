@@ -20,5 +20,3 @@ This project came about as a fun way to test and display my skills in exploring 
   - Frequent and descriptive comments
   - Persistent data via UserDefaults
     - Conforming to Codable protocol
-  - Enums
-  - Structs
