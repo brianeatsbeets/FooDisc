@@ -22,4 +22,3 @@ This project came about as a fun way to test and display my skills in exploring 
     - Conforming to Codable protocol
   - Enums
   - Structs
-- A completely original and not-quickly-drawn app icon
