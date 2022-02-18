@@ -74,7 +74,10 @@ class CoursesViewController: UIViewController, CoursesDelegate {
     
     // Create a new AddCourseTableViewController and pass it the courses array along with the selected course ID
     @IBAction func addCourseButtonPressed(_ sender: Any) {
-        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "AddCourseTableViewController") as? AddCourseTableViewController else { return }
+        guard let viewController = storyboard?.instantiateViewController(identifier: "AddCourseTableViewController", creator: {
+            coder in AddCourseTableViewController(coder: coder, courses: self.courses)
+        }) else { return }
+        
         viewController.delegate = self
         viewController.courses = courses
         navigationController?.pushViewController(viewController, animated: true)

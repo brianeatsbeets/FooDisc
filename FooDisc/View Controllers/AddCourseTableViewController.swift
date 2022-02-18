@@ -10,7 +10,6 @@ import CoreLocation
 
 // TODO: add feedback/confirmation message after successfully adding a course
 // TODO: change state textfield to UIPicker
-// TODO: debug why initial tap into text field has delayed focus
 // TODO: resolve "Can't find keyplane that supports type 8 for keyboard iPhone-PortraitChoco-DecimalPad; using 27100_PortraitChoco_iPhone-Simple-Pad_Default" error when using latitude/longitude text fields
 // This class/table view controller provides a table view that allows the user to add a new course
 class AddCourseTableViewController: UITableViewController {
@@ -24,13 +23,26 @@ class AddCourseTableViewController: UITableViewController {
     @IBOutlet var longitudeTextField: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
     
-    var courses: [Course] = []
+    var courses: [Course]
     
     // Set up a CoursesDelegate instance so we can talk to CoursesViewController
     weak var delegate: CoursesDelegate?
     
     // Used to bulk-add event listeners
     var textFields: [UITextField] = []
+    
+    // MARK: Initializers
+    
+    // Custom initializer that takes in a course array
+    init?(coder: NSCoder, courses: [Course]) {
+        self.courses = courses
+        super.init(coder: coder)
+    }
+    
+    // Required initializer as a subclass of UIViewController
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: Class functions
     
