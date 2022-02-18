@@ -20,7 +20,6 @@ class ScorecardsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         scorecards = fetchScorecardData()
-        print(scorecards)
         tableView.register(UINib(nibName: "ScorecardsTableViewCell", bundle: nil), forCellReuseIdentifier: "ScorecardsCell")
     }
     
