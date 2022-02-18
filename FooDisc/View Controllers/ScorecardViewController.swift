@@ -153,13 +153,14 @@ class ScorecardViewController: UIViewController {
     // Save scorecard data and dismiss the scorecard view controller
     @IBAction func finishRoundButtonPressed(_ sender: Any) {
         
-        // Assert whether or not each hole was played and warn user if scorecard is incomplete
+        // Assert whether or not each hole was played
         for score in scorecard.scorePerHole {
             if score == 0 {
                 scorecard.isScorecardComplete = false
             }
         }
         
+        // Warn user if scorecard is incomplete
         if !scorecard.isScorecardComplete {
             let alert = UIAlertController(title: "Incomplete scorecard", message: "You have not entered a score for every hole on the scorecard. Do you still want to close the scorecard?", preferredStyle: .alert)
             
