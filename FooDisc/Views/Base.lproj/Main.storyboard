@@ -117,7 +117,7 @@
                                                         </backgroundConfiguration>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <segue destination="jgh-g4-J5V" kind="presentation" identifier="presentScorecardViewController" modalPresentationStyle="fullScreen" id="y3j-ho-M2z"/>
+                                                        <action selector="createScorecardButtonTapped:" destination="nnM-11-91b" eventType="touchUpInside" id="S1D-y0-e7r"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wln-xf-j70">

@@ -8,10 +8,8 @@
 import UIKit
 import MapKit
 
-// TODO: be better at autolayout
-// TODO: look into using initializers on these view controllers that are passed values like selectedCourse instead of loading up dummy data
-// TODO: disable finish button until scorecard is filled out (or warn user before finishing early and auto-fill in "-" for other scores and parse that when calculating total score)
 // TODO: track par performance and other stats
+// TODO: create more attractive UI
 // This class/view controller displays and allows a user to complete a scorecard for the selected course
 class ScorecardViewController: UIViewController {
     
@@ -34,45 +32,32 @@ class ScorecardViewController: UIViewController {
         return self.view.viewWithTag(300+currentHoleNumber) as? UILabel
     }
     
-    // Set with initializer
-    var currentHoleNumber = 1 {
-        didSet {
-            // Adjust label text when this value changes
-            currentHoleLabel.text = String(currentHoleNumber)
-        }
+    var currentHoleNumber: Int
+    var currentHoleScore: Int
+    var selectedCourse: Course
+    var scorecard: Scorecard
+    
+    // MARK: Initializers
+    
+    // Custom initializer to set courses array
+    init?(coder: NSCoder, selectedCourse: Course) {
+        self.selectedCourse = selectedCourse
+        scorecard = Scorecard(course: selectedCourse)
+        currentHoleNumber = 1
+        currentHoleScore = 0
+        super.init(coder: coder)
     }
     
-    // Set with initializer
-    var currentHoleScore = 0 {
-        didSet {
-            // Adjust label text when this value changes
-            currentHoleScoreLabel.text = String(currentHoleScore)
-        }
+    // Required initializer as a subclass of UIViewController
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
-    // Set with initializer
-    var scorecards: [Scorecard] = []
-    
-    // Set dummy course data to show in the event an invalid courseID is passed
-    // Set with initializer
-    var selectedCourse = Course(title: "Air Ball", city: "Whiff City", state: "Bogeyland", coordinate: CLLocationCoordinate2D()) {
-        didSet {
-            // Set actual scorecard for selectedCourse
-            scorecard = Scorecard(course: selectedCourse)
-        }
-    }
-    
-    // Set dummy course data until actual course data arrives
-    // Set with initializer
-    var scorecard = Scorecard(course: Course(title: "Air Ball", city: "Whiff City", state: "Bogeyland", coordinate: CLLocationCoordinate2D()))
 
     // MARK: Class functions
     
     // Load up the UI
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        scorecards = fetchScorecardData()
         initializeUI()
     }
     
@@ -99,7 +84,6 @@ class ScorecardViewController: UIViewController {
         }
         
         // Current hole elements
-        // Won't need this with initializer
         currentHoleLabel.text = String(currentHoleNumber)
         currentHoleScoreLabel.text = String(currentHoleScore)
     }
@@ -119,6 +103,9 @@ class ScorecardViewController: UIViewController {
         if layoutCurrentHoleScoreLabel != nil {
             layoutCurrentHoleScoreLabel!.text = String(currentHoleScore)
         }
+        
+        // Update current hole score label value
+        currentHoleScoreLabel.text = String(currentHoleScore)
     }
     
     // Increase current hole score by 1
@@ -132,6 +119,9 @@ class ScorecardViewController: UIViewController {
         if layoutCurrentHoleScoreLabel != nil {
             layoutCurrentHoleScoreLabel!.text = String(currentHoleScore)
         }
+        
+        // Update current hole score label value
+        currentHoleScoreLabel.text = String(currentHoleScore)
     }
     
     // Set the previous hole as the current hole
@@ -139,6 +129,9 @@ class ScorecardViewController: UIViewController {
         if currentHoleNumber > 1 {
             currentHoleNumber -= 1
             currentHoleScore = 0
+            
+            // Update current hole label value
+            currentHoleLabel.text = String(currentHoleNumber)
         }
     }
     
@@ -147,6 +140,9 @@ class ScorecardViewController: UIViewController {
         if currentHoleNumber < selectedCourse.layout.holes.count {
             currentHoleNumber += 1
             currentHoleScore = 0
+            
+            // Update current hole label value
+            currentHoleLabel.text = String(currentHoleNumber)
         }
     }
     
@@ -193,6 +189,7 @@ class ScorecardViewController: UIViewController {
         }
         
         // Save scorecard
+        var scorecards = fetchScorecardData()
         scorecards.append(scorecard)
         saveScorecardData(scorecards: scorecards)
         dismiss(animated: true, completion: nil)

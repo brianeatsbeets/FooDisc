@@ -106,11 +106,13 @@ class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate 
         mapItem.openInMaps(launchOptions: launchOptions)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "presentScorecardViewController" {
-            guard let viewController = segue.destination as? ScorecardViewController else { return }
-            viewController.selectedCourse = selectedCourse
-        }
+    @IBAction func createScorecardButtonTapped(_ sender: Any) {
+        guard let viewController = storyboard?.instantiateViewController(identifier: "ScorecardViewController", creator: {
+            coder in ScorecardViewController(coder: coder, selectedCourse: self.selectedCourse)
+        }) else { return }
+        
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true, completion: nil)
     }
     
     // MARK: Course conditions functions
