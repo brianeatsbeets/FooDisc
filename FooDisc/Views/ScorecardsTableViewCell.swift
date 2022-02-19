@@ -7,6 +7,7 @@
 
 import UIKit
 
+// TODO: rework autolayout + row height calculation/estimation
 // TODO: add colored background based on par performance?
 // This class/table view cell provides a custom cell for scorecard information to be displayed in ScorecardsTableViewController
 class ScorecardsTableViewCell: UITableViewCell {
