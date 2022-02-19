@@ -158,15 +158,20 @@ class ScorecardViewController: UIViewController {
         
         // Warn user if scorecard is incomplete
         if !scorecard.isScorecardComplete {
-            let alert = UIAlertController(title: "Incomplete scorecard", message: "You have not entered a score for every hole on the scorecard. Do you still want to close the scorecard?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Incomplete scorecard", message: "You have not entered a score for every hole on the scorecard. Do you still want to close the scorecard?", preferredStyle: .actionSheet)
             
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
-                finalizeScorecard()
-            }))
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { [self] action in
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [self] action in
                 scorecard.isScorecardComplete = true
             }))
             
+            alert.addAction(UIAlertAction(title: "Close as incomplete", style: .default, handler: { [self] action in
+                finalizeScorecard()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Close without saving", style: .destructive, handler: { [self] action in
+                dismiss(animated: true, completion: nil)
+            }))
+
             self.present(alert, animated: true, completion: nil)
         } else {
             finalizeScorecard()
@@ -192,6 +197,7 @@ class ScorecardViewController: UIViewController {
         var scorecards = fetchScorecardData()
         scorecards.append(scorecard)
         saveScorecardData(scorecards: scorecards)
+        
         dismiss(animated: true, completion: nil)
     }
     
