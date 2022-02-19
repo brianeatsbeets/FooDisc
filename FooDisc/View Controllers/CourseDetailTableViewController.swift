@@ -22,14 +22,25 @@ class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate 
     @IBOutlet var courseConditionsLabel: UILabel!
     @IBOutlet var mapView: MKMapView!
     
-    var courses: [Course] = []
-    var courseID = ""
-    
-    // Set dummy course data to show in the event an invalid courseID is passed
-    var selectedCourse = Course(title: "Air Ball", city: "Whiff City", state: "Bogeyland", coordinate: CLLocationCoordinate2D())
+    var courses: [Course]
+    var selectedCourse: Course
     
     // Set up a CoursesDelegate instance so we can talk to CoursesViewController
     weak var delegate: CoursesDelegate?
+    
+    // MARK: Initializers
+    
+    // Custom initializer to set courses array
+    init?(coder: NSCoder, courses: [Course], selectedCourse: Course) {
+        self.courses = courses
+        self.selectedCourse = selectedCourse
+        super.init(coder: coder)
+    }
+    
+    // Required initializer as a subclass of UIViewController
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: Class functions
     
@@ -45,22 +56,7 @@ class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate 
         tableView.register(UINib(nibName: "LayoutTableViewCell", bundle: nil), forCellReuseIdentifier: "LayoutCell")
         courseConditionsView.layer.cornerRadius = 5
         
-        fetchSelectedCourse()
         initializeUI()
-    }
-    
-    // Using the provided courseID, parse the courses array and grab the selected course
-    func fetchSelectedCourse() {
-
-        // Filter out selected course
-        if let course = courses.filter({ $0.id == courseID }).first {
-            selectedCourse = course
-        } else {
-            // If selected course was not found, alert the user and pop the view controller
-            let alert = UIAlertController(title: "Course not found", message: "Data for the course you selected was not found. Please select a different course.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in self.navigationController?.popViewController(animated: true) }))
-            self.present(alert, animated: true, completion: nil)
-        }
     }
     
     // Fill the UI elements with selected course data

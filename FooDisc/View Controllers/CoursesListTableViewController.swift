@@ -70,10 +70,12 @@ class CoursesListTableViewController: UITableViewController {
     // Did select row at
     // When a row is selected, create a new CourseDetailTableViewController and pass it the courses array along with the selected course ID
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "CourseDetailTableViewController") as? CourseDetailTableViewController else { return }
+        
+        guard let viewController = storyboard?.instantiateViewController(identifier: "CourseDetailTableViewController", creator: {
+            coder in CourseDetailTableViewController(coder: coder, courses: self.courses, selectedCourse: self.courses[indexPath.row])
+        }) else { return }
+        
         viewController.delegate = containerViewController
-        viewController.courseID = courses[indexPath.row].id
-        viewController.courses = courses
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

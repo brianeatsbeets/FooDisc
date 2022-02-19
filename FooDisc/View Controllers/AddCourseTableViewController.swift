@@ -25,17 +25,18 @@ class AddCourseTableViewController: UITableViewController {
     
     var courses: [Course]
     
+    // Used to bulk-add event listeners
+    var textFields: [UITextField]
+    
     // Set up a CoursesDelegate instance so we can talk to CoursesViewController
     weak var delegate: CoursesDelegate?
     
-    // Used to bulk-add event listeners
-    var textFields: [UITextField] = []
-    
     // MARK: Initializers
     
-    // Custom initializer that takes in a course array
+    // Custom initializer to set courses array
     init?(coder: NSCoder, courses: [Course]) {
         self.courses = courses
+        textFields = []
         super.init(coder: coder)
     }
     

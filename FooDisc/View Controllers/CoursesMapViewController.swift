@@ -135,11 +135,13 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     // When an annotation view callout is tapped, create a new CourseDetailTableViewController and pass it the courses array along with the selected course ID
     @objc func calloutTapped(sender:UITapGestureRecognizer) {
         let view = sender.view as! MKAnnotationView
-        guard let course = view.annotation as? Course else { return }
-        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "CourseDetailTableViewController") as? CourseDetailTableViewController else { return }
+        guard let selectedCourse = view.annotation as? Course else { return }
+        
+        guard let viewController = storyboard?.instantiateViewController(identifier: "CourseDetailTableViewController", creator: {
+            coder in CourseDetailTableViewController(coder: coder, courses: self.courses, selectedCourse: selectedCourse)
+        }) else { return }
+        
         viewController.delegate = containerViewController
-        viewController.courseID = course.id
-        viewController.courses = courses
         navigationController?.pushViewController(viewController, animated: true)
     }
     
