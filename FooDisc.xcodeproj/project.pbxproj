@@ -33,6 +33,10 @@
 		E1DE24C027B0679600E2AB0A /* ScorecardsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DE24BE27B0679600E2AB0A /* ScorecardsTableViewCell.xib */; };
 		E1E8CC7C27A1B60C001E8212 /* CoursesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */; };
 		E1E8CC7F27A1B75D001E8212 /* CoursesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */; };
+		E1F0532327DD7B4D003E0043 /* Disc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F0532227DD7B4D003E0043 /* Disc.swift */; };
+		E1F0532627DD7B60003E0043 /* DiscDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F0532427DD7B60003E0043 /* DiscDetailTableViewController.swift */; };
+		E1F0532727DD7B60003E0043 /* DiscTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F0532527DD7B60003E0043 /* DiscTableViewController.swift */; };
+		E1F0532927DD7B70003E0043 /* DiscTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F0532827DD7B70003E0043 /* DiscTableViewCell.swift */; };
 		E1FF8EF627A42D9000C0E810 /* DisabledCursorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FF8EF527A42D9000C0E810 /* DisabledCursorTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +69,10 @@
 		E1DE24BE27B0679600E2AB0A /* ScorecardsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScorecardsTableViewCell.xib; sourceTree = "<group>"; };
 		E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMapViewController.swift; sourceTree = "<group>"; };
 		E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListTableViewController.swift; sourceTree = "<group>"; };
+		E1F0532227DD7B4D003E0043 /* Disc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Disc.swift; path = FooDisc/Models/Disc.swift; sourceTree = SOURCE_ROOT; };
+		E1F0532427DD7B60003E0043 /* DiscDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscDetailTableViewController.swift; path = "FooDisc/View Controllers/DiscDetailTableViewController.swift"; sourceTree = SOURCE_ROOT; };
+		E1F0532527DD7B60003E0043 /* DiscTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscTableViewController.swift; path = "FooDisc/View Controllers/DiscTableViewController.swift"; sourceTree = SOURCE_ROOT; };
+		E1F0532827DD7B70003E0043 /* DiscTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscTableViewCell.swift; sourceTree = "<group>"; };
 		E1FF8EF527A42D9000C0E810 /* DisabledCursorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DisabledCursorTextField.swift; path = FooDisc/Utility/DisabledCursorTextField.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -89,6 +97,8 @@
 				E17B336F27A2F1E4000EA493 /* AddCourseTableViewController.swift */,
 				E1C3115927AC250100C24EF9 /* CourseDetailTableViewController.swift */,
 				E1DE24AA27AEF9FF00E2AB0A /* ScorecardViewController.swift */,
+				E1F0532427DD7B60003E0043 /* DiscDetailTableViewController.swift */,
+				E1F0532527DD7B60003E0043 /* DiscTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -99,6 +109,7 @@
 				E150459127A0E487008EC69B /* Course.swift */,
 				E1C3115B27AC361600C24EF9 /* Layout.swift */,
 				E1DE24AC27AF241600E2AB0A /* Scorecard.swift */,
+				E1F0532227DD7B4D003E0043 /* Disc.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -166,6 +177,7 @@
 				E15923EF27A9938A003AEFFA /* CourseCalloutView.swift */,
 				E15923F127AAACC1003AEFFA /* CoursesListTableViewCell.swift */,
 				E1C3115D27AC419C00C24EF9 /* LayoutTableViewCell.swift */,
+				E1F0532827DD7B70003E0043 /* DiscTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -246,14 +258,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1DE24AD27AF241600E2AB0A /* Scorecard.swift in Sources */,
+				E1F0532627DD7B60003E0043 /* DiscDetailTableViewController.swift in Sources */,
 				E15923F327AAACC1003AEFFA /* CoursesListTableViewCell.swift in Sources */,
 				E1546FCB279F453C00A00FC4 /* CoursesViewController.swift in Sources */,
+				E1F0532327DD7B4D003E0043 /* Disc.swift in Sources */,
 				E1E8CC7F27A1B75D001E8212 /* CoursesListTableViewController.swift in Sources */,
 				E1546FC7279F453C00A00FC4 /* AppDelegate.swift in Sources */,
 				E1C3115A27AC250100C24EF9 /* CourseDetailTableViewController.swift in Sources */,
+				E1F0532927DD7B70003E0043 /* DiscTableViewCell.swift in Sources */,
 				E1C3115F27AC419C00C24EF9 /* LayoutTableViewCell.swift in Sources */,
 				E1E8CC7C27A1B60C001E8212 /* CoursesMapViewController.swift in Sources */,
 				E1FF8EF627A42D9000C0E810 /* DisabledCursorTextField.swift in Sources */,
+				E1F0532727DD7B60003E0043 /* DiscTableViewController.swift in Sources */,
 				E150459227A0E487008EC69B /* Course.swift in Sources */,
 				E1546FC9279F453C00A00FC4 /* SceneDelegate.swift in Sources */,
 				E1DE24B227AFFF3700E2AB0A /* ScorecardsTableViewController.swift in Sources */,
