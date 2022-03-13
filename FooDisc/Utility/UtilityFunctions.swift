@@ -7,6 +7,7 @@
 
 import Foundation
 
+//TODO: move these functions to their respective classes as static functions akin to Disc
 // Retrieve course data from UserDefaults
 func fetchCourseData() -> [Course] {
     let defaults = UserDefaults.standard

@@ -1,6 +1,6 @@
 //
 //  DiscTableViewCell.swift
-//  DiscInventory
+//  FooDisc
 //
 //  Created by Aguirre, Brian P. on 3/11/22.
 //
