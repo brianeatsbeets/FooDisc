@@ -130,8 +130,9 @@ class ScorecardViewController: UIViewController {
             currentHoleNumber -= 1
             currentHoleScore = 0
             
-            // Update current hole label value
+            // Update current hole/score label values
             currentHoleLabel.text = String(currentHoleNumber)
+            currentHoleScoreLabel.text = String(currentHoleScore)
         }
     }
     
@@ -141,8 +142,9 @@ class ScorecardViewController: UIViewController {
             currentHoleNumber += 1
             currentHoleScore = 0
             
-            // Update current hole label value
+            // Update current hole/score label values
             currentHoleLabel.text = String(currentHoleNumber)
+            currentHoleScoreLabel.text = String(currentHoleScore)
         }
     }
     
