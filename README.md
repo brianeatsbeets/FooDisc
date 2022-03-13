@@ -12,7 +12,7 @@ This project came about as a fun way to test and display my skills in exploring 
   - Autolayout
   - Stack views
   - IBOutlets, IBOutletCollections, and IBActions
-  - System view controllers
+  - System controllers
     - UIAlertController
     - UIImagePickerController
     - UIColorPickerViewController
