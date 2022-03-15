@@ -13,7 +13,7 @@ protocol CoursesDelegate: AnyObject {
 }
 
 // This class/view controller serves as the container view controller for CoursesMapViewController and CoursesListTableViewController
-class CoursesViewController: UIViewController, CoursesDelegate {
+class CoursesViewController: UIViewController {
 
     // MARK: Variable declarations
     
@@ -43,13 +43,6 @@ class CoursesViewController: UIViewController, CoursesDelegate {
         self.add(asChildViewController: viewController)
         return viewController
     }()
-    
-    // MARK: CoursesDelegate delegate functions
-    
-    // Delegate method to update courses from other view controllers
-    func updateCoursesArray(courses: [Course]) {
-        self.courses = courses
-    }
     
     // MARK: Class functions
     
@@ -115,3 +108,13 @@ class CoursesViewController: UIViewController, CoursesDelegate {
     }
 }
 
+// MARK: Extensions
+
+// This extension of CoursesViewController conforms to the CoursesDelegagte protocol
+extension CoursesViewController: CoursesDelegate {
+    
+    // Delegate method to update courses from other view controllers
+    func updateCoursesArray(courses: [Course]) {
+        self.courses = courses
+    }
+}

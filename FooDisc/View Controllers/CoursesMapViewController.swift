@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 
 // This class/view controller provides a map that hosts Course annotations
-class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class CoursesMapViewController: UIViewController {
 
     // MARK: Variable declarations
     
@@ -84,18 +84,6 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
             }
         }
     }
-
-    // Respond to changed location authorization permissions
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("User changed location authorization permissions to \(status).")
-    }
-
-    // Respond to inability to get user location
-    // Note: this gets called on initial launch before user has set location permissions - should locationManager.startUpdatingLocation() be in a closure of locationManager.requestWhenInUseAuthorization() or something?
-    // TODO: alert user and describe potential loss of functionality
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error getting user location: \(error).")
-    }
     
     // Zoom the map to a given location
     func zoomToLocation(_ location: CLLocation) {
@@ -117,19 +105,6 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         // Refresh the annotations to display the updated distances
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotations(courses)
-    }
-    
-    // MARK: Annotation functions
-    
-    // Create a tap gesture recognizer on the annotation view callout when selected
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        let tapGesture = UITapGestureRecognizer(target:self,  action:#selector(calloutTapped(sender:)))
-        view.addGestureRecognizer(tapGesture)
-    }
-
-    // Remove the tap gesture recognizer from the annotation view callout when deselected
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        view.removeGestureRecognizer(view.gestureRecognizers!.first!)
     }
 
     // When an annotation view callout is tapped, create a new CourseDetailTableViewController and pass it the courses array along with the selected course ID
@@ -174,3 +149,35 @@ class CoursesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
 //    }
 }
 
+// MARK: Extensions
+
+// This extension of CoursesMapViewController conforms to the CLLocationManagerDelegate protocol
+extension CoursesMapViewController: CLLocationManagerDelegate {
+    
+    // Respond to changed location authorization permissions
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("User changed location authorization permissions to \(status).")
+    }
+
+    // Respond to inability to get user location
+    // Note: this gets called on initial launch before user has set location permissions - should locationManager.startUpdatingLocation() be in a closure of locationManager.requestWhenInUseAuthorization() or something?
+    // TODO: alert user and describe potential loss of functionality
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error getting user location: \(error).")
+    }
+}
+
+// This extension of CoursesMapViewController conforms to the MKMapViewDelegate protocol
+extension CoursesMapViewController: MKMapViewDelegate {
+    
+    // Create a tap gesture recognizer on the annotation view callout when selected
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let tapGesture = UITapGestureRecognizer(target:self,  action:#selector(calloutTapped(sender:)))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    // Remove the tap gesture recognizer from the annotation view callout when deselected
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        view.removeGestureRecognizer(view.gestureRecognizers!.first!)
+    }
+}

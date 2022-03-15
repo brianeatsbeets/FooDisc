@@ -90,12 +90,12 @@
 		E150459527A0EBE5008EC69B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E1DE24B027AFFF3700E2AB0A /* ScorecardsTableViewController.swift */,
 				E1546FCA279F453C00A00FC4 /* CoursesViewController.swift */,
 				E1E8CC7B27A1B60C001E8212 /* CoursesMapViewController.swift */,
 				E1E8CC7D27A1B75D001E8212 /* CoursesListTableViewController.swift */,
 				E17B336F27A2F1E4000EA493 /* AddCourseTableViewController.swift */,
 				E1C3115927AC250100C24EF9 /* CourseDetailTableViewController.swift */,
+				E1DE24B027AFFF3700E2AB0A /* ScorecardsTableViewController.swift */,
 				E1DE24AA27AEF9FF00E2AB0A /* ScorecardViewController.swift */,
 				E1F0532427DD7B60003E0043 /* DiscDetailTableViewController.swift */,
 				E1F0532527DD7B60003E0043 /* DiscTableViewController.swift */,

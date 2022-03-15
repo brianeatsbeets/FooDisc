@@ -56,7 +56,7 @@ struct Disc: Equatable, Codable {
     static let archiveURL = documentsDirectory.appendingPathComponent("discs").appendingPathExtension("plist")
 }
 
-// MARK: Supporting elements
+// MARK: Supporting types
 
 // This enum provides a collection of disc types
 enum DiscType: Equatable, Codable, CustomStringConvertible, CaseIterable {
@@ -104,13 +104,15 @@ enum Condition: Equatable, Codable, CustomStringConvertible, CaseIterable {
     }
 }
 
-// This property wrapper contains the manual encoding implementation for UIColor, which keeps the Disc struct free from Codable clutter (CodingKeys enum, etc.)
+// This property wrapper and its extension contain the manual encoding implementation for UIColor, which keeps the Disc struct free from Codable clutter (CodingKeys enum, etc.)
 @propertyWrapper
 struct CodableColor {
     var wrappedValue: UIColor
 }
 
-// Codable conformance is placed in an extension to keep the UIColor class functionality intact
+// MARK: Extensions
+
+// Codable conformance is placed in an extension to keep the UIColor class functionality intact (able to select fixed colors, i.e. .green)
 extension CodableColor: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

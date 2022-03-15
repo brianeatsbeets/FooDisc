@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 
+// TODO: review adding codable extension to course (a la disc struct) to clean up code
 // TODO: deal with potential encoding/decoding errors?
 // This class/annotation provides a custom object to contain course information
 class Course: NSObject, Codable, MKAnnotation {
@@ -74,6 +75,8 @@ class Course: NSObject, Codable, MKAnnotation {
         try container.encode(coordinate.longitude, forKey: .longitude)
     }
 }
+
+// MARK: Supporting types
 
 // Enum to describe the current conditions of the Course
 enum CourseCondition: Codable, CustomStringConvertible {

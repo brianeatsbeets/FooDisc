@@ -6,9 +6,11 @@
 //
 
 import UIKit
+
 protocol DiscCellDelegate: AnyObject {
     func inBagToggled(sender: DiscTableViewCell)
 }
+
 class DiscTableViewCell: UITableViewCell {
     
     @IBOutlet var discColorView: UIView!
@@ -22,13 +24,6 @@ class DiscTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     @IBAction func inBagButtonTapped() {

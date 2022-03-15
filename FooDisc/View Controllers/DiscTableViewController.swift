@@ -9,7 +9,7 @@ import UIKit
 
 // TODO: review/remediate warning caused in unwind by tableView.reloadRows/.insertRows
 // TODO: review unwind segue and compare to alternate implementations in app
-class DiscTableViewController: UITableViewController, DiscCellDelegate {
+class DiscTableViewController: UITableViewController {
     
     // MARK: Properties
     
@@ -22,6 +22,7 @@ class DiscTableViewController: UITableViewController, DiscCellDelegate {
         
         navigationItem.leftBarButtonItem = editButtonItem
         
+        // Load disc data
         if let savedDiscs = Disc.loadDiscs() {
             discs = savedDiscs
         }
@@ -29,10 +30,12 @@ class DiscTableViewController: UITableViewController, DiscCellDelegate {
 
     // MARK: - Table view data source
 
+    // Number of rows in section
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return discs.count
     }
 
+    // Cell for row at
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscCell", for: indexPath) as! DiscTableViewCell
         cell.delegate = self
@@ -50,12 +53,12 @@ class DiscTableViewController: UITableViewController, DiscCellDelegate {
         return cell
     }
 
-    // Override to support conditional editing of the table view.
+    // Can edit row at
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
 
-    // Override to support editing the table view.
+    // Commit for row at
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             discs.remove(at: indexPath.row)
@@ -63,22 +66,10 @@ class DiscTableViewController: UITableViewController, DiscCellDelegate {
             Disc.saveDiscs(discs)
         }
     }
-    
-    // MARK: DiscCellDelegate function
-    
-    func inBagToggled(sender: DiscTableViewCell) {
-        if let indexPath = tableView.indexPath(for: sender) {
-            var disc = discs[indexPath.row]
-            disc.inBag.toggle()
-            discs[indexPath.row] = disc
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-            
-            Disc.saveDiscs(discs)
-        }
-    }
 
     // MARK: - Navigation
     
+    // Save disc updates and update table view to match
     @IBAction func unwindToDiscList(segue: UIStoryboardSegue) {
         guard segue.identifier == "saveUnwind" else { return }
         let sourceViewController = segue.source as!
@@ -100,6 +91,7 @@ class DiscTableViewController: UITableViewController, DiscCellDelegate {
         Disc.saveDiscs(discs)
     }
     
+    // Transition to the edit view for the selected disc
     @IBSegueAction func editDisc(_ coder: NSCoder, sender: Any?) -> DiscDetailTableViewController? {
         guard let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) else { return nil }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -110,4 +102,22 @@ class DiscTableViewController: UITableViewController, DiscCellDelegate {
         return detailController
     }
 
+}
+
+// MARK: Extensions
+
+// This DiscTableViewController extension conforms to the DiscCellDelegate protocol
+extension DiscTableViewController: DiscCellDelegate {
+    
+    // Toggle the inBag property and save the disc
+    func inBagToggled(sender: DiscTableViewCell) {
+        if let indexPath = tableView.indexPath(for: sender) {
+            var disc = discs[indexPath.row]
+            disc.inBag.toggle()
+            discs[indexPath.row] = disc
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            
+            Disc.saveDiscs(discs)
+        }
+    }
 }

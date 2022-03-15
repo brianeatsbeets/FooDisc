@@ -7,13 +7,14 @@
 
 import UIKit
 
-// TODO: have camera capture square image instead of rectangular
+// TODO: have camera capture square image instead of rectangular and add circular overlay
+// TODO: change the image and color views to a circular shape
 // TODO: un-require some text fields and make the properties optional
 // TODO: add next button/toolbar on all textfield keyboards
 // TODO: troubleshoot the constraint warnings on the UIToolbars
 // TODO: verify that the user wants to clear the disc picture via an alert
 // TODO: only display decimal values if the Double value is not a whole number
-class DiscDetailTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIColorPickerViewControllerDelegate, UITextFieldDelegate {
+class DiscDetailTableViewController: UITableViewController {
     
     // MARK: Properties
     
@@ -185,32 +186,6 @@ class DiscDetailTableViewController: UITableViewController, UIImagePickerControl
         present(colorPicker, animated: true, completion: nil)
     }
     
-    // MARK: UIImagePickerController delegate methods
-    
-    // Set the disc image to the selected image
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[.originalImage] as? UIImage else { return }
-        discImageView.image = selectedImage
-        dismiss(animated: true, completion: nil)
-    }
-    
-    // Dismiss the UIImagePicker when cancel is pressed
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: UIColorPickerViewController delegate methods
-    
-    // Set the disc color to the selected color upon exit
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        self.discColorView.backgroundColor = viewController.selectedColor
-    }
-    
-//    // Set the disc color to the selected color - UIColorPicker covers the majority of the view so these changes to the discColorView will not be visible to the user
-//    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-//        self.discColorView.backgroundColor = viewController.selectedColor
-//    }
-    
     // MARK: TextField functions
     
     // TODO: use this implementation instead of listeners in other areas of FooDisc that require validation
@@ -237,13 +212,6 @@ class DiscDetailTableViewController: UITableViewController, UIImagePickerControl
         } else {
             textField.text = "-" + textField.text!
         }
-    }
-    
-    // MARK: UITextFieldDelegate delegate methods
-    
-    // Set the active textField
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeTextField = textField
     }
     
     // MARK: Navigation
@@ -289,5 +257,41 @@ class DiscDetailTableViewController: UITableViewController, UIImagePickerControl
         }
         
         
+    }
+}
+
+// MARK: Extensions
+
+// This extension of DiscDetailTableViewController conforms to the UIImagePickerControllerDelegate and UINavigationControllerDelegate protocols
+extension DiscDetailTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    // Set the disc image to the selected image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[.originalImage] as? UIImage else { return }
+        discImageView.image = selectedImage
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Dismiss the UIImagePicker when cancel is pressed
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+// This extension of DiscDetailTableViewController conforms to the UIColorPickerViewControllerDelegate protocol
+extension DiscDetailTableViewController: UIColorPickerViewControllerDelegate {
+    
+    // Set the disc color to the selected color upon exit
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        self.discColorView.backgroundColor = viewController.selectedColor
+    }
+}
+
+// This extension of DiscDetailTableViewController conforms to the UITextFieldDelegate protocol
+extension DiscDetailTableViewController: UITextFieldDelegate {
+    
+    // Set the active textField
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
     }
 }
