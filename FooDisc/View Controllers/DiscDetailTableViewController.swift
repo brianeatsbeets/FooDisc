@@ -13,7 +13,6 @@ import UIKit
 // TODO: add next button/toolbar on all textfield keyboards
 // TODO: troubleshoot the constraint warnings on the UIToolbars
 // TODO: verify that the user wants to clear the disc picture via an alert
-// TODO: only display decimal values if the Double value is not a whole number
 class DiscDetailTableViewController: UITableViewController {
     
     // MARK: Properties
@@ -109,11 +108,11 @@ class DiscDetailTableViewController: UITableViewController {
             typeSegmentedControl.selectedSegmentIndex = disc.type.getIndex()
             manufacturerTextField.text = disc.manufacturer
             plasticTextField.text = disc.plastic
-            speedTextField.text = String(disc.speed)
-            glideTextField.text = String(disc.glide)
-            turnTextField.text = String(disc.turn)
-            fadeTextField.text = String(disc.fade)
-            weightTextField.text = String(disc.weightInGrams)
+            speedTextField.text = Disc.discStatFormattedString(disc.speed)
+            glideTextField.text = Disc.discStatFormattedString(disc.glide)
+            turnTextField.text = Disc.discStatFormattedString(disc.turn)
+            fadeTextField.text = Disc.discStatFormattedString(disc.fade)
+            weightTextField.text = Disc.discStatFormattedString(disc.weightInGrams)
             conditionSegmentedControl.selectedSegmentIndex = disc.condition.getIndex()
             notesTextField.text = disc.notes
             inBagSegmentedControl.selectedSegmentIndex = {

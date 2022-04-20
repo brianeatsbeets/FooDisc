@@ -54,6 +54,16 @@ struct Disc: Equatable, Codable {
         let codedDiscs = try? propertyListEncoder.encode(discs)
         try? codedDiscs?.write(to: archiveURL, options: .noFileProtection)
     }
+    
+    // Convert Double to String and remove decimal value if 0
+    static func discStatFormattedString(_ stat: Double) -> String {
+        // Check of the decimal value is zero by comparing the absolute value to the rounded-down absolute value
+        if abs(stat) == abs(stat).rounded(.down) {
+            return String(format: "%.0f", stat)
+        } else {
+            return String(stat)
+        }
+    }
 }
 
 // MARK: Supporting types

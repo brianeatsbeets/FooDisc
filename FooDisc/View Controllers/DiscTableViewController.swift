@@ -46,8 +46,8 @@ class DiscTableViewController: UITableViewController {
             cell.discImageView.image = UIImage(data: imageData)
         }
         cell.discNameLabel.text = disc.name
-        cell.discAttributesRowOneLabel.text = disc.manufacturer + " | " + disc.plastic + " | " + String(disc.weightInGrams) + "g"
-        cell.discAttributesRowTwoLabel.text = disc.type.description + " - " + String(disc.speed) + "|" + String(disc.glide) + "|" + String(disc.turn) + "|" + String(disc.fade)
+        cell.discAttributesRowOneLabel.text = disc.manufacturer + " | " + disc.plastic + " | " + Disc.discStatFormattedString(disc.weightInGrams) + "g"
+        cell.discAttributesRowTwoLabel.text = disc.type.description + " - " + Disc.discStatFormattedString(disc.speed) + " | " + Disc.discStatFormattedString(disc.glide) + " | " + Disc.discStatFormattedString(disc.turn) + " | " + Disc.discStatFormattedString(disc.fade)
         cell.inBagButton.isSelected = disc.inBag
 
         return cell
