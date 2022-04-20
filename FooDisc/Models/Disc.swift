@@ -32,6 +32,10 @@ struct Disc: Equatable, Codable {
     var notes: String?
     var inBag: Bool
     
+    // Define archival directory
+    static let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let archiveURL = documentsDirectory.appendingPathComponent("discs").appendingPathExtension("plist")
+    
     // Equatable required function
     static func ==(lhs: Disc, rhs: Disc) -> Bool {
         return lhs.id == rhs.id
@@ -50,10 +54,6 @@ struct Disc: Equatable, Codable {
         let codedDiscs = try? propertyListEncoder.encode(discs)
         try? codedDiscs?.write(to: archiveURL, options: .noFileProtection)
     }
-    
-    // Define archival directory
-    static let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let archiveURL = documentsDirectory.appendingPathComponent("discs").appendingPathExtension("plist")
 }
 
 // MARK: Supporting types

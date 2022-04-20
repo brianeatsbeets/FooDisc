@@ -19,14 +19,14 @@ class ScorecardsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scorecards = fetchScorecardData()
+        scorecards = Scorecard.fetchScorecardData()
         tableView.register(UINib(nibName: "ScorecardsTableViewCell", bundle: nil), forCellReuseIdentifier: "ScorecardsCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        scorecards = fetchScorecardData()
+        scorecards = Scorecard.fetchScorecardData()
         tableView.reloadData()
     }
     

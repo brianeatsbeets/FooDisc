@@ -50,7 +50,7 @@ class CoursesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        courses = fetchCourseData()
+        courses = Course.fetchCourseData()
         initializeSegmentedControl()
         updateView()
     }

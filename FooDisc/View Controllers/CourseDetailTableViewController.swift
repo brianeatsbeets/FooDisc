@@ -141,7 +141,7 @@ class CourseDetailTableViewController: UITableViewController, MKMapViewDelegate 
     
     // Save the updated course condition to UserDefaults and the courses array in CoursesViewController, and then update the courseConditions UI
     func saveChanges() {
-        saveCourseData(courses: courses)
+        Course.saveCourseData(courses: courses)
         delegate?.updateCoursesArray(courses: courses)
         updateCourseConditionsUI()
     }

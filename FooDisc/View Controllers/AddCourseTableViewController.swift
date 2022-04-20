@@ -106,7 +106,7 @@ class AddCourseTableViewController: UITableViewController {
         courses.append(newCourse)
         
         // Save to UserDefaults
-        saveCourseData(courses: courses)
+        Course.saveCourseData(courses: courses)
         
         // Save to delegate courses array
         delegate?.updateCoursesArray(courses: courses)

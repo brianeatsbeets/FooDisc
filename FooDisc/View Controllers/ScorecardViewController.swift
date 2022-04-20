@@ -196,9 +196,9 @@ class ScorecardViewController: UIViewController {
         }
         
         // Save scorecard
-        var scorecards = fetchScorecardData()
+        var scorecards = Scorecard.fetchScorecardData()
         scorecards.append(scorecard)
-        saveScorecardData(scorecards: scorecards)
+        Scorecard.saveScorecardData(scorecards: scorecards)
         
         dismiss(animated: true, completion: nil)
     }

@@ -25,4 +25,36 @@ struct Scorecard: Codable {
         totalPar = 0
         isScorecardComplete = true
     }
+    
+    // MARK: Data storage/retrieval functions
+    
+    // Retrieve scorecard data from UserDefaults
+    static func fetchScorecardData() -> [Scorecard] {
+        let defaults = UserDefaults.standard
+        var scorecards: [Scorecard] = []
+
+        if let data = defaults.data(forKey: "Scorecards") {
+            do {
+                let decoder = JSONDecoder()
+                scorecards = try decoder.decode([Scorecard].self, from: data)
+            } catch {
+                print("Failed to decode scorecards: \(error)")
+            }
+        }
+        
+        return scorecards
+    }
+
+    // Save scorecard data to UserDefaults
+    static func saveScorecardData(scorecards: [Scorecard]) {
+        let defaults = UserDefaults.standard
+        
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(scorecards)
+            defaults.set(data, forKey: "Scorecards")
+        } catch {
+            print("Failed to encode scorecards: \(error)")
+        }
+    }
 }

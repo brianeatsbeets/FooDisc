@@ -8,10 +8,10 @@
 import Foundation
 import MapKit
 
-// TODO: review adding codable extension to course (a la disc struct) to clean up code
 // TODO: deal with potential encoding/decoding errors?
 // This class/annotation provides a custom object to contain course information
 class Course: NSObject, Codable, MKAnnotation {
+//class Course: NSObject, MKAnnotation {
     
     var id: String
     var title: String? // Required by MKAnnotation
@@ -33,19 +33,51 @@ class Course: NSObject, Codable, MKAnnotation {
         distanceFromUser = 0
     }
     
-    // MARK: Codable conforming elements
+    // MARK: Data storage/retrieval functions
     
+    // Retrieve course data from UserDefaults
+    static func fetchCourseData() -> [Course] {
+        let defaults = UserDefaults.standard
+        var courses: [Course] = []
+
+        if let data = defaults.data(forKey: "Courses") {
+            do {
+                let decoder = JSONDecoder()
+                courses = try decoder.decode([Course].self, from: data)
+            } catch {
+                print("Failed to decode courses: \(error)")
+            }
+        }
+        
+        return courses
+    }
+
+    // Save course data to UserDefaults
+    static func saveCourseData(courses: [Course]) {
+        let defaults = UserDefaults.standard
+        
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(courses)
+            defaults.set(data, forKey: "Courses")
+        } catch {
+            print("Failed to encode courses: \(error)")
+        }
+    }
+    
+    // MARK: Codable conforming elements
+
     // TODO: add layout when layouts are configurable
     // Specify keys for encoding/decoding
     enum CodingKeys: String, CodingKey {
         case id, title, city, state, coordinate, currentConditions, latitude, longitude, layout
     }
-    
+
     // Decoding initializer for a Course object and its properties
     required init(from decoder: Decoder) throws {
-        
+
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         id = try values.decode(String.self, forKey: .id)
         title = try values.decodeIfPresent(String.self, forKey: .title) ?? "Error"
         city = try values.decode(String.self, forKey: .city)
@@ -53,18 +85,18 @@ class Course: NSObject, Codable, MKAnnotation {
         currentConditions = try values.decode(CourseCondition.self, forKey: .currentConditions)
         layout = try values.decode(Layout.self, forKey: .layout)
         distanceFromUser = 0
-        
+
         let latitude = try values.decode(CLLocationDegrees.self, forKey: .latitude)
         let longitude = try values.decode(CLLocationDegrees.self, forKey: .longitude)
-        
+
         coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
-    
+
     // Encode a Course object and its properties
     func encode(to encoder: Encoder) throws {
-        
+
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(title, forKey: .title)
         try container.encode(city, forKey: .city)
@@ -104,5 +136,3 @@ enum CourseCondition: Codable, CustomStringConvertible {
         }
     }
 }
-
-
