@@ -12,11 +12,16 @@ This project came about as a fun way to test and display my skills in exploring 
   - Autolayout
   - Stack views
   - IBOutlets, IBOutletCollections, and IBActions
-  - UIAlertController
+  - System controllers
+    - UIAlertController
+    - UIImagePickerController
+    - UIColorPickerViewController
 - Swift coding elements
   - MVC design pattern
   - Delegation
   - Dependency injection
   - Frequent and descriptive comments
-  - Persistent data via UserDefaults
+  - Persistent data via UserDefaults, Documents directory plist (Firebase integration soon)
     - Conforming to Codable protocol
+
+As this app is more of a playground than an actual product, I am much more concerned about the functionality than the design details, so this will not be a full representation of my UI/UX polish and creativity until I come to a point where I am satisfied with the core functionality.
