@@ -117,11 +117,11 @@ enum CourseCondition: Codable, CustomStringConvertible {
     var color: UIColor {
         switch self {
         case .caution:
-            return .red
+            return UIColor(red: 0.596, green: 0.122, blue: 0.055, alpha: 1.0) // Red
         case .fair:
-            return .yellow
+            return UIColor(red: 0.755, green: 0.712, blue: 0, alpha: 1.0) // Yellow
         case .good:
-            return .green
+            return UIColor(red: 0.063, green: 0.404, blue: 0.227, alpha: 1.0) // Green
         }
     }
     
