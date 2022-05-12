@@ -64,6 +64,21 @@ struct Disc: Equatable, Codable {
             return String(stat)
         }
     }
+    
+    // Generate a sample list of discs
+    static func loadSampleDiscs() -> [Disc] {
+        let discs = [
+            Disc(id: UUID(), name: "Berg", color: .black, imageData: UIImage(named: "berg_black")?.jpegData(compressionQuality: 0.9), type: .putter, manufacturer: "Kastaplast", plastic: "K1", weightInGrams: 173.0, speed: 1.0, glide: 1.0, turn: 0.0, fade: 2.0, condition: .great, notes: nil, inBag: true),
+            Disc(id: UUID(), name: "Envy", color: .blue, imageData: UIImage(named: "envy_blue")?.jpegData(compressionQuality: 0.9), type: .putter, manufacturer: "Axiom", plastic: "Eclipse", weightInGrams: 172.0, speed: 3.0, glide: 3.0, turn: 0.0, fade: 2.0, condition: .good, notes: nil, inBag: false),
+            Disc(id: UUID(), name: "Zone", color: .green, imageData: UIImage(named: "zone_green")?.jpegData(compressionQuality: 0.9), type: .midrange, manufacturer: "Discraft", plastic: "Ti FLX", weightInGrams: 174.0, speed: 4.0, glide: 3.0, turn: 0.0, fade: 3.0, condition: .fair, notes: nil, inBag: true),
+            Disc(id: UUID(), name: "Hex", color: .orange, imageData: UIImage(named: "hex_orange")?.jpegData(compressionQuality: 0.9), type: .midrange, manufacturer: "Axiom", plastic: "Neutron", weightInGrams: 168.0, speed: 5.0, glide: 5.0, turn: -1.0, fade: 1.0, condition: .good, notes: nil, inBag: true),
+            Disc(id: UUID(), name: "Leopard3", color: .red, imageData: UIImage(named: "leopard3_red")?.jpegData(compressionQuality: 0.9), type: .fairway, manufacturer: "Innova", plastic: "GStar", weightInGrams: 171.0, speed: 7.0, glide: 5.0, turn: -2.0, fade: 1.0, condition: .good, notes: nil, inBag: false),
+            Disc(id: UUID(), name: "Lots", color: .orange, imageData: UIImage(named: "lots_orange")?.jpegData(compressionQuality: 0.9), type: .distance, manufacturer: "Kastaplast", plastic: "K1", weightInGrams: 171.0, speed: 9.0, glide: 5.0, turn: -1.0, fade: 2.0, condition: .poor, notes: nil, inBag: true),
+            Disc(id: UUID(), name: "Animus", color: .green, imageData: UIImage(named: "animus_green")?.jpegData(compressionQuality: 0.9), type: .distance, manufacturer: "Thought Space Athletics", plastic: "Aura", weightInGrams: 168.0, speed: 11.0, glide: 5.0, turn: 0.0, fade: 2.0, condition: .poor, notes: nil, inBag: true)
+        ]
+        
+        return discs
+    }
 }
 
 // MARK: Supporting types

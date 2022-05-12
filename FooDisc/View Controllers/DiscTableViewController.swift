@@ -25,6 +25,8 @@ class DiscTableViewController: UITableViewController {
         // Load disc data
         if let savedDiscs = Disc.loadDiscs() {
             discs = savedDiscs
+        } else {
+            discs = Disc.loadSampleDiscs()
         }
     }
 
