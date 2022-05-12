@@ -27,6 +27,12 @@ class ScorecardsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         scorecards = Scorecard.fetchScorecardData()
+        
+        // Import sample scorecards if no scorecard data is present
+        if scorecards.isEmpty {
+            scorecards = Scorecard.loadSampleScorecards()
+        }
+        
         tableView.reloadData()
     }
     

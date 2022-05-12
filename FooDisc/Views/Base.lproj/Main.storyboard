@@ -520,7 +520,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Add Course" id="UfE-nt-mZN">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
-                                <action selector="addCourseButtonPressed:" destination="xCv-Dc-KTy" id="QGz-u8-0Eu"/>
+                                <action selector="addCourseButtonPressed" destination="xCv-Dc-KTy" id="1Pa-oY-PBR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2061,8 +2061,8 @@
             <objects>
                 <navigationController id="aPf-Zq-uvk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Discs" image="opticaldisc" catalog="system" id="9EM-33-CHc"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="w7d-Pc-ef4">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w7d-Pc-ef4">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

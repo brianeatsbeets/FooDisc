@@ -26,6 +26,17 @@ struct Scorecard: Codable {
         isScorecardComplete = true
     }
     
+    // Init for use with sample data
+    init(course: Course, date: Date, totalScore: Int, totalPar: Int) {
+        self.course = course
+        scorePerHole = [Int](repeating: 0, count: 18)
+        self.date = date
+        self.totalScore = totalScore
+        self.totalPar = totalPar
+        
+        isScorecardComplete = true
+    }
+    
     // MARK: Data storage/retrieval functions
     
     // Retrieve scorecard data from UserDefaults
@@ -56,5 +67,26 @@ struct Scorecard: Codable {
         } catch {
             print("Failed to encode scorecards: \(error)")
         }
+    }
+    
+    // Generate a sample list of scorecards
+    static func loadSampleScorecards() -> [Scorecard] {
+        let scorecards = [
+            Scorecard(course: Course.loadColumbusData()[12], date: Date(), totalScore: 44, totalPar: -3),
+            Scorecard(course: Course.loadColumbusData()[1], date: Date(), totalScore: 49, totalPar: -1),
+            Scorecard(course: Course.loadColumbusData()[1], date: Date(), totalScore: 52, totalPar: 2),
+            Scorecard(course: Course.loadColumbusData()[3], date: Date(), totalScore: 57, totalPar: 0),
+            Scorecard(course: Course.loadColumbusData()[4], date: Date(), totalScore: 52, totalPar: -1),
+            Scorecard(course: Course.loadColumbusData()[4], date: Date(), totalScore: 51, totalPar: -2),
+            Scorecard(course: Course.loadColumbusData()[6], date: Date(), totalScore: 65, totalPar: 4),
+            Scorecard(course: Course.loadColumbusData()[5], date: Date(), totalScore: 46, totalPar: -6),
+            Scorecard(course: Course.loadColumbusData()[8], date: Date(), totalScore: 49, totalPar: -3),
+            Scorecard(course: Course.loadColumbusData()[8], date: Date(), totalScore: 48, totalPar: -4),
+            Scorecard(course: Course.loadColumbusData()[10], date: Date(), totalScore: 61, totalPar: 1),
+            Scorecard(course: Course.loadColumbusData()[1], date: Date(), totalScore: 49, totalPar: -1),
+            Scorecard(course: Course.loadColumbusData()[12], date: Date(), totalScore: 49, totalPar: 2)
+        ]
+        
+        return scorecards
     }
 }
