@@ -14,6 +14,7 @@ class CoursesMapViewController: UIViewController {
     // MARK: Variable declarations
     
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet var locationButton: UIButton!
     
     var courses : [Course] = [] {
         didSet {
@@ -37,6 +38,8 @@ class CoursesMapViewController: UIViewController {
         
         mapView.delegate = self
         initializeLocationServices()
+        
+        locationButton.layer.cornerRadius = 15
         
         // Register CourseView class as the default annotation view reuse identifier
         mapView.register(CourseView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
@@ -105,6 +108,11 @@ class CoursesMapViewController: UIViewController {
         // Refresh the annotations to display the updated distances
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotations(courses)
+    }
+    
+    // Zoom to user location when location button is pressed
+    @IBAction func locationButtonPressed() {
+        zoomToLocation(currentLocation)
     }
 
     // When an annotation view callout is tapped, create a new CourseDetailTableViewController and pass it the courses array along with the selected course ID

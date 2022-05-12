@@ -51,6 +51,12 @@ class CoursesViewController: UIViewController {
         super.viewDidLoad()
         
         courses = Course.fetchCourseData()
+        
+        // Import sample courses if no course data is present
+        if courses.isEmpty {
+            courses = Course.loadColumbusData()
+        }
+        
         initializeSegmentedControl()
         updateView()
     }
@@ -66,7 +72,7 @@ class CoursesViewController: UIViewController {
     }
     
     // Create a new AddCourseTableViewController and pass it the courses array along with the selected course ID
-    @IBAction func addCourseButtonPressed(_ sender: Any) {
+    @IBAction func addCourseButtonPressed() {
         guard let viewController = storyboard?.instantiateViewController(identifier: "AddCourseTableViewController", creator: {
             coder in AddCourseTableViewController(coder: coder, courses: self.courses)
         }) else { return }
@@ -75,6 +81,7 @@ class CoursesViewController: UIViewController {
         viewController.courses = courses
         navigationController?.pushViewController(viewController, animated: true)
     }
+    
     
     // MARK: Child view controller management
     

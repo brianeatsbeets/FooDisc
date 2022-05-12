@@ -20,22 +20,41 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DH7-4S-53H">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPj-As-qDE">
+                                <rect key="frame" x="353" y="64" width="41" height="41"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="HgP-WA-vEt"/>
+                                    <constraint firstAttribute="width" constant="41" id="bZu-29-6dA"/>
+                                </constraints>
+                                <size key="titleShadowOffset" width="5" height="5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="location.fill" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="locationButtonPressed" destination="WCu-ym-lTq" eventType="touchUpInside" id="MQs-pR-49f"/>
+                                    <action selector="locationButtonPressed" destination="3YQ-Cf-Mcz" eventType="touchUpInside" id="yAG-Uc-6IC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eY5-B8-FA4"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstItem="DH7-4S-53H" firstAttribute="trailing" secondItem="eY5-B8-FA4" secondAttribute="trailing" id="0HS-xU-AhC"/>
+                            <constraint firstItem="eY5-B8-FA4" firstAttribute="trailing" secondItem="rPj-As-qDE" secondAttribute="trailing" constant="20" id="5qm-Dt-tfm"/>
                             <constraint firstItem="DH7-4S-53H" firstAttribute="leading" secondItem="eY5-B8-FA4" secondAttribute="leading" id="Adt-Hh-h26"/>
                             <constraint firstItem="DH7-4S-53H" firstAttribute="bottom" secondItem="eY5-B8-FA4" secondAttribute="bottom" id="M4n-Gi-Veq"/>
+                            <constraint firstItem="rPj-As-qDE" firstAttribute="top" secondItem="eY5-B8-FA4" secondAttribute="top" constant="20" id="fHA-jE-jBO"/>
                             <constraint firstItem="DH7-4S-53H" firstAttribute="top" secondItem="eY5-B8-FA4" secondAttribute="top" id="uWP-K8-4ax"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Courses" id="7El-45-fFd"/>
                     <connections>
+                        <outlet property="locationButton" destination="rPj-As-qDE" id="i7e-cw-MwA"/>
                         <outlet property="mapView" destination="DH7-4S-53H" id="dNr-kb-vzn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zxP-hD-6Sf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="3YQ-Cf-Mcz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2658" y="783"/>
         </scene>
@@ -2061,6 +2080,7 @@
     <resources>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="opticaldisc" catalog="system" width="128" height="121"/>
         <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="81"/>

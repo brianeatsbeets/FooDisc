@@ -33,6 +33,17 @@ class Course: NSObject, Codable, MKAnnotation {
         distanceFromUser = 0
     }
     
+    // Init for sample data
+    init(title: String, city: String, state: String, coordinate: CLLocationCoordinate2D, currentConditions: CourseCondition) {
+        id = UUID().uuidString
+        self.title = title
+        self.city = city
+        self.state = state
+        self.coordinate = coordinate
+        self.currentConditions = currentConditions
+        distanceFromUser = 0
+    }
+    
     // MARK: Data storage/retrieval functions
     
     // Retrieve course data from UserDefaults
@@ -63,6 +74,30 @@ class Course: NSObject, Codable, MKAnnotation {
         } catch {
             print("Failed to encode courses: \(error)")
         }
+    }
+    
+    // Generate a sample list of courses in Columbus, Ohio
+    static func loadColumbusData() -> [Course] {
+        let columbusCourses = [
+            Course(title: "Griggs Reservoir Park DGC", city: "Columbus", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 40.006890, longitude: -83.085640), currentConditions: .good),
+            Course(title: "Ohio State University DGC", city: "Columbus", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 40.001400, longitude: -83.036200), currentConditions: .caution),
+            Course(title: "Veterans Memorial DGC", city: "Hilliard", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 40.029979, longitude: -83.173121), currentConditions: .fair),
+            Course(title: "Worthington Flats DGC", city: "Worthington", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 40.092189, longitude: -83.032070), currentConditions: .good),
+            Course(title: "Balgriffin Park", city: "Dublin", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 40.084747, longitude: -83.153497), currentConditions: .good),
+            Course(title: "Grove City Community Disc Golf Course", city: "Grove City", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 39.864507, longitude: -83.067799), currentConditions: .good),
+            Course(title: "Community Park", city: "Whitehall", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 39.981808, longitude: -82.868446), currentConditions: .good),
+            Course(title: "Area 51 DGC", city: "Obetz", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 39.869211, longitude: -82.969104), currentConditions: .caution),
+            Course(title: "Blendon Woods DGC", city: "Columbus", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 40.077368, longitude: -82.888282), currentConditions: .good),
+            Course(title: "Scioto Grove DGC", city: "Grove City", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 39.843739, longitude: -83.025434), currentConditions: .caution),
+            Course(title: "Brent Hambrick Memorial DGC", city: "Westerville", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 40.108294, longitude: -82.877363), currentConditions: .good),
+            Course(title: "Walnut Hill", city: "Columbus", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 39.937859, longitude: -82.837311), currentConditions: .good),
+            Course(title: "Glacier Ridge Metro Park", city: "Plain City", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 40.154515, longitude: -83.193751), currentConditions: .fair),
+            Course(title: "Alum Creek State Park DGC", city: "Lewis Center", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 40.199568, longitude: -82.948013), currentConditions: .caution),
+            Course(title: "Simsbury DGC", city: "Pickerington", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 39.880840, longitude: -82.736488), currentConditions: .good),
+            Course(title: "Lobdell Reserve", city: "Alexandria", state: "Ohio", coordinate: CLLocationCoordinate2D(latitude: 40.104198, longitude: -82.599998), currentConditions: .good)
+        ]
+        
+        return columbusCourses
     }
     
     // MARK: Codable conforming elements
